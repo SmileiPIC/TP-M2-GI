@@ -261,10 +261,9 @@ In case you want to export the data to a text file \commandline{.txt} and read i
 \commandline{np.savetxt("file\_name.txt", myArrayVariable)}
 
 \section{Laser in vacuum}
-Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser in the simulation.
+Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser pulse in the simulation.
 
 Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (in our case with a Gaussian shape) will contain many optical oscillations.
-
 
 
 \begin{figure}[!htb]
