@@ -45,7 +45,6 @@ npatch_x            = 64
 npatch_r            = 8
 
 
-
 ######################### Main simulation definition block
 
 Main(
@@ -78,22 +77,22 @@ Main(
 ######################### Define the laser pulse
 
 ##### laser parameters
-laser_fwhm        = 25.5*math.sqrt(2)*fs                              # laser FWHM duration in field = FWHM duration in intensity*sqrt(2)
-laser_waist       = 11.5*um                                           # laser waist, conversion from um
-center_laser      = Lx-1.7*laser_fwhm                                 # laser position at the start of the simulation
-a0                = 1.8                                               # laser peak field, normalized by E0 defined above
+#laser_fwhm        = 25.5*math.sqrt(2)*fs                              # laser FWHM duration in field = FWHM duration in intensity*sqrt(2)
+#laser_waist       = 11.5*um                                           # laser waist, conversion from um
+#center_laser      = Lx-1.7*laser_fwhm                                 # laser position at the start of the simulation
+#a0                = 1.8                                               # laser peak field, normalized by E0 defined above
 
 ##### Define a Gaussian Beam with Gaussian temporal envelope
-LaserEnvelopeGaussianAM(
-  a0              = a0, 
-  omega           = (2.*math.pi/lambda0*c)/reference_frequency,       # laser frequency, normalized
-  focus           = [(center_laser+0.1*laser_fwhm),0.],               # laser focus, [x,r] position
-  waist           = laser_waist,                                      # laser waist
-  time_envelope   = tgaussian(center=center_laser, fwhm=laser_fwhm),  # time profile of the laser pulse
-  envelope_solver = 'explicit',
-  Envelope_boundary_conditions = [ ["reflective", "reflective"],
-      ["reflective", "reflective"], ],
-)
+#LaserEnvelopeGaussianAM(
+#  a0              = a0, 
+#  omega           = (2.*math.pi/lambda0*c)/reference_frequency,       # laser frequency, normalized
+#  focus           = [(center_laser+0.1*laser_fwhm),0.],               # laser focus, [x,r] position
+#  waist           = laser_waist,                                      # laser waist
+#  time_envelope   = tgaussian(center=center_laser, fwhm=laser_fwhm),  # time profile of the laser pulse
+#  envelope_solver = 'explicit',
+#  Envelope_boundary_conditions = [ ["reflective", "reflective"],
+#      ["reflective", "reflective"], ],
+#)
 
 
 ######################### Define a moving window
@@ -106,93 +105,93 @@ MovingWindow(
 ######################### Define the plasma
 
 ##### plasma parameters
-n0 = 0.0008              # plasma plateau density in units of critical density defined above
-Radius_plasma = 22.*um   # Radius of plasma
-Lramp         = 6.5*um   # Plasma density upramp length
-Lplateau      = 100.*Lx
-Ldownramp     = 0.1*Lx
-begin_upramp  = Lx
-begin_plateau = begin_upramp+Lramp
-end_plateau   = begin_plateau+Lplateau
-end_downramp  = end_plateau+Ldownramp
+#n0 = 0.0008              # plasma plateau density in units of critical density defined above
+#Radius_plasma = 22.*um   # Radius of plasma
+#Lramp         = 6.5*um   # Plasma density upramp length
+#Lplateau      = 100.*Lx
+#Ldownramp     = 0.1*Lx
+#begin_upramp  = Lx
+#begin_plateau = begin_upramp+Lramp
+#end_plateau   = begin_plateau+Lplateau
+#end_downramp  = end_plateau+Ldownramp
 
 ##### plasma density profile
-longitudinal_profile = polygonal(xpoints=[begin_upramp,begin_plateau,end_plateau,end_downramp],xvalues=[0.,n0,n0,0.])
-def plasma_density(x,r):
-	profile_r = 0.
-	if ((r)**2<Radius_plasma**2):
-		profile_r = 1.
-	return profile_r*longitudinal_profile(x,r)
+#longitudinal_profile = polygonal(xpoints=[begin_upramp,begin_plateau,end_plateau,end_downramp],xvalues=[0.,n0,n0,0.])
+#def plasma_density(x,r):
+#	profile_r = 0.
+#	if ((r)**2<Radius_plasma**2):
+#		profile_r = 1.
+#	return profile_r*longitudinal_profile(x,r)
 
 ####### define the plasma electrons
-Species(
-  name = "plasmaelectrons",
-  position_initialization = "regular",
-  momentum_initialization = "cold",
-  particles_per_cell = 4,
-  regular_number = [2,2,1],
-  c_part_max = 1.0,
-  mass = 1.0,
-  charge = -1.0,
-  charge_density = plasma_density,
-  mean_velocity = [0.0, 0.0, 0.0],
-  temperature = [0.,0.,0.],
-  pusher = "ponderomotive_boris",
-  time_frozen = 0.0,
-  boundary_conditions = [
-     ["remove", "remove"],
-     ["remove", "remove"],
-  ],
-)
+#Species(
+#  name = "plasmaelectrons",
+#  position_initialization = "regular",
+#  momentum_initialization = "cold",
+#  particles_per_cell = 4,
+#  regular_number = [2,2,1],
+#  c_part_max = 1.0,
+#  mass = 1.0,
+#  charge = -1.0,
+#  charge_density = plasma_density,
+#  mean_velocity = [0.0, 0.0, 0.0],
+#  temperature = [0.,0.,0.],
+#  pusher = "ponderomotive_boris",
+#  time_frozen = 0.0,
+#  boundary_conditions = [
+#     ["remove", "remove"],
+#     ["remove", "remove"],
+#  ],
+#)
 
 
 ######################### Define the electron bunch
 
 ##### electron bunch parameters
-Q_bunch                    = -20*pC                          # Total charge of the electron bunch
-sigma_x                    = 1.9*um                          # initial longitudinal rms size
-sigma_r                    = 2*um                            # initial transverse/radial rms size (cylindrical symmetry)
-bunch_energy_spread        = 0.01                            # initial rms energy spread / average energy (not in percent)
-bunch_normalized_emittance = 3.*mm_mrad                      # initial rms emittance, same emittance for both transverse planes
-delay_behind_laser         = 18.5*um                         # distance between center_laser and center_bunch
-center_bunch               = center_laser-delay_behind_laser # initial position of the electron bunch in the window   
-gamma_bunch                = 200.                            # initial relativistic Lorentz factor of the bunch
+#Q_bunch                    = -20*pC                          # Total charge of the electron bunch
+#sigma_x                    = 1.9*um                          # initial longitudinal rms size
+#sigma_r                    = 2*um                            # initial transverse/radial rms size (cylindrical symmetry)
+#bunch_energy_spread        = 0.01                            # initial rms energy spread / average energy (not in percent)
+#bunch_normalized_emittance = 3.*mm_mrad                      # initial rms emittance, same emittance for both transverse planes
+#delay_behind_laser         = 18.5*um                         # distance between center_laser and center_bunch
+#center_bunch               = center_laser-delay_behind_laser # initial position of the electron bunch in the window   
+#gamma_bunch                = 200.                            # initial relativistic Lorentz factor of the bunch
 
-npart                      = 50000                           # number of computational macro-particles to model the electron bunch 
-normalized_species_charge  = -1                              # For electrons
-Q_part                     = Q_bunch/npart                   # charge for every macroparticle in the electron bunch
-weight                     = Q_part/((c/omega0)**3*ncrit*normalized_species_charge)
+#npart                      = 50000                           # number of computational macro-particles to model the electron bunch 
+#normalized_species_charge  = -1                              # For electrons
+#Q_part                     = Q_bunch/npart                   # charge for every macroparticle in the electron bunch
+#weight                     = Q_part/((c/omega0)**3*ncrit*normalized_species_charge)
 
 ##### initialize the bunch using numpy arrays
 ##### the bunch will have npart particles, so an array of npart elements is used to define the x coordinate of each particle and so on ...
-array_position = np.zeros((4,npart))                         # positions x,y,z, weight
-array_momentum = np.zeros((3,npart))                         # momenta x,y,z
+#array_position = np.zeros((4,npart))                         # positions x,y,z, weight
+#array_momentum = np.zeros((3,npart))                         # momenta x,y,z
 
 ##### The electron bunch is supposed at waist. To make it convergent/divergent, transport matrices can be used
-array_position[0,:] = np.random.normal(loc=center_bunch, scale=sigma_x, size=npart)                        # generate random number from gaussian distribution for x position
-array_position[1,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for y position
-array_position[2,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for z position
-array_momentum[0,:] = np.random.normal(loc=gamma_bunch, scale=bunch_energy_spread*gamma_bunch, size=npart) # generate random number from gaussian distribution for px position
-array_momentum[1,:] = np.random.normal(loc=0., scale=bunch_normalized_emittance/sigma_r, size=npart)       # generate random number from gaussian distribution for py position
-array_momentum[2,:] = np.random.normal(loc=0., scale=bunch_normalized_emittance/sigma_r, size=npart)       # generate random number from gaussian distribution for pz position
+#array_position[0,:] = np.random.normal(loc=center_bunch, scale=sigma_x, size=npart)                        # generate random number from gaussian distribution for x position
+#array_position[1,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for y position
+#array_position[2,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for z position
+#array_momentum[0,:] = np.random.normal(loc=gamma_bunch, scale=bunch_energy_spread*gamma_bunch, size=npart) # generate random number from gaussian distribution for px position
+#array_momentum[1,:] = np.random.normal(loc=0., scale=bunch_normalized_emittance/sigma_r, size=npart)       # generate random number from gaussian distribution for py position
+#array_momentum[2,:] = np.random.normal(loc=0., scale=bunch_normalized_emittance/sigma_r, size=npart)       # generate random number from gaussian distribution for pz position
 
-array_position[3,:] = np.multiply(np.ones(npart),weight)
+#array_position[3,:] = np.multiply(np.ones(npart),weight)
 
 ##### define the electron bunch
-Species( 
-  name = "electronbunch",
-  position_initialization = array_position,
-  momentum_initialization = array_momentum,
-  c_part_max = 1.0,
-  mass = 1.0,
-  charge = -1.0,
-  relativistic_field_initialization = True,
-  pusher = "ponderomotive_boris", 
-  boundary_conditions = [
-  	["remove", "remove"],
-  	["remove", "remove"], 
-  ],
-)
+#Species( 
+#  name = "electronbunch",
+#  position_initialization = array_position,
+#  momentum_initialization = array_momentum,
+#  c_part_max = 1.0,
+#  mass = 1.0,
+#  charge = -1.0,
+#  relativistic_field_initialization = True,
+#  pusher = "ponderomotive_boris", 
+#  boundary_conditions = [
+#  	["remove", "remove"],
+#  	["remove", "remove"], 
+#  ],
+#)
  
 ######################### Diagnostics
 
@@ -216,28 +215,12 @@ DiagProbe(
     fields = ['Ex','Ey','Rho','Jx','Env_A_abs','Env_Chi','Env_E_abs']
 )
 
-##### Field diagnostics, used for 3D export
-DiagFields(
-    every = 1000,
-    fields = ["Env_A_abs","Env_E_abs"],
-)
-
-DiagFields(
-    every = 1000,
-    fields = ["Rho","Rho_plasmaelectrons"],
-)
-
-DiagFields(
-    every = 1000,
-    fields = ["Rho_electronbunch"],
-)
-
 ##### Diagnostic for the electron bunch macro-particles
-DiagTrackParticles(
-  species = "electronbunch",
-  every = 100,
-  attributes = ["x", "y", "z", "px", "py", "pz", "w"]
-)
+#DiagTrackParticles(
+#  species = "electronbunch",
+#  every = 100,
+#  attributes = ["x", "y", "z", "px", "py", "pz", "w"]
+#)
 
 
 ######################### Load balancing (for parallelization)                                                                                                                                                     
@@ -247,4 +230,20 @@ LoadBalancing(
     cell_load = 1.,
     frozen_particle_load = 0.1
 )
+
+##### Field diagnostics, used for 3D export
+#DiagFields(
+#    every = 1000,
+#    fields = ["Env_A_abs","Env_E_abs"],
+#)
+
+#DiagFields(
+#    every = 1000,
+#    fields = ["Rho","Rho_plasmaelectrons"],
+#)
+
+#DiagFields(
+#    every = 1000,
+#    fields = ["Rho_electronbunch"],
+#)
 
