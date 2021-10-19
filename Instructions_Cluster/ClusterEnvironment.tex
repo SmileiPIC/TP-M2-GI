@@ -133,13 +133,13 @@ ctrl+C will allow you to stop watching the file refresh.
 
 \item If you want to change the time you want for your simulation, change the corresponding line in the file \commandline{submission\_script.sh} (here 20 minutes):\\
 \commandline{\#SBATCH --time=00:20:00}\\
-The longest simulation of the session runs approximately for 15 minutes with 1MPI process and 6 OpenMP threads. These parameters are already set in the submission script.
+The longest simulation of the session runs approximately for 3 minutes with 10 MPI processes and 2 OpenMP threads. These parameters are already set in the submission script.
 
-\item If you want to change the number of OpenMP threads in your simulation, change the corresponding line in the file \commandline{submission\_script.sh} (here 6 threads):\\
-\commandline{export OMP\_NUM\_THREADS=6}
+\item If you want to change the number of OpenMP threads in your simulation, change the corresponding line in the file \commandline{submission\_script.sh} (here 2 threads):\\
+\commandline{export OMP\_NUM\_THREADS=2}
 
-\item If you want to change the number of MPI process in your simulation, change the corresponding line in the file \commandline{submission\_script.sh} (here 1 process):\\
-\commandline{\#SBATCH --ntasks=1}
+\item If you want to change the number of MPI process in your simulation, change the corresponding line in the file \commandline{submission\_script.sh} (here 10 processes):\\
+\commandline{\#SBATCH --ntasks=10}
 
 \end{itemize}
 

@@ -2,7 +2,7 @@
 #SBATCH --job-name=mpi_openmp
 #SBATCH --output=smilei.log
 #SBATCH --time=00:20:00
-#SBATCH --ntasks=3
+#SBATCH --ntasks=10
 #SBATCH --nodes=1 
 #SBATCH --cpus-per-task=2
 #SBATCH --partition=cpu_short
