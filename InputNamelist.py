@@ -3,7 +3,7 @@ import math
 import numpy as np
 import scipy.constants
 
-########## Physical constants
+##### Physical constants
 lambda0             = 0.8e-6                    # laser wavelength, m
 c                   = scipy.constants.c         # lightspeed, m/s
 omega0              = 2*math.pi*c/lambda0       # laser frequency
@@ -16,35 +16,35 @@ c_normalized        = 1.                        # will make easier to read some 
 reference_frequency = omega0                    # reference frequency (s-1)
 E0                  = me*omega0*c/e             # reference electric field (GV/m)
 
-# Units to normalize quantities
+##### Units to normalize quantities
 um                  = 1.e-6/c_over_omega0       # micron
 fs                  = 1.e-15*omega0             # femtosecond
 mm_mrad             = um                        # millimeters-milliradians
 pC                  = 1.e-12/e                  # picoCoulomb
 
-#########  Simulation parameters
+#########################  Simulation parameters
 
-# mesh resolution
+##### mesh resolution
 dx                  = 0.10*um                   # longitudinal mesh resolution
 dr                  = 0.165*um                  # transverse mesh resolution
 dt                  = 0.8*dx/c_normalized       # integration timestep
 
-# simulation window size
+##### simulation window size
 nx                  = 576                       # number of mesh points in the longitudinal direction
 nr                  = 256                       # number of mesh points in the transverse direction
 Lx                  = nx * dx                   # longitudinal size of the simulation window
 Lr                  = nr*dr                     # transverse size of the simulation window
 
-# Total simulation time
+##### Total simulation time
 T_sim               = 5000.*dt
 
-# patches parameters (parallelization)
+##### patches parameters (parallelization)
 npatch_x            = 64
 npatch_r            = 8
 
 
 
-########## Main simulation definition block
+######################### Main simulation definition block
 
 Main(
     geometry = "AMcylindrical",
@@ -73,7 +73,7 @@ Main(
     random_seed = smilei_mpi_rank
 )
 
-########## Define the laser pulse
+######################### Define the laser pulse
 
 ##### laser parameters
 laser_fwhm        = 25.5*math.sqrt(2)*fs                              # laser FWHM duration in field = FWHM duration in intensity*sqrt(2)
@@ -81,7 +81,7 @@ laser_waist       = 11.5*um                                           # laser wa
 center_laser      = Lx-1.7*laser_fwhm                                 # laser position at the start of the simulation
 a0                = 1.8                                               # laser peak field, normalized by E0 defined above
 
-# Define a Gaussian Beam with Gaussian temporal envelope
+##### Define a Gaussian Beam with Gaussian temporal envelope
 LaserEnvelopeGaussianAM(
   a0              = a0, 
   omega           = (2.*math.pi/lambda0*c)/reference_frequency,       # laser frequency, normalized
@@ -94,19 +94,19 @@ LaserEnvelopeGaussianAM(
 )
 
 
-########## Define a moving window
+######################### Define a moving window
 
 MovingWindow(
-    time_start = 0.,    # window starts  moving at the beginning of the simulation
+    time_start = 0.,     # window starts  moving at the start of the simulation
     velocity_x = c_normalized,
 )
 
-########## Define the plasma
+######################### Define the plasma
 
 ##### plasma parameters
-n0 = 0.0008             # plasma plateau density in units of critical density defined above
+n0 = 0.0008              # plasma plateau density in units of critical density defined above
 Radius_plasma = 22.*um   # Radius of plasma
-Lramp         = 6.5*um  # Plasma density upramp length
+Lramp         = 6.5*um   # Plasma density upramp length
 Lplateau      = 100.*Lx
 Ldownramp     = 0.1*Lx
 begin_upramp  = Lx
@@ -144,7 +144,7 @@ Species(
 )
 
 
-######################### Electron bunch definition
+######################### Define the electron bunch
 
 ##### electron bunch parameters
 Q_bunch                    = -20*pC                          # Total charge of the electron bunch
@@ -163,10 +163,10 @@ weight                     = Q_part/((c/omega0)**3*ncrit*normalized_species_char
 
 ##### initialize the bunch using numpy arrays
 ##### the bunch will have npart particles, so an array of npart elements is used to define the x coordinate of each particle and so on ...
-array_position = np.zeros((4,npart))   # positions x,y,z, weight
-array_momentum = np.zeros((3,npart))   # momenta x,y,z
+array_position = np.zeros((4,npart))                         # positions x,y,z, weight
+array_momentum = np.zeros((3,npart))                         # momenta x,y,z
 
-# The electron bunch is supposed at waist. To make it convergent/divergent, transport matrices can be used
+##### The electron bunch is supposed at waist. To make it convergent/divergent, transport matrices can be used
 array_position[0,:] = np.random.normal(loc=center_bunch, scale=sigma_x, size=npart)                        # generate random number from gaussian distribution for x position
 array_position[1,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for y position
 array_position[2,:] = np.random.normal(loc=0., scale=sigma_r, size=npart)                                  # generate random number from gaussian distribution for z position
@@ -176,7 +176,7 @@ array_momentum[2,:] = np.random.normal(loc=0., scale=bunch_normalized_emittance/
 
 array_position[3,:] = np.multiply(np.ones(npart),weight)
 
-# define the electron bunch
+##### define the electron bunch
 Species( 
   name = "electronbunch",
   position_initialization = array_position,
@@ -192,8 +192,9 @@ Species(
   ],
 )
  
-########### Diagnostics
+######################### Diagnostics
 
+##### 1D Probe diagnostic on the x axis
 DiagProbe(
         every = 100,
         origin = [0., 1.*dr, 1.*dr],
@@ -204,7 +205,7 @@ DiagProbe(
         fields = ['Ex','Ey','Rho','Jx','Env_A_abs','Env_Chi','Env_E_abs']
 )
 
-# 2D Probe diagnostics on the xy plane
+##### 2D Probe diagnostics on the xy plane
 DiagProbe(
     every = 100,
     origin   = [0., -nr*dr,0.],
@@ -213,7 +214,7 @@ DiagProbe(
     fields = ['Ex','Ey','Rho','Jx','Env_A_abs','Env_Chi','Env_E_abs']
 )
 
-# Field diagnostics, used for 3D export
+##### Field diagnostics, used for 3D export
 DiagFields(
     every = 1000,
     fields = ["Env_A_abs","Env_E_abs"],
@@ -229,7 +230,7 @@ DiagFields(
     fields = ["Rho_electronbunch"],
 )
 
-# Diagnostic for the electron bunch particles
+##### Diagnostic for the electron bunch macro-particles
 DiagTrackParticles(
   species = "electronbunch",
   every = 100,
@@ -237,7 +238,7 @@ DiagTrackParticles(
 )
 
 
-########## Load balancing (for parallelization)                                                                                                                                                     
+######################### Load balancing (for parallelization)                                                                                                                                                     
 LoadBalancing(
     initial_balance = False,
         every = 40,
