@@ -1,4 +1,6 @@
-############################# Input namelist for Laser Plasma Acceleration 
+############################# Input namelist for Laser Wakefield Acceleration 
+############################# with external injection of a relativistic electron bunch
+
 import math 
 import numpy as np
 import scipy.constants
