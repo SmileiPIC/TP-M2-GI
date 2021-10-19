@@ -25,6 +25,13 @@
 \usepackage[normalem]{ulem}	
 \usepackage{xspace}
 \usepackage{lmodern}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=17mm,
+right=17mm,
+ top=30mm,
+ }
 
 % (2) specify encoding
 \usepackage[T1]{fontenc}
@@ -44,21 +51,19 @@
 \section{Introduction} %%% ------------------------------------------------------------------------------------------------------------------------------------------------
 In this practical you will familiarize with a Particle in Cell code (PIC) code, learn how to set up and run a PIC simulation of plasma acceleration, and how to analyze the results.
 
-The PIC code you will use, \smilei, is not a reduced version, but a full version that you can use for your future studies. Although here you will be given all the instructions you need to use the code for the purposes of this practical, you can find more details and more instructions on the code use for your future studies here \url{https://smileipic.github.io/Smilei/index.html}, or tutorials in \url{https://smileipic.github.io/tutorials/}.
+The PIC code you will use, \smilei, is not a reduced version, but a full version that you can use for your future studies. Although here you will be given all the instructions you need to use the code for the purposes of this practical, you can find more details and more instructions on the code use here \url{https://smileipic.github.io/Smilei/index.html}, or tutorials in \url{https://smileipic.github.io/tutorials/}.
 
-At the end of the practical you will be able to run and analyse a full PIC simulation of a plasma acceleration set-up, where an intense laser pulse is injected in the plasma. The laser pulse excites a relativistic plasma wave that accelerates a properly injected electron beam behind the laser.  This plasma acceleration scheme is called laser wakefield acceleration (or LWFA).  A common analogy is that of a surfer (the injected electrons) being accelerated by the waves in the wake of a boat (the laser pulse) in the sea (the plasma).  In this particular LWFA set-up the a relativistic electron beam is externally injected in the plasma wave.
+At the end of the practical you will be able to run and analyse a full PIC simulation of a plasma acceleration set-up, where an intense laser pulse is injected in the plasma. The laser pulse excites a relativistic plasma wave that accelerates a properly injected electron beam behind the laser pulse.  This plasma acceleration scheme is called laser wakefield acceleration (or LWFA).  A common analogy is that of a surfer (the injected electrons) being accelerated by the waves in the wake of a boat (the laser pulse) in the sea (the plasma).  In this particular LWFA set-up the a relativistic electron beam is externally injected in the plasma wave.
 
-However, you won't simulate immediately this case study. We will arrive progressively to this simulation, familiarizing with the code and adding step by step all the necessary blocks to the input file, called the input namelist. The lines starting with the symbol \texttt{\#} are comments, i.e. they are ignored by the code. The comments in the input namelist of this practical will have one of these two purposes: 1) helping understand a certain section of the namelist or 2) deactivating a certain block or variable definitions in the namelist, e.g. a block introducing a laser in the simulation: to activate that block and introduce the laser, you will only need to remove the symbols \texttt{\#} (also from the lines defining for example the laser length).
+However, you won't simulate immediately this case study.  You will arrive progressively to this simulation, familiarizing with the code and adding step by step all the necessary blocks to the input namelist file, called the \commandline{InputNamelist.py}. The lines starting with the symbol \texttt{\#} are comments, i.e. they are ignored by the code. The comments in the input namelist of this practical will have one of these two purposes: 1) helping understand a certain section of the namelist or 2) deactivating a certain block or variable definitions in the namelist, e.g. a block introducing a laser in the simulation: to activate that block and introduce the laser, you will only need to remove the symbols \texttt{\#} (also from the lines defining for example the laser length).
 
 This namelist is written in Python, but you don't need a deep knowledge of this language to understand its content. Knowing how to define variables (and optionally how to define \texttt{numpy} arrays) will be largely sufficient. This practical assumes that you are able to navigate in a directory tree, create folders and copy files from the command line (to have a quick recap, see the Sections 4, 5, 7, 8, 9, 13 of \url{https://www.computervillage.org/articles/CommandLine.pdf}). 
 
-You will start with a simple namelist which includes only a laser propagating in vacuum, then the plasma will be added to excite the plasma wave and finally the injected electron beam will be added Each of these three elements is introduced into the simulation with a block of text that is read by the code. Since the very first exercises of this TP, you will have the full input namelist at your disposal. At first only few blocks will be functional, like the block to define a laser in the simulation, while the other blocks will be commented (i.e. having a symbol \texttt{\#} at the beginning of the line).
+You will start with a simple namelist which includes only a laser propagating in vacuum, then the plasma will be added to excite a plasma wave and finally the injected electron beam will be added. Each of these three elements is introduced into the simulation with a block of text that is read by the code. Since the very first exercises of this TP, you will have the full input namelist at your disposal. At first only few blocks will be functional, like the block to define a laser in the simulation, while the other blocks will be commented (i.e. having a symbol \texttt{\#} at the beginning of the line).
 
 To introduce a new physical element to the simulation, you just need to uncomment the corresponding block (i.e. remove the symbol \texttt{\#}) and run  again your simulation. You will arrive to the end of the TP uncommenting the blocks of the plasma, the electron relativistic beam, and so on.
 
 In each of these three steps you will also analyse the results of the simulations, using the already implemented postprocessing library of \smilei, called \commandline{happi} and exporting the data to arrays that can be processed with Python (or other languages).  A familiarity with the plotting of 1D and 2D data is recommended. If instead you want to work with the practical library \commandline{happi} (recommended choice), you will just need to read Section \ref{happi}, where you can find the commands to copy, paste and adapt  for your purposes.
-
-\newpage
 
 \section*{A quick word on \smilei} %%% 
 
@@ -123,37 +128,32 @@ Although it is possible to define your simulation in SI units (simply doing the 
 
 As in any experiment, you need to prepare your set-up. For a numerical experiment, your interface with the computing environment is the command line terminal. Follow the instructions in the file \commandline{ClusterEnvironment.pdf} to respectively: login to the machine for your simulations, compile the code, create your simulation folders, submit and postprocess your simulations.\\
 
-It is recommendable to create a folder for each simulation you will perform in order to avoid losing data. In each of these directories, you'll need to copy the input namelist \commandline{InputNamelist.py} and the \smilei executable file (the files \commandline{smilei} and \commandline{smilei\_test}). To check if your input file does not contain errors (e.g. when you will change some parameters), you can use the command \commandline{./smilei\_test name\_inputfile}. If everything goes well the word \commandline{END} should appear), you can launch your simulation with the submission script. Normally 10 MPI processes and 2 threads OpenMP should be sufficient to run the longest of your simulations in this practical within 3 minutes (these parameters are already set in the submission script). Remember that you can submit multiple simulation jobs in different folders to let them run in parallel.\\
+It is recommendable to create a folder for each simulation you will perform in order to avoid losing data. In each of these directories, you'll need to copy the input namelist \commandline{InputNamelist.py} and the \smilei executable files (the ones called \commandline{smilei} and \commandline{smilei\_test}). To check if your input file does not contain errors (e.g. when you will change some parameters), you can use the command \commandline{./smilei\_test name\_inputfile}. If everything goes well the word \commandline{END} should appear), you can launch your simulation with the submission script. Normally 10 MPI processes and 2 threads OpenMP should be sufficient to run the longest of your simulations in this practical within 3 minutes (these parameters are already set in the submission script). Remember that you can submit multiple simulation jobs in different folders to let them run in parallel.\\
 
 Always copy the file \commandline{InputNamelist.py} to the folder where you will run your simulation and uncomment the necessary lines and blocks as described in the next Sections. Now everything we need for our simulations is ready. For the postprocessing, remember to compile the \commandline{happi} library as explained in Section \ref{happi}.\\
 
 To resume, in each simulation folder you will need the files \commandline{smilei} and \commandline{smilei\_test},\\ \commandline{InputNamelist.py} and the submission script.
-
-\newpage 
 
 \section{Exploring the namelist}
 Open the file with a text editor, e.g. \commandline{nano}, \commandline{gedit} or \commandline{vim} (if in \commandline{vim} the file syntax is not colored, use \commandline{:syntax enable}) or with another editor of your choice and give a look to the input namelist, for the moment ignoring the commented blocks. 
 
 The file starts with the definition of the number of physical constants and units, mesh points, the integration timestep, etc. These parameters are inserted in the first block of the simulation, called \commandline{Main}.\\
 
-In the  \commandline{Main} block you will find also the  \commandline{geometry} of our simulation, which is \commandline{AMcylindrical}. Our grid is  defined on a cylindrical space and with cylindrical coordinates $x$, $r$ but our  particles will move in the 3D  space $x$, $y$, $z$ (See Fig. \ref{reference_axes}). Maxwell's Equations will be solved in cylindrical coordinates with cylindrical symmetry in our simulations, and this will allow to run quick simulations with a 3D accuracy (which  is necessary to simulate plasma acceleration).\\
+In the  \commandline{Main} block you will find also the  \commandline{geometry} of the simulation, which is \commandline{AMcylindrical}. The grid is  defined on a cylindrical space and with cylindrical coordinates $x$, $r$ but the particles will move in the 3D  space $x$, $y$, $z$ (See Fig. \ref{reference_axes}). Maxwell's Equations will be solved in cylindrical coordinates with cylindrical symmetry in the simulations, of the practical and this will allow to run quick simulations with a 3D accuracy.\\
 
 \textbf{ - Exercise 2:} What are the longitudinal size \commandline{Lx} and radial size \commandline{Lr} of the simulation window? How many mesh points are used? See Figures \ref{reference_axes}, \ref{Schema0} for reference,  and find these lengths from the namelist.
 
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=1.]{Reference.pdf}
-  \end{center}
-  \caption{Reference axes of our simulation. Our simulation window corresponds to the cylinder with radius $Lr$ and length $Lx$. }
-  \label{reference_axes}
-\end{figure}
-
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=0.3]{Schema_Simulation_0.pdf}
-  \end{center}
-  \caption{Simulation Setup in this Section (not in scale).}
-  \label{Schema0}
+\begin{figure}[!htb]
+   \begin{minipage}{0.35\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{Reference.pdf}
+     \caption{Reference axes of the simulation. The simulation window corresponds to the cylinder with radius \commandline{Lr} and length \commandline{Lx}. }\label{reference_axes}
+   \end{minipage}\hfill
+   \begin{minipage}{0.65\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{Schema_Simulation_0.pdf}
+     \caption{Simulation Setup in this Section (not in scale).}\label{Schema0}
+   \end{minipage}
 \end{figure}
 
 \subsection*{The \commandline{MovingWindow} block}
@@ -161,9 +161,6 @@ Note a block called \commandline{MovingWindow}. In our case, we will first simul
 
 \subsection*{The \commandline{Diag} blocks}
 At the end of the namelist, there are blocks starting with the word \commandline{Diag}. As you can imagine, they are the diagnostic of the code, our interface with the simulation results. The first \commandline{Diag} is a \commandline{DiagProbe} defined on a line (so a 1D diagnostic), on the propagation axis of the laser (the $x$ axis). This diagnostic will show in output the value of some physical fields along that axis. We call this probe \commandline{Probe0} (the 0 because it is the first \commandline{Probe} in the namelist). The second diagnostic block is a \commandline{DiagProbe} defined on the plane $xy$ (so a 2D diagnostic). This is the second probe of the namelist, so it is called \commandline{Probe1}. Inside these \commandline{DiagProbe} blocks, the physical quantities in output we are interested in are specified. For this practical, you don't have to write new postprocessing scripts, since \smilei includes a postprocessing library, called \commandline{happi}, to analyze the code results. For the purposes of the practical, the \commandline{happi} commands explained in Section \ref{happi} and the postprocessing scripts you will be given are sufficient to start. However, if you prefer to work with \commandline{numpy} arrays in Python, at the end of Section \ref{happi} you will find also how to export the output to that format.
-
-\newpage
-
 
 \section{Crash course on the \commandline{happi} postprocessing library}\label{happi}
 A fundamental part of working with simulation codes is of course the postprocessing of the results. \smilei includes an entire library for postprocessing based on Python. However, to  plot your first results and make quantitative evaluations you don't need to be an expert of this language.
@@ -259,37 +256,35 @@ Those shown above are all the \commandline{happi} commands you may need for this
 
 \commandline{myArrayVariable = np.asarray(myArrayVariable) }\\
 
-In case you want to export the data to a text file and read it with another language, you can write this array on a text file using:
+In case you want to export the data to a text file \commandline{.txt} and read it with another language, you can write this array on a text file using:\\
 
-\newpage
+\commandline{np.savetxt("file\_name.txt", myArrayVariable)}
 
 \section{Laser in vacuum}
 Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser in the simulation.
 
 Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (in our case with a Gaussian shape) will contain many optical oscillations.
 
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=0.4]{Envelope_Figure.png}
-  \end{center}
-  \caption{Blue line: laser vector potential $\hat{A}$. Red line: absolute value of the envelope of the vector potential $|\tilde{A}|$. The laser pulse has a Gaussian temporal envelope, much longer than the oscillation period. Both lines contain a suitable number of points for their sampling. Note that in  this case the number of points sampling the envelope is ten times lower than the one necessary to sample the laser with its high frequency oscillations.}
-  \label{fig:envelope}
-\end{figure}
 
+
+\begin{figure}[!htb]
+   \begin{minipage}{0.35\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{Envelope_Figure.png}
+     \caption{Blue line: laser vector potential $\hat{A}$. Red line: absolute value of the envelope of the vector potential $|\tilde{A}|$. The laser pulse has a Gaussian temporal envelope, much longer than the oscillation period. Both lines contain a suitable number of points for their sampling. Note that in  this case the number of points sampling the envelope is ten times lower than the one necessary to sample the laser with its high frequency oscillations.}\label{fig:envelope}
+   \end{minipage}\hfill
+   \begin{minipage}{0.65\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{Schema_Simulation_1.pdf}
+     \caption{Simulation Setup in this Section (not in scale).}\label{Schema1}
+   \end{minipage}
+\end{figure}
 
 Thus, using a laser envelope model we will be able to describe the laser and its interaction with the plasma only in terms of its envelope and have quick simulations. In this kind of model, the laser evolution is described by an envelope equation (like in a paraxial wave equation for example), the laser effects on the plasma particles by its ponderomotive force (which depends only on its envelope). With this approach, the accuracy of the results will be enough to explore the basic physics of laser plasma acceleration and you will be able to perform quicker simulations. \\
 
-\textbf{ Note:} since an envelope model for the laser, is used the electromagnetic fields in output like \commandline{Ex},\commandline{Ey} (and the densities like \commandline{Rho}) will only show the average of these quantities over the optical oscillations of the laser. Thus, these quantities will not show the oscillations at $\omega_0$ and $2\omega_0$ normally seen in a simulation of LWFA without an envelope model. The electromagnetic fields in output will be those generated in the plasma, while the absolute value of the envelope of the transverse electric field of the laser is contained in the quantity \commandline{Env\_E\_abs}. \\
+\textbf{ Note:} since an envelope model is used for the laser,  the electromagnetic fields in output like \commandline{Ex},\commandline{Ey} (and the densities like \commandline{Rho}) will only show the average of these quantities over the optical oscillations of the laser and not including the laser field. Thus, these quantities will not show the oscillations at $\omega_0$ and $2\omega_0$ normally seen in a simulation of LWFA without an envelope model. The electromagnetic fields in output will be those generated in the plasma, while the absolute value of the envelope of the transverse electric field of the laser is contained in the quantity \commandline{Env\_E\_abs}. \\
 
-Our simulation now includes a moving window and a laser pulse, modeled with its envelope, as in Fig. \ref{Schema1}.\\
-
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=0.3]{Schema_Simulation_1.pdf}
-  \end{center}
-  \caption{Simulation Setup in this Section (not in scale).}
-  \label{Schema1}
-\end{figure}
+The simulation now includes a moving window and a laser pulse, modeled with its envelope, as in Fig. \ref{Schema1}.\\
 
 \textbf{ - Exercise 3:} What are the waist size, FWHM duration in field of the laser specified in the namelist? Where is the laser pulse center placed in the simulation window at the start of the simulation? Where is the focal plane of the laser placed?\\
 
@@ -322,19 +317,17 @@ What is the theoretical Rayleigh length $x_R$ ?\\
 w(x)=2\times\frac{\int\int|\tilde{A}|^2  (y-\bar{y})^2 dx dy}{\int\int |\tilde{A}|^2  dx dy}.
 \end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
 
-\newpage
-
 \section{Plasma waves}
 
 \subsection {Linear theory}
 Now thay it is verified that the laser behaves as expected in vacuum, let's add a preionized hydrogen plasma to excite plasma waves.
-Our laser will be intense enough to assume the gas already ionized much before the arrival of the laser pulse peak (see the laser intensity computed in \textbf{Exercise 3}).
+The laser will be intense enough to assume the gas already ionized much before the arrival of the laser pulse peak (see the laser intensity computed in \textbf{Exercise 3}).
 
 Uncomment the first \commandline{Species} block, the related variable definitions and take some time to read them carefully. This block allows to introduce a particle \commandline{Species} in the simulation, whose name is \commandline{plasmaelectrons}. Note the normalized mass and normalized charge of these particles defined in this block (\commandline{1.0}. and \commandline{-1.0}. respectively). Since the normalizing mass and charge are the electron mass and the unit charge (see Table \ref{tab_normalisations}) we know that these particles are electrons.
 
-Since our simulation is in cylindrical coordinates, the plasma electron density profile in general will be defined at coordinates $(x,r)$, where $r$ is the distance from the laser propagation axis. As you can see, for each point in space $(x,r)$ the plasma density profile is defined by the function \commandline{plasma\_density$(x,r)$}. After a short linear ramp, this plasma density profile is uniform in a region confined to a distance \commandline{Radius\_plasma=$22$ $\mu$m} from the laser propagation axis. This of course is not a realistic thickness for a real-world plasma for plasma acceleration. However we can simulate a thin plasma without significantly changing our results, since the phenomena of interest occur near the laser pulse. Including particles far from this axis would increase the computation time without changing the results. You can check it at the end of the tutorial increasing the plasma thickness, bear in mind that this will increase the  simulation time.\\
+Since the simulation is in cylindrical coordinates, the plasma electron density profile in general will be defined at coordinates $(x,r)$, where $r$ is the distance from the laser propagation axis. As you can see, for each point in space $(x,r)$ the plasma density profile is defined by the function \commandline{plasma\_density$(x,r)$}. After a short linear ramp, this plasma density profile is uniform in a region confined to a distance \commandline{Radius\_plasma=$22$ $\mu$m} from the laser propagation axis. This of course is not a realistic thickness for a real-world plasma for plasma acceleration. However we can simulate a thin plasma without significantly changing the results, since the phenomena of interest occur near the laser pulse. Including particles far from this axis would increase the computation time without changing the results. You can check it at the end of the tutorial increasing the plasma thickness, bear in mind that this will increase the  simulation time.\\
 
-Our simulation now includes a moving window, a laser pulse (modeled with its envelope) and plasma electrons, as in Fig. \ref{Schema2}.
+The simulation now includes a moving window, a laser pulse (modeled with its envelope) and plasma electrons, as in Fig. \ref{Schema2}.
 
 \begin{figure}[h!]
   \begin{center}
@@ -344,7 +337,7 @@ Our simulation now includes a moving window, a laser pulse (modeled with its env
   \label{Schema2}
 \end{figure}
 
-As we did with the simulation of the laser pulse diffraction in vacuum, our first step will be to verify that the plasma behaves as predicted by the analytical theory. If we reduce the laser pulse $a_0$ to $0.01$, our laser pulse will satisfy the conditions for the applicability of the 1D linear theory of plasma wave excitation. The  analytical 1D linear theory predicts the formation of a sinusoidal wave at plasma frequency $\omega_p=\sqrt{e^2n_0/m_e\epsilon_0}$ behind the laser, where $n_0$ is the plasma density.\\
+As we did with the simulation of the laser pulse diffraction in vacuum,  the first step will be to verify that the plasma behaves as predicted by the analytical theory. If we reduce the laser pulse $a_0$ to $0.01$, the laser pulse will satisfy the conditions for the applicability of the 1D linear theory of plasma wave excitation. The  analytical 1D linear theory predicts the formation of a sinusoidal wave at plasma frequency $\omega_p=\sqrt{e^2n_0/m_e\epsilon_0}$ behind the laser, where $n_0$ is the plasma density.\\
 
 \textbf{ - Exercise 7:} As you can see, the plasma density has a value $n_0=0.0008$ (in normalized units) in the uniform region.  What is its value in physical units (electrons/cm$^{-3}$)? \textit{Hint:} see Table \ref{tab_normalisations}. If you wanted to specify $n_0$ through a conversion from SI units to code units using the conversion with the variable \commandline{ncrit} in the namelist, what command should you use? \\
 
@@ -384,17 +377,13 @@ As you can see, increasing the $a_0$, the nonlinearities of wake excitation will
 
 
 
-\subsubsection*{Behind the curtain: why ions are not present? (Optional)} A plasma for laser wakefield acceleration is normally made of ions and electrons at least, so why ions are not present in our namelist? The answer lies in the properties of Maxwell's Equations and implies some derivations, so for now we will not give too many details. For the moment it is sufficient to say that, since we set to zero the plasma electromagnetic field at the beginning of our simulations, and that we solve carefully Maxwell's Equations and the particles equations of motion, defining the plasma electrons will make the code behave as if there was also a neutralizing layer of immobile ions. Since ions do not move in the timescales of interest for the phenomena we are simulating (their mass is at  least $2000$ times larger than the electron mass), this is a reasonable approximation that in addition removes the need to simulate also the ions, with a significant computational gain. The complete answer for the interested reader can be found in the dedicated section of this tutorial \url{https://smileipic.github.io/tutorials/advanced_wakefield_electron_beam.html}.
-
-
-
-\newpage
+\subsubsection*{Behind the curtain: why ions are not present? (Optional)} A plasma for laser wakefield acceleration is normally made of ions and electrons at least, so why ions are not present in this namelist? The answer lies in the properties of Maxwell's Equations and implies some derivations, so for now we will not give too many details. For the moment it is sufficient to say that, since we set to zero the plasma electromagnetic field at the beginning of these simulations, and that we solve carefully Maxwell's Equations and the particles equations of motion, defining the plasma electrons will make the code behave as if there was also a neutralizing layer of immobile ions. Since ions do not move in the timescales of interest for the phenomena we are simulating (their mass is at  least $2000$ times larger than the electron mass), this is a reasonable approximation that in addition removes the need to simulate also the ions, with a significant computational gain. The complete answer for the interested reader can be found in the dedicated section of this tutorial \url{https://smileipic.github.io/tutorials/advanced_wakefield_electron_beam.html}.
 
 \section{Laser plasma acceleration with external injection}
 Finally everything is ready to simulate a plasma accelerator. As a surfer rides the waves in the ocean,  under some conditions a bunch of electrons can be accelerated by plasma waves. Remember that an immobile surfer will not be accelerated by a wave. To efficiently interact with the wave, the surfer must first pad to acquire some velocity. If the surfer moves near to the speed of the wave, he will see an accelerating phase of the wave for all the interaction.
 Following the same analogy,  the electrons to be accelerated must be injected in the accelerated phase of the plasma wave, with a speed near the wave velocity  ($\approx c$). Many clever injection schemes have been investigated since  the years 2000s, where the electrons of the plasma itself are someway injected in the laser-driven wave. However, although it is more experimentally difficult to realize, in this practical external injection will be studied, i.e. the injection of a relativistic electron beam from outside the plasma. This will allow to understand the basic concepts of electron injection in a plasma wave. \\
 
-Set again the $a_0$ of the laser to  the value $1.8$ . Uncomment the second \commandline{Species} block, the related variable definitions and take some time to read them carefully. As you can see, this block defines a \commandline{Species} called \commandline{electronbunch}, which we will inject in the plasma wave for acceleration. As for the \commandline{Species} called \commandline{plasmaelectrons} of the previous  Sections, these particles have normalized \commandline{charge} and \commandline{mass} equal to \commandline{-1.0} and \commandline{1.0} respectively, thus they are electrons. In this case,  the number density will not be defined through a density profile function, but the charge, the coordinates and the momenta of each of the bunch's macro-particles will be given to the code through arrays. The variable \commandline{npart} defines the number of macro-particles (in  this case 20000) of the bunch, and this will be also the length of our arrays: to initialize \commandline{npart} particles one by one, you need an array of length \commandline{npart} for their $x$ coordinates, an array of length \commandline{npart} for their $y$ coordinates and for the $z$ coordinates. These coordinates will be stored in the variable called \commandline{array\_position}, which keeps also an array of length \commandline{npart} to store the charge of each macro-particle (you don't need to understand right now how it is defined). You will need also need to initialize similarly the momenta of the particle, which are stored similarly in the variable \commandline{array\_momentum}. In our case, we generate these coordinates and momenta from a Gaussian random distribution, multiplying the numbers by their standard deviations to have a bunch with a rms size, rms momentum spread and rms energy spread that we want. You will note that the initialized bunch is already relativistic and has a Gaussian distribution in all the coordinate-momenta subplanes in the phase space.\\
+Set again the $a_0$ of the laser to  the value $1.8$ . Uncomment the second \commandline{Species} block, the related variable definitions and take some time to read them carefully. As you can see, this block defines a \commandline{Species} called \commandline{electronbunch}, which we will inject in the plasma wave for acceleration. As for the \commandline{Species} called \commandline{plasmaelectrons} of the previous  Sections, these particles have normalized \commandline{charge} and \commandline{mass} equal to \commandline{-1.0} and \commandline{1.0} respectively, thus they are electrons. In this case,  the number density will not be defined through a density profile function, but the charge, the coordinates and the momenta of each of the bunch's macro-particles will be given to the code through arrays. The variable \commandline{npart} defines the number of macro-particles (in  this case 20000) of the bunch, and this will be also the length of the bunch arrays: to initialize \commandline{npart} particles one by one, you need an array of length \commandline{npart} for their $x$ coordinates, an array of length \commandline{npart} for their $y$ coordinates and for the $z$ coordinates. These coordinates will be stored in the variable called \commandline{array\_position}, which keeps also an array of length \commandline{npart} to store the charge of each macro-particle (you don't need to understand right now how it is defined). You will need also need to initialize similarly the momenta of the particle, which are stored similarly in the variable \commandline{array\_momentum}. In this case, these coordinates and momenta are generated from a Gaussian pseudorandom distribution, multiplying the numbers by their standard deviations to have a bunch with a rms size, rms momentum spread and rms energy spread that we want. You will note that the initialized bunch is already relativistic and has a Gaussian distribution in all the coordinate-momenta subplanes in the phase space.\\
 
 For your future  simulation work, this initialization method can be used also to use a particle distribution obtained from another code (a magnetic transport code for conventional accelerators for example). Instead of generating randomly the particles coordinates and momenta, you only need to read them with Python. The arrays you will obtain can thus be directly used by \smilei. Note that you can do this also for a plasma density distribution or laser intensity profile that you measure in an experiment. Instead of defining them through a Python function, you  can read the experimental data and feed them to \smilei to simulate your measured plasma and/or laser profile.\\
 
@@ -440,23 +429,12 @@ To have a close look to the electron bunch during its propagation,  you will nee
 \commandline{moving\_window\_x\_shift = S.Probe.Probe0("Ex").getXmoved(timestep)}
 \\
 
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=0.35]{ExScatterXPx.pdf}
-  \end{center}
-  \caption{Longitudinal electric field \commandline{Ex} on axis and scatter plot of the bunch electrons' \commandline{x} and \commandline{px}, at iteration \commandline{1000}. }
-  \label{ExScatterXPx}
-\end{figure}
+
 
 \textbf{- Exercise 20:} Write a new script adapting the one written for the previous exercise. As before, this new script takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the electric field \commandline{Ey} on the plane $xy$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{y} to show the electrons' positions in the focusing phase of \commandline{Ey} in that iteration. For an example with normalized units, see Fig. \ref{EyScatterXY}. Include the script and a screenshot of this image for the iterations \commandline{1000} and \commandline{5000}. Differently from Fig.  \ref{EyScatterXY}, use SI units in the plots, using the appropriate conversions.
 
-\begin{figure}[h!]
-  \begin{center}
-  \includegraphics[scale=0.35]{EyScatterXY.pdf}
-  \end{center}
-  \caption{Electric field \commandline{Ey} on the plane $xy$ and scatter plot of the bunch electrons' \commandline{x} and \commandline{y} coordinates, at iteration \commandline{3000}. }
-  \label{EyScatterXY}
-\end{figure}
+
+
 
 \textit{Hint 1:} You can obtain the \commandline{Ey} on the plane $xy$ exporting \commandline{Probe1} to a numpy array, e.g:
 
@@ -466,6 +444,18 @@ To have a close look to the electron bunch during its propagation,  you will nee
 
 \commandline{imshow(Ey.T,extent = [Xmin,Xmax,Ymin,Ymax], vmin=..., vmax=...)}
 
+\begin{figure}[!htb]
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{ExScatterXPx.pdf}
+     \caption{Longitudinal electric field \commandline{Ex} on axis and scatter plot of the bunch electrons' \commandline{x} and \commandline{px}, at iteration \commandline{1000}. }\label{ExScatterXPx}
+   \end{minipage}\hfill
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=1\linewidth]{EyScatterXY.pdf}
+     \caption{Electric field \commandline{Ey} on the plane $xy$ and scatter plot of the bunch electrons' \commandline{x} and \commandline{y} coordinates, at iteration \commandline{3000}. }\label{EyScatterXY}
+   \end{minipage}
+\end{figure}
 
 \bibliographystyle{plain}
 \bibliography{references}
