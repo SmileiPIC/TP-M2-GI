@@ -14,15 +14,15 @@ e                   = scipy.constants.e         # Elementary charge, C
 me                  = scipy.constants.m_e       # Electron mass, kg
 ncrit               = eps0*omega0**2*me/e**2    # Plasma critical number density [m-3]
 c_over_omega0       = lambda0/2./math.pi        # converts from c/omega0 units to m
-c_normalized        = 1.                        # will make easier to read some conversions in this file
 reference_frequency = omega0                    # reference frequency (s-1)
 E0                  = me*omega0*c/e             # reference electric field (GV/m)
 
-##### Units to normalize quantities
-um                  = 1.e-6/c_over_omega0       # micron
-fs                  = 1.e-15*omega0             # femtosecond
-mm_mrad             = um                        # millimeters-milliradians
-pC                  = 1.e-12/e                  # picoCoulomb
+##### Variables used for unit conversions
+c_normalized        = 1.                        # speed of light in vacuum in normalized units
+um                  = 1.e-6/c_over_omega0       # 1 micron in normalized units
+fs                  = 1.e-15*omega0             # 1 femtosecond in normalized units
+mm_mrad             = um                        # 1 millimeter-milliradians in normalized units
+pC                  = 1.e-12/e                  # 1 picoCoulomb in normalized units
 
 #########################  Simulation parameters
 

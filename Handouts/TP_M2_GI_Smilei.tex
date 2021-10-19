@@ -76,6 +76,9 @@ Cylindrical-3V means that space is discretized on a 2D cylindrical grid, but par
 \subsection*{Physical units normalization} The standard physical units of the scientific community are given by the SI,  but simulation codes normally  work with normalized units. 
 
 All quantities given to the code in this practical, as well as all quantities provided by the code as outputs will be in normalized units.
+You don't have to worry about conversions in the input namelist: using appropriate variable definitions the values in SI of physical quantities will be transparent reading the namelist.
+However, some exercises will ask you to perform the appropriate conversions from the normalized units in the output to SI units.  It is possible to perform the conversions automatically through the postprocessing library \commandline{happi},  but this is not treated in this practical.
+
  \begin{table}[h!]
 \centering
 \begin{tabular}{l|l}
@@ -98,7 +101,7 @@ Units of Poynting flux			& $m_e\,c^3\,n_r/2$
 \end{table}
 
 As shown in Table~\ref{tab_normalisations}, all charges and mass will be normalized to the elementary charge $e$ and electron  mass $m_e$, respectively.
-Furthermore, all velocities will be normalized to the speed of light in vacuum $c$ that naturally appears from Maxwell's equations.
+Furthermore, all velocities will be normalized to the speed of light in vacuum $c$ that naturally appears from Maxwell's equations. In this set of units, the normalized speed of light in vacuum is 1.
 Now, the unit of time - here defined as $\omega_r^{-1}$, with $\omega_r$ the reference angular frequency - is not defined a priori, and is chosen by the user.
 Once this unit of time (or equivalently a unit of length) is chosen, all other units are uniquely defined and follow as detailed in Table~\ref{tab_normalisations}.
 Note however that number densities associated to the plasma species are not in units of $(\omega_r/c)^3$ but in units of $n_r = \epsilon_0\,m_e\,\omega_r^2/e^2$.
@@ -135,7 +138,7 @@ The file starts with the definition of the number of physical constants and unit
 
 In the  \commandline{Main} block you will find also the  \commandline{geometry} of our simulation, which is \commandline{AMcylindrical}. Our grid is  defined on a cylindrical space and with cylindrical coordinates $x$, $r$ but our  particles will move in the 3D  space $x$, $y$, $z$ (See Fig. \ref{reference_axes}). Maxwell's Equations will be solved in cylindrical coordinates with cylindrical symmetry in our simulations, and this will allow to run quick simulations with a 3D accuracy (which  is necessary to simulate plasma acceleration).\\
 
-\textbf{ - Exercise 2:} What are the precise longitudinal size \commandline{Lx} and radial size \commandline{Lr} of the simulation window (in code units and physical units)? How many mesh points are used? See Figures \ref{reference_axes}, \ref{Schema0} for reference, and find these lengths from the namelist.
+\textbf{ - Exercise 2:} What are the longitudinal size \commandline{Lx} and radial size \commandline{Lr} of the simulation window? How many mesh points are used? See Figures \ref{reference_axes}, \ref{Schema0} for reference,  and find these lengths from the namelist.
 
 \begin{figure}[h!]
   \begin{center}
@@ -288,7 +291,7 @@ Our simulation now includes a moving window and a laser pulse, modeled with its 
   \label{Schema1}
 \end{figure}
 
-\textbf{ - Exercise 3:} What are the waist size, FWHM duration in field of the laser (code and physical units) specified in the namelist? Where is the laser pulse center placed in the simulation window at the start of the simulation? Where is the focal plane of the laser placed?\\
+\textbf{ - Exercise 3:} What are the waist size, FWHM duration in field of the laser specified in the namelist? Where is the laser pulse center placed in the simulation window at the start of the simulation? Where is the focal plane of the laser placed?\\
 
 \textbf{ - Exercise 4:} The normalized laser peak field is given by $a_0=\frac{eE}{m_e\omega_0 c}$, where $E$ is the peak laser electric field and $\omega_0=2\pi c/\lambda_0$ is the laser central frequency. What is the peak intensity $I=\frac{c\epsilon_0}{2}|E|^2$ of the laser pulse? Suggestion: the input namelist contains the physical quantities that you may need for the conversions.\\
 
@@ -312,9 +315,9 @@ If you don't specify a \commandline{vmax} value in the previous animation plot c
 
 \textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theoretical law by Rayleigh: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=w_0^2/2$. 
 
-What is the theoretical Rayleigh length $x_R$  (in physical and normalized units)?\\
+What is the theoretical Rayleigh length $x_R$ ?\\
 
-\textbf{ - Exercise  6:} Use the script \commandline{laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical Rayleigh law and the code results. Copy the script in the simulation folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
+\textbf{ - Exercise  6:} Use the script \commandline{laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical Rayleigh law and the code results. Copy the script in the simulation folder or call the script from that folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
 \begin{equation}
 w(x)=2\times\frac{\int\int|\tilde{A}|^2  (y-\bar{y})^2 dx dy}{\int\int |\tilde{A}|^2  dx dy}.
 \end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
@@ -343,17 +346,16 @@ Our simulation now includes a moving window, a laser pulse (modeled with its env
 
 As we did with the simulation of the laser pulse diffraction in vacuum, our first step will be to verify that the plasma behaves as predicted by the analytical theory. If we reduce the laser pulse $a_0$ to $0.01$, our laser pulse will satisfy the conditions for the applicability of the 1D linear theory of plasma wave excitation. The  analytical 1D linear theory predicts the formation of a sinusoidal wave at plasma frequency $\omega_p=\sqrt{e^2n_0/m_e\epsilon_0}$ behind the laser, where $n_0$ is the plasma density.\\
 
-\textbf{ - Exercise 7:} As you can see, the plasma density has a value $n_0=0.0008$ (in normalized units) in the uniform region.  What is its value in physical units (electrons/cm$^{-3}$)? \textit{Hint:} see Table \ref{tab_normalisations}. If you wanted to specify $n_0$ through a conversion from SI units to code units using the conversion with \commandline{ncrit} (like for example when defining the variable \commandline{laser\_waist}), what command should you use? \\
+\textbf{ - Exercise 7:} As you can see, the plasma density has a value $n_0=0.0008$ (in normalized units) in the uniform region.  What is its value in physical units (electrons/cm$^{-3}$)? \textit{Hint:} see Table \ref{tab_normalisations}. If you wanted to specify $n_0$ through a conversion from SI units to code units using the conversion with the variable \commandline{ncrit} in the namelist, what command should you use? \\
 
 \textbf{ - Exercise 8:} Launch the simulation with $a_0=0.01$. Study the evolution of the electric field \commandline{Ex} with \commandline{Probe0} and \commandline{Probe1} (see Section \ref{happi}). What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? What is the plasma wavelength inferred from the simulation results? (Answers in code units and physical units).\\
-
 
 
 \textbf{ - Exercise 9:} The longitudinal electric field on the axis of this linear plasma wave, according to the 1D linear theory, is given by (in physical units):
 \begin{equation}\label{linear_theory}
 E_x(x) = \frac{m_e c^2}{e}\frac{k_p^2}{4} \int_x^{+\infty} |\tilde{A}|^2\rm{cos}\left[\omega_p(x-x')\right]dx'.\\
 \end{equation}
-Use the script \commandline{Ex\_linear\_theory\_vs\_Smilei.py} to compare the analytical result given by Eq. \ref{linear_theory} and the simulated results (\commandline{\%run Ex\_linear\_theory\_vs\_Smilei.py} on \commandline{IPython}). Again, you will need to copy the script in the simulation folder. The script reads the absolute value of the envelope of the laser $|\tilde{A}|$ from the simulation at a given time and then integrates Eq. \ref{linear_theory} to compute the analytical result for $E_x$. Then it reads the longitudinal electric field \commandline{Ex} of the simulation to compare the theory with the simulation results. Does the simulation agree with theory?
+Use the script \commandline{Ex\_linear\_theory\_vs\_Smilei.py} to compare the analytical result given by Eq. \ref{linear_theory} and the simulated results (\commandline{\%run Ex\_linear\_theory\_vs\_Smilei.py} on \commandline{IPython}). Again, you will need to copy the script in the simulation folder. or to call it from there. The script reads the absolute value of the envelope of the laser $|\tilde{A}|$ from the simulation at a given time and then integrates Eq. \ref{linear_theory} to compute the analytical result for $E_x$. Then it reads the longitudinal electric field \commandline{Ex} of the simulation to compare the theory with the simulation results. Does the simulation agree with theory?
 
 \subsection {Nonlinear waves}
 With the laser and plasma parameters in the namelist, for $a_0\ll1$ the excited plasma waves will be in the linear regime. As we saw in the previous exercise, the plasma wave in the wake of  the laser are sinusoidal in this regime.
@@ -406,7 +408,7 @@ The simulation now includes a moving window, a laser pulse (modeled with its env
   \label{Schema3}
 \end{figure}
 
-\textbf{ - Exercise 11:} Reading the namelist, provide a description of the electron bunch in SI units: total charge, energy, rms sizes along $x$, $y$, $z$, rms energy spread, emittance  along the transverse planes. Where is the electron bunch placed in the window initially (code and physical units)? \\
+\textbf{ - Exercise 11:} Reading the namelist, provide a description of the electron bunch at $t=0$: total charge, energy, rms sizes along $x$, $y$, $z$, rms energy spread, emittance  along the transverse planes. Where is the electron bunch placed in the window initially? \\
 
 \subsection*{The \commandline{DiagTrackParticles} block}
 To have a close look to the electron bunch during its propagation,  you will need to uncomment also the \commandline{DiagTrackParticles} block. As the name suggests, this diagnostic block allows to track particles, specified by their species name and some filter. Using a filter (e.g. selecting only the particles with energy higher than $50$ MeV) is particularly useful when you have many particles in a \commandline{Species}, like in the plasma of the namelist In that case, not using a filter would make this diagnostic computationally heavy and would store the coordinates of too many particles. In the case of the bunch, there is no need to specify a filter, since the number of bunch macro-particles is sufficiently small to be manageable. As you can see from the namelist, in this diagnostic we will store the coordinates and momenta of their particles, as well as their weight (from which their charge can be computed). \\
@@ -425,7 +427,7 @@ To have a close look to the electron bunch during its propagation,  you will nee
 
 \textbf{- Exercise 18:} Using the same approach of the script \commandline{Compute\_bunch\_parameters.py} write a Python script to read the output of the \commandline{DiagTrackParticles} and draw the energy spectrum of the electron bunch, obtained using the original bunch parameters of the input namelist. Then, provide the script and the figure of the energy spectrum at timestep $5000$. Hint: use the function \commandline{numpy.histogram} to compute a histogram of the particles energies and the bins/edges of the horizontal axis.\\
 
-\textbf{- Exercise 19:} Using the \commandline{TrackParticles} diagnostic and \commandline{Probe} diagnostic, write a script that takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the longitudinal electric field \commandline{Ex} along the propagation axis $x$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{px} to show the particles' positions in the accelerating phase of \commandline{Ex} in that iteration. For an example with normalized units, see Fig. \ref{ExScatterXPx}. Include the script and a screenshot of this image for the iterations \commandline{3000} and \commandline{5000}. Use SI units in the plots, making the appropriate conversions.
+\textbf{- Exercise 19:} Using the \commandline{TrackParticles} diagnostic and \commandline{Probe} diagnostic, write a script that takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the longitudinal electric field \commandline{Ex} along the propagation axis $x$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{px} to show the particles' positions in the accelerating phase of \commandline{Ex} in that iteration. For an example with normalized units, see Fig. \ref{ExScatterXPx}. Include the script and a screenshot of this image for the iterations \commandline{3000} and \commandline{5000}.  Differently from Fig.  \ref{ExScatterXPx}, use SI units in the plots, using the appropriate conversions.
 
 \textit{Hint 1:} Adapt the commands in the scripts you have already used to write this new script, in particular those ones reading the bunch electrons' coordinates and momenta and the \commandline{Ex} field on the propagation axis.
 
@@ -446,7 +448,7 @@ To have a close look to the electron bunch during its propagation,  you will nee
   \label{ExScatterXPx}
 \end{figure}
 
-\textbf{- Exercise 20:} Write a new script adapting the one written for the previous exercise. As before, this new script takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the electric field \commandline{Ey} on the plane $xy$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{y} to show the electrons' positions in the focusing phase of \commandline{Ey} in that iteration. For an example with normalized units, see Fig. \ref{EyScatterXY}. Include the script and a screenshot of this image for the iterations \commandline{1000} and \commandline{5000}. Use SI units in the plots, making the appropriate conversions.
+\textbf{- Exercise 20:} Write a new script adapting the one written for the previous exercise. As before, this new script takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the electric field \commandline{Ey} on the plane $xy$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{y} to show the electrons' positions in the focusing phase of \commandline{Ey} in that iteration. For an example with normalized units, see Fig. \ref{EyScatterXY}. Include the script and a screenshot of this image for the iterations \commandline{1000} and \commandline{5000}. Differently from Fig.  \ref{EyScatterXY}, use SI units in the plots, using the appropriate conversions.
 
 \begin{figure}[h!]
   \begin{center}
