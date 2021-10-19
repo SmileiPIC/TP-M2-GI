@@ -263,14 +263,14 @@ In case you want to export the data to a text file \commandline{.txt} and read i
 \section{Laser in vacuum}
 Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser pulse in the simulation.
 
-Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (in our case with a Gaussian shape) will contain many optical oscillations.
+Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (often modeled with a Gaussian profile) will contain many optical oscillations.
 
 
 \begin{figure}[!htb]
    \begin{minipage}{0.35\textwidth}
      \centering
      \includegraphics[width=1\linewidth]{Envelope_Figure.png}
-     \caption{Blue line: laser vector potential $\hat{A}$. Red line: absolute value of the envelope of the vector potential $|\tilde{A}|$. The laser pulse has a Gaussian temporal envelope, much longer than the oscillation period. Both lines contain a suitable number of points for their sampling. Note that in  this case the number of points sampling the envelope is ten times lower than the one necessary to sample the laser with its high frequency oscillations.}\label{fig:envelope}
+     \caption{Blue line: vector potential $\hat{A}$ of a laser pulse with Gaussian envelope. Red line: its absolute value $|\tilde{A}|$.  Both lines are sampled by a suitable number of points. Note that much less points are necessary to sample the envelope.}\label{fig:envelope}
    \end{minipage}\hfill
    \begin{minipage}{0.65\textwidth}
      \centering
@@ -279,7 +279,7 @@ Normally you would simulate a laser pulse with all the high frequency oscillatio
    \end{minipage}
 \end{figure}
 
-Thus, using a laser envelope model we will be able to describe the laser and its interaction with the plasma only in terms of its envelope and have quick simulations. In this kind of model, the laser evolution is described by an envelope equation (like in a paraxial wave equation for example), the laser effects on the plasma particles by its ponderomotive force (which depends only on its envelope). With this approach, the accuracy of the results will be enough to explore the basic physics of laser plasma acceleration and you will be able to perform quicker simulations. \\
+Thus, using a laser envelope model it will be possible to describe the laser and its interaction with the plasma only in terms of its envelope and have quick simulations (due to the coarser sampling). In this kind of model, the laser evolution is described by an envelope equation (like in a paraxial wave equation for example). The laser radiation pressure on the plasma particles is described by the ponderomotive force (which depends only on the laser pulse envelope). With this approach, the accuracy of the results will be enough to explore the basic physics of laser plasma acceleration and at the same time you will be able to perform quicker simulations. \\
 
 \textbf{ Note:} since an envelope model is used for the laser,  the electromagnetic fields in output like \commandline{Ex},\commandline{Ey} (and the densities like \commandline{Rho}) will only show the average of these quantities over the optical oscillations of the laser and not including the laser field. Thus, these quantities will not show the oscillations at $\omega_0$ and $2\omega_0$ normally seen in a simulation of LWFA without an envelope model. The electromagnetic fields in output will be those generated in the plasma, while the absolute value of the envelope of the transverse electric field of the laser is contained in the quantity \commandline{Env\_E\_abs}. \\
 
