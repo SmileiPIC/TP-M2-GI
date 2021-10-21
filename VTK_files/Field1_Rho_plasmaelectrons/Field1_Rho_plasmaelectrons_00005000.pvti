@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<VTKFile type="PImageData" version="0.1" byte_order="LittleEndian" header_type="UInt32" compressor="vtkZLibDataCompressor">
-  <PImageData WholeExtent="0 499 0 186 0 186" GhostLevel="0" Origin="0 0 0" Spacing="0.8 1.5 1.5">
-    <PPointData Scalars="-Rho_plasmaelectrons">
-      <PDataArray type="Float32" Name="-Rho_plasmaelectrons"/>
-    </PPointData>
-    <Piece Extent="0 499 0 186 0 186" Source="Field1_Rho_plasmaelectrons_00005000_0.vti"/>
-  </PImageData>
-</VTKFile>
