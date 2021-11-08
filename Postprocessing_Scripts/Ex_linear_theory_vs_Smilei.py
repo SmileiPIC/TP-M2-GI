@@ -68,10 +68,11 @@ for i in range(Nx-2,1,-1):
 
 ######## Plot
 fig=plt.figure()
-plt.title("Comparison between Smilei and 1D linear theory of laser wakefield")
+plt.title("Comparison between simulated \n and theoretical 1D linear laser wakefield")
 fig.set_facecolor('w')
-plt.plot(np.multiply(x_mesh,1e6),np.multiply(Ex_analytical,1e-9),'-b',linewidth=2.,label='Ex analytical (GV/m)')
-plt.plot(np.multiply(x_mesh,1e6),np.multiply(Ex_SMILEI,(1.e-9*me*c**2/conversion_factor/1.e-6/q)),'--r',linewidth=2.,label='Ex SMILEI (GV/m)')
+plt.plot(np.multiply(x_mesh,1e6),np.multiply(Ex_analytical,1e-9),'-b',linewidth=2.,label='theory')
+plt.plot(np.multiply(x_mesh,1e6),np.multiply(Ex_SMILEI,(1.e-9*me*c**2/conversion_factor/1.e-6/q)),'--r',linewidth=2.,label='simulation')
+plt.ylabel('Ex (GV/m)')
 plt.xlabel('x (um)')
 plt.xlim(1.,50)
 plt.ylim(-0.007,0.007)

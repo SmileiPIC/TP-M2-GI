@@ -311,10 +311,10 @@ If you don't specify a \commandline{vmax} value in the previous animation plot c
 
 What is the theoretical Rayleigh length $x_R$ ?\\
 
-\textbf{ - Exercise  6:} Use the script \commandline{laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical Rayleigh law and the code results. Copy the script in the simulation folder or call the script from that folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
+\textbf{ - Exercise  6:} Use the script \commandline{Laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical Rayleigh law and the code results. Copy the script in the simulation folder or call the script from that folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
 \begin{equation}
 w(x)=2\times\frac{\int\int|\tilde{A}|^2  (y-\bar{y})^2 dx dy}{\int\int |\tilde{A}|^2  dx dy}.
-\end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
+\end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run Laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
 
 \section{Plasma waves}
 
@@ -340,7 +340,7 @@ As we did with the simulation of the laser pulse diffraction in vacuum,  the fir
 
 \textbf{ - Exercise 7:} As you can see, the plasma density has a value $n_0=0.0008$ (in normalized units) in the uniform region.  What is its value in physical units (electrons/cm$^{-3}$)? \textit{Hint:} see Table \ref{tab_normalisations}. If you wanted to specify $n_0$ through a conversion from SI units to code units using the conversion with the variable \commandline{ncrit} in the namelist, what command should you use? \\
 
-\textbf{ - Exercise 8:} Launch the simulation with $a_0=0.01$. Study the evolution of the electric field \commandline{Ex} with \commandline{Probe0} and \commandline{Probe1} (see Section \ref{happi}). What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? What is the plasma wavelength inferred from the simulation results? (Answers in code units and physical units).\\
+\textbf{ - Exercise 8:} Launch the simulation with $a_0=0.01$. Study the evolution of the electric field \commandline{Ex} with \commandline{Probe0} and \commandline{Probe1} (see Section \ref{happi}). What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? What is the plasma wavelength inferred from the simulation results?\\
 
 
 \textbf{ - Exercise 9:} The longitudinal electric field on the axis of this linear plasma wave, according to the 1D linear theory, is given by (in physical units):

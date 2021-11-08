@@ -35,7 +35,7 @@ dt                  = 0.8*dx/c_normalized       # integration timestep
 nx                  = 576                       # number of mesh points in the longitudinal direction
 nr                  = 256                       # number of mesh points in the transverse direction
 Lx                  = nx * dx                   # longitudinal size of the simulation window
-Lr                  = nr*dr                     # transverse size of the simulation window
+Lr                  = nr * dr                   # transverse size of the simulation window
 
 ##### Total simulation time
 T_sim               = 5000.*dt

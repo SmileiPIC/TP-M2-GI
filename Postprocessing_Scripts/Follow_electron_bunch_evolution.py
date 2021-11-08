@@ -88,10 +88,10 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
 
 chunk_size = 60000
 
-track_part = S.TrackParticles(species = species_name, chunksize=chunk_size)
+track_part = S.TrackParticles(species = species_name, chunksize=chunk_size, sort=False)
 
 print (" ")
-print ("Reading simulation from ",os.getcwd())
+print ("Reading simulation from "+str(os.getcwd()))
 print (" ")
 
 iters = track_part.getAvailableTimesteps()

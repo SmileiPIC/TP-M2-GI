@@ -63,16 +63,16 @@ def normalized_emittance(transv_coordinate,transv_momentum,weights):
 
 def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
     # conversion factor converts from normalized units to um
-    print("average position = ",np.average(x,weights=weights)*conversion_factor," um")
+    print("average position = "+str(np.average(x,weights=weights)*conversion_factor)+" um")
     print("----------------")
     print("")
-    print("sigma_x   = ",weighted_std(x,weights)*conversion_factor," um")
-    print("sigma_y   = ",weighted_std(y,weights)*conversion_factor," um")
-    print("sigma_z   = ",weighted_std(z,weights)*conversion_factor," um")
-    print("E         = ",np.average(E,weights=weights)*0.511," MeV")
-    print("DE/E(rms) = ",weighted_std(E,weights)/np.average(E,weights=weights)*100, "%")
-    print("eps_ny    = ",normalized_emittance(y,py,weights)*conversion_factor," mm-mrad")
-    print("eps_nz    = ",normalized_emittance(z,pz,weights)*conversion_factor," mm-mrad")
+    print("sigma_x   = "+str(weighted_std(x,weights)*conversion_factor)+" um")
+    print("sigma_y   = "+str(weighted_std(y,weights)*conversion_factor)+" um")
+    print("sigma_z   = "+str(weighted_std(z,weights)*conversion_factor)+" um")
+    print("E         = "+str(np.average(E,weights=weights)*0.511)+" MeV")
+    print("DE/E(rms) = "+str(weighted_std(E,weights)/np.average(E,weights=weights)*100)+ "%")
+    print("eps_ny    = "+str(normalized_emittance(y,py,weights)*conversion_factor)+" mm-mrad")
+    print("eps_nz    = "+str(normalized_emittance(z,pz,weights)*conversion_factor)+" mm-mrad")
     print("")
     print("sigma_i (i=x,y,z): rms size along the coordinate i")
     print("E                : mean energy")
@@ -85,18 +85,18 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
 
 chunk_size = 60000
 
-track_part = S.TrackParticles(species = species_name, chunksize=chunk_size)
+track_part = S.TrackParticles(species = species_name, chunksize=chunk_size, sort=False)
 
 if (timestep not in track_part.getAvailableTimesteps()):
 	print(" ")
 	print("Selected timestep not available in the DiagTrackParticles output")
-	print("Available timesteps = ",track_part.getAvailableTimesteps())
+	print("Available timesteps = "+str(track_part.getAvailableTimesteps()))
 	print(" ")
 	exit()
 
 
 print(" ")
-print("Reading timestep ",timestep,"from ",os.getcwd())
+print("Reading timestep "+str(timestep)+" from "+os.getcwd())
 
 # Read the DiagTrackParticles data
 for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
@@ -117,12 +117,12 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
         
     Nparticles   = np.size(w)                                           # Number of particles read
     print(" ")
-    print("Read ",Nparticles," particles from the file")
+    print("Read "+str(Nparticles)+" particles from the file")
     print(" ")
     total_weight = w.sum()
     Q            = total_weight* q * nc * (conversion_factor*1e-6)**3 * 10**(12) # Total charge in pC
     print(" ")
-    print("Total charge = ",Q," pC")
+    print("Total charge = "+str(Q)+" pC")
 
     ### Print the bunch parameters
     print_bunch_params(x,y,z,px,py,pz,E,w,conversion_factor)

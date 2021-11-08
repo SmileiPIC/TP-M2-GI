@@ -5,7 +5,7 @@
 #SBATCH --ntasks=10
 #SBATCH --nodes=1 
 #SBATCH --cpus-per-task=2
-#SBATCH --partition=cpu_short
+#SBATCH --partition=cpu_med
 
 # available partitions: cpu_short|cpu_med|cpu_prod|cpu_long
 # To clean and to load the same modules at the compilation phases
