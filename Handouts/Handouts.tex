@@ -2,8 +2,7 @@
 
 
 \title{\vspace{-2.cm}A practical introduction \\to the Particle in Cell simulation \\of plasma acceleration}
-\author{Francesco Massimo
-}
+\author{Francesco Massimo}
 %\date{December 2019}
 
 \usepackage[left=3cm, right=3cm, top=3cm]{geometry}
@@ -80,7 +79,7 @@ All simulations presented in this practical will be run in Cylindrical-3V geomet
 Cylindrical-3V means that space is discretized on a 2D cylindrical grid, but particles move in a three-dimensional velocity space (that is the particle velocity is a three-dimensional vector). Note however that the version of \smilei you have is the full research code (not a downgraded version!), hence, it can address simpler problems in one or two dimensions with a cartesian geometry or more realistic problems in three dimensions.
 
 
-\subsection*{Physical units normalization}\label{units}
+\subsection{Physical units normalization}\label{units}
 The standard physical units of the scientific community are given by the SI,  but simulation codes normally  work with normalized units. 
 
 All quantities given to the code in this practical, as well as all quantities provided by the code as outputs will be in normalized units.
@@ -120,7 +119,7 @@ Although it is possible to define your simulation in SI units, simply doing the 
 \textbf{ - Exercise 1:} Assuming $\lambda_0=0.8$ $\mu$m (a typical Ti:Sa laser system), what is the value of the critical density? What is the value of the normalizing electric field $E_0$? Note that we will use this choice for $\lambda_0$ in all the following exercises. \textit{Hint:} Use table \ref{tab_normalisations} for the calculations.
 
 
-\section{Prepare for the practical exercises}
+\subsection{Prepare for the practical exercises}
 
 As in any experiment, you need to prepare your set-up. For a numerical experiment, your interface with the computing environment is the command line terminal. Follow the instructions in the file \commandline{ClusterEnvironment.pdf} to respectively: login to the machine for your simulations, compile the code, create your simulation folders, submit and postprocess your simulations.\\
 
@@ -130,7 +129,7 @@ Always copy the file \commandline{InputNamelist.py} to the folder where you will
 
 To resume, in each simulation folder you will need the files \commandline{smilei} and \commandline{smilei\_test},\\ \commandline{InputNamelist.py} and the submission script.
 
-\section{Exploring the namelist}
+\subsection{Exploring the namelist}
 Open the file with a text editor, e.g. \commandline{nano}, \commandline{gedit} or \commandline{vim} (if in \commandline{vim} the file syntax is not colored, use \commandline{:syntax enable}) or with another editor of your choice and give a look to the input namelist, for the moment ignoring the commented blocks. 
 
 The file starts with the definition of the number of physical constants and units, mesh points, the integration timestep, etc. These parameters are inserted in the first block of the simulation, called \commandline{Main}.\\
@@ -158,8 +157,21 @@ Note a block called \commandline{MovingWindow}. In our case, we will first simul
 \subsection*{The \commandline{Diag} blocks}
 At the end of the namelist, there are blocks starting with the word \commandline{Diag}. As you can imagine, they are the diagnostic of the code, our interface with the simulation results. The first \commandline{Diag} is a \commandline{DiagProbe} defined on a line (so a 1D diagnostic), on the propagation axis of the laser (the $x$ axis). This diagnostic will show in output the value of some physical fields along that axis. We call this probe \commandline{Probe0} (the 0 because it is the first \commandline{Probe} in the namelist). The second diagnostic block is a \commandline{DiagProbe} defined on the plane $xy$ (so a 2D diagnostic). This is the second probe of the namelist, so it is called \commandline{Probe1}. Inside these \commandline{DiagProbe} blocks, the physical quantities in output we are interested in are specified. For this practical, you don't have to write new postprocessing scripts, since \smilei includes a postprocessing library, called \commandline{happi}, to analyze the code results. For the purposes of the practical, the \commandline{happi} commands explained in Appendix \ref{happi} and the postprocessing scripts you will be given are sufficient to start. However, if you prefer to work with \commandline{numpy} arrays in Python, at the end of Appendix \ref{happi} you will find also how to export the output to that format. If you prefer to work with other languages for postprocessing, you can export the data to a \commandline{numpy} array and then write them to a file readable with your language of choice.
 
+\section{Simulation Exercises}
+After the preliminary steps described in the Introduction (including the first two exercises), you should be ready to proceed with tha practical exercises.  We will arrive to the simulations of plasma acceleration in three steps:
+\begin{itemize}
+\item simulation of the laser pulse propagating in vacuum;
+\item simulation of the plasma waves in the wake of the laser pulse;
+\item simulation of the acceleration of electrons in the laser wake wave
+\end{itemize}
 
-\section{Laser in vacuum}
+Initially the input namelist only has the essential blocks (e.g. Main block, Diagnostic blocks, ...),  the other blocks are commented. The mentioned three steps will be completed progressively decommenting the laser pulse block, the plasma electron block and the blocks used for the electron bunch.
+
+To complete the practical, read the instructions of the following sections, complete the related simulation exercises and ask the instructor in case of doubts. 
+
+Without further ado, let's get started!
+
+\subsection{Laser pulse in vacuum}
 Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser pulse in the simulation.
 
 Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (often modeled with a Gaussian profile) will contain many optical oscillations.
@@ -215,9 +227,9 @@ What is the theoretical Rayleigh length $x_R$ ?\\
 w(x)=2\times\frac{\int\int|\tilde{A}|^2  (y-\bar{y})^2 dx dy}{\int\int |\tilde{A}|^2  dx dy}.
 \end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run Laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
 
-\section{Plasma waves}
+\subsection{Plasma waves}
 
-\subsection {Linear theory}
+\subsubsection{Linear plasma waves}
 Now thay it is verified that the laser behaves as expected in vacuum, let's add a preionized hydrogen plasma to excite plasma waves.
 The laser will be intense enough to assume the gas already ionized much before the arrival of the laser pulse peak (see the laser intensity computed in \textbf{Exercise 3}).
 
@@ -248,7 +260,7 @@ E_x(x) = \frac{m_e c^2}{e}\frac{k_p^2}{4} \int_x^{+\infty} |\tilde{A}|^2\rm{cos}
 \end{equation}
 Use the script \commandline{Ex\_linear\_theory\_vs\_Smilei.py} to compare the analytical result given by Eq. \ref{linear_theory} and the simulated results (\commandline{\%run Ex\_linear\_theory\_vs\_Smilei.py} on \commandline{IPython}). Again, you will need to copy the script in the simulation folder. or to call it from there. The script reads the absolute value of the envelope of the laser $|\tilde{A}|$ from the simulation at a given time and then integrates Eq. \ref{linear_theory} to compute the analytical result for $E_x$. Then it reads the longitudinal electric field \commandline{Ex} of the simulation to compare the theory with the simulation results. Does the simulation agree with theory?
 
-\subsection {Nonlinear waves}
+\subsubsection {Nonlinear plasma waves}
 With the laser and plasma parameters in the namelist, for $a_0\ll1$ the excited plasma waves will be in the linear regime. As we saw in the previous exercise, the plasma wave in the wake of  the laser are sinusoidal in this regime.
 Increasing $a_0$, the laser will be more intense and when $a_0\gtrsim1$ the plasma electrons will start to  be pushed to relativistic velocities. Their relativistically increased inertia will elongate the plasma period and plasma wavelength, and electron accumulation will occur at the end of each wave period. Increasing $a_0$, the longitudinal electric field waveform will change from a sinusoid to a sawtooth wave. In this regime of interest for plasma acceleration PIC simulations become necessary, because for this regime there are no general analytical solutions to the coupled Vlasov-Maxwell system of equations,  and fluid theory cannot be applied.\\
 
@@ -279,7 +291,7 @@ The last command, \commandline{multiPlot}, is used to superpose multiple lines i
 
 \subsubsection*{Behind the curtain: why ions are not present? (Optional)} A plasma for laser wakefield acceleration is normally made of ions and electrons at least, so why ions are not present in this namelist? The answer lies in the properties of Maxwell's Equations and implies some derivations, so for now we will not give too many details. For the moment it is sufficient to say that, since we set to zero the plasma electromagnetic field at the beginning of these simulations, and that we solve carefully Maxwell's Equations and the particles equations of motion, defining the plasma electrons will make the code behave as if there was also a neutralizing layer of immobile ions. Since ions do not move in the timescales of interest for the phenomena we are simulating (their mass is at  least $2000$ times larger than the electron mass), this is a reasonable approximation that in addition removes the need to simulate also the ions, with a significant computational gain. The complete answer for the interested reader can be found in the dedicated section of this tutorial \url{https://smileipic.github.io/tutorials/advanced_wakefield_electron_beam.html}.
 
-\section{Laser plasma acceleration with external injection}
+\subsection{Laser plasma acceleration with external injection}
 Finally everything is ready to simulate a plasma accelerator. As a surfer rides the waves in the ocean,  under some conditions a bunch of electrons can be accelerated by plasma waves. Remember that an immobile surfer will not be accelerated by a wave. To efficiently interact with the wave, the surfer must first pad to acquire some velocity. If the surfer moves near to the speed of the wave, he will see an accelerating phase of the wave for all the interaction.
 Following the same analogy,  the electrons to be accelerated must be injected in the accelerated phase of the plasma wave, with a speed near the wave velocity  ($\approx c$). Many clever injection schemes have been investigated since  the years 2000s, where the electrons of the plasma itself are someway injected in the laser-driven wave. However, although it is more experimentally difficult to realize, in this practical external injection will be studied, i.e. the injection of a relativistic electron beam from outside the plasma. This will allow to understand the basic concepts of electron injection in a plasma wave. \\
 
