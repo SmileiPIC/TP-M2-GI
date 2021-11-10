@@ -18,10 +18,10 @@ omega0              = 2*math.pi*c/lambda0       # laser frequency
 eps0                = scipy.constants.epsilon_0 # Vacuum permittivity, F/m
 e                   = scipy.constants.e         # Elementary charge, C
 me                  = scipy.constants.m_e       # Electron mass, kg
-ncrit               = eps0*omega0**2*me/e**2    # Plasma critical number density [m-3]
+ncrit               = eps0*omega0**2*me/e**2    # Plasma critical number density, m-3
 c_over_omega0       = lambda0/2./math.pi        # converts from c/omega0 units to m
-reference_frequency = omega0                    # reference frequency (s-1)
-E0                  = me*omega0*c/e             # reference electric field (V/m)
+reference_frequency = omega0                    # reference frequency, s-1
+E0                  = me*omega0*c/e             # reference electric field, V/m
 
 # conversion factors - command for conversion: array_SI = np.multiply(array_normalized,conversion_factor)
 
@@ -67,11 +67,9 @@ species_name           = "electronbunch"
 chunk_size             = 60000
 track_part             = S.TrackParticles(species = species_name, chunksize=chunk_size, sort=False)
 
-# choose filename
-filename_particle_data = "Particles_iter_"+str(timestep)+".txt"
 # read particle data
 for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
-	### Read particles arrays with positions and momenta
+	### Read particles arrays with positions, momenta and charge for each particle
 	# positions, normalized by c/omega0
 	x            = particle_chunk["x"]
 	y            = particle_chunk["y"]
@@ -83,5 +81,9 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
 	
 	w            = particle_chunk["w"] # normalized charge
 
+# choose filename
+filename_particle_data = "Particles_iter_"+str(timestep)+".txt"
+
 # export to file with 7 columns: normalized x,y,z,px,py,pz,w
+# each line of the file corresponds to a particle
 np.savetxt(filename_particle_data,zip(x,y,z,px,py,pz,w))
