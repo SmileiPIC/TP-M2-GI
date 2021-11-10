@@ -112,7 +112,7 @@ for timestep in iters:
 	for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
 		### Read particles arrays with positions and momenta
 		# positions
-		x            = particle_chunk["moving_x"]
+		x            = particle_chunk["moving_x"] # takes into account moving window
 		y            = particle_chunk["y"]
 		z            = particle_chunk["z"]
 		# momenta
