@@ -72,7 +72,7 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
     print("sigma_x   = ",weighted_std(x,weights)*conversion_factor," um")
     print("sigma_y   = ",weighted_std(y,weights)*conversion_factor," um")
     print("sigma_z   = ",weighted_std(z,weights)*conversion_factor," um")
-    print("E         = ",np.average(E,weights=weights)*0.511," MeV")
+    print("E         = ",np.average(E,weights=weights)*0.51099895," MeV")
     print("DE/E(rms) = ",weighted_std(E,weights)/np.average(E,weights=weights)*100, "%")
     print("eps_ny    = ",normalized_emittance(y,py,weights)*conversion_factor*1e-6," mm-mrad")
     print("eps_nz    = ",normalized_emittance(z,pz,weights)*conversion_factor*1e-6," mm-mrad")
@@ -137,7 +137,7 @@ for timestep in iters:
 		Sigma_z[i]       = weighted_std(z,w)*conversion_factor                 # um
 		Energy[i]        = np.average(E,weights=w)                             # normalized
 		Energy_spread[i] = weighted_std(E,w)/Energy[i]*100                     # %
-		Energy[i]        = Energy[i]*0.512                                     # MeV
+		Energy[i]        = Energy[i]*0.51099895                                # MeV
 		Emittance_y[i]   = normalized_emittance(y,py,w)*conversion_factor      # mm-mrad
 		Emittance_z[i]   = normalized_emittance(z,pz,w)*conversion_factor      # mm-mrad
 

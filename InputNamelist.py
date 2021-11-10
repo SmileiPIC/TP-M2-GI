@@ -8,14 +8,14 @@ import scipy.constants
 ##### Physical constants
 lambda0             = 0.8e-6                    # laser wavelength, m
 c                   = scipy.constants.c         # lightspeed, m/s
-omega0              = 2*math.pi*c/lambda0       # laser frequency
+omega0              = 2*math.pi*c/lambda0       # laser angular frequency, rad/s
 eps0                = scipy.constants.epsilon_0 # Vacuum permittivity, F/m
 e                   = scipy.constants.e         # Elementary charge, C
 me                  = scipy.constants.m_e       # Electron mass, kg
-ncrit               = eps0*omega0**2*me/e**2    # Plasma critical number density [m-3]
+ncrit               = eps0*omega0**2*me/e**2    # Plasma critical number density, m-3
 c_over_omega0       = lambda0/2./math.pi        # converts from c/omega0 units to m
-reference_frequency = omega0                    # reference frequency (s-1)
-E0                  = me*omega0*c/e             # reference electric field (GV/m)
+reference_frequency = omega0                    # reference frequency, s-1
+E0                  = me*omega0*c/e             # reference electric field, V/m
 
 ##### Variables used for unit conversions
 c_normalized        = 1.                        # speed of light in vacuum in normalized units

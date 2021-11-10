@@ -69,7 +69,7 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
     print("sigma_x   = "+str(weighted_std(x,weights)*conversion_factor)+" um")
     print("sigma_y   = "+str(weighted_std(y,weights)*conversion_factor)+" um")
     print("sigma_z   = "+str(weighted_std(z,weights)*conversion_factor)+" um")
-    print("E         = "+str(np.average(E,weights=weights)*0.511)+" MeV")
+    print("E         = "+str(np.average(E,weights=weights)*0.51099895)+" MeV")
     print("DE/E(rms) = "+str(weighted_std(E,weights)/np.average(E,weights=weights)*100)+ "%")
     print("eps_ny    = "+str(normalized_emittance(y,py,weights)*conversion_factor)+" mm-mrad")
     print("eps_nz    = "+str(normalized_emittance(z,pz,weights)*conversion_factor)+" mm-mrad")
@@ -106,7 +106,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     x            = particle_chunk["x"]
     y            = particle_chunk["y"]
     z            = particle_chunk["z"]
-    # moments
+    # momenta
     px           = particle_chunk["px"]
     py           = particle_chunk["py"]
     pz           = particle_chunk["pz"]
