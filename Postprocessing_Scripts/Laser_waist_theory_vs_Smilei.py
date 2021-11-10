@@ -68,10 +68,10 @@ waist_simulated = 2.*np.asarray(half_waist_simulated)
 
 ####### Plot
 fig = plt.figure()
-plt.title("Comparison between simulated and theoretical Gaussian beam diffraction")
+plt.title("Comparison between simulated \n and theoretical Gaussian beam diffraction")
 fig.set_facecolor('w')
-plt.plot(iters*dt*conversion_factor,waist_simulated*conversion_factor,label="simulated waist",linewidth=2,color='r')
-plt.plot(iters*dt*conversion_factor,waist_analytical*conversion_factor,label="Rayleigh's law waist",linestyle='--',linewidth=2,color='b')
+plt.plot(iters*dt*conversion_factor,waist_analytical*conversion_factor,label="theory",color='b',linewidth=2)
+plt.plot(iters*dt*conversion_factor,waist_simulated*conversion_factor,label="simulation",linewidth=2,color='r',linestyle="--")
 plt.legend(bbox_to_anchor=(0.2, 0.9), loc=2, borderaxespad=0.)
 plt.xlabel('x (um)')
 plt.ylabel('waist (um)')

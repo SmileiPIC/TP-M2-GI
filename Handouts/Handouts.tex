@@ -218,14 +218,14 @@ Note that the use of the \commandline{Moving Window} will make the laser seem im
 
 If you don't specify a \commandline{vmax} value in the previous animation plot command, \commandline{happi} will change it at each iteration. To better see the laser diffraction, try to  specify \commandline{vmax=0.05} in the previous command, or use \commandline{.slide()} instead of \commandline{.animate()}.\\
 
-\textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theoretical law by Rayleigh: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=\pi w_0^2/\lambda_0$. 
+\textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theory for a Gaussian beam: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=\pi w_0^2/\lambda_0$. 
 
 What is the theoretical Rayleigh length $x_R$ ?\\
 
-\textbf{ - Exercise  6:} Use the script \commandline{Laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical Rayleigh law and the code results. Copy the script in the simulation folder or call the script from that folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
+\textbf{ - Exercise  6:} Use the script \commandline{Laser\_waist\_theory\_vs\_Smilei.py} to compare the analytical diffraction law of the previous exercise and the code results. Copy the script in the simulation folder or call the script from that folder. The script loads the results, then loops over the iterations available in output and computes the laser pulse waist $w(x)$ as 
 \begin{equation}
 w(x)=2\times\frac{\int\int|\tilde{A}|^2  (y-\bar{y})^2 dx dy}{\int\int |\tilde{A}|^2  dx dy}.
-\end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value given by Rayleigh law. Run the script (from \commandline{IPython} use \commandline{\%run Laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
+\end{equation} Since the laser field goes to zero at the borders of the simulation window, instead of integrating over the infinite extension of space we can limit our integrals to the simulation window space. After this computation, the simulated waist is compared to the corresponding analytical value. Run the script (from \commandline{IPython} use \commandline{\%run Laser\_waist\_theory\_vs\_Smilei.py} ) to plot the comparison.
 
 \subsection{Plasma waves}
 
