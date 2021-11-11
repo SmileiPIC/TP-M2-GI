@@ -77,7 +77,7 @@ Main(
 ######################### Define the laser pulse
 
 ##### laser parameters
-#laser_fwhm        = 25.5*math.sqrt(2)*fs                              # laser FWHM duration in field = FWHM duration in intensity*sqrt(2)
+#laser_fwhm        = 25.5*math.sqrt(2)*fs                              # laser FWHM duration in field, i.e. FWHM duration in intensity*sqrt(2)
 #laser_waist       = 11.5*um                                           # laser waist, conversion from um
 #center_laser      = Lx-1.7*laser_fwhm                                 # laser position at the start of the simulation
 #a0                = 1.8                                               # laser peak field, normalized by E0 defined above

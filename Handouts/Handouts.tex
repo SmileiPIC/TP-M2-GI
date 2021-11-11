@@ -173,7 +173,7 @@ To complete the practical, read the instructions of the following sections, comp
 Without further ado, let's get started!
 
 \subsection{Laser pulse in vacuum}
-Everything it ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block introduces a Gaussian laser pulse in the simulation.
+Everything is ready to run your first simulation: just uncomment the lines with the laser pulse parameters and the \commandline{LaserEnvelopeGaussian} block. This block defines a Gaussian laser pulse in the simulation. The considered pulse will also have a Gaussian temporal envelope profile.
 
 Normally you would simulate a laser pulse with all the high frequency oscillations at frequency $\omega_0=2\pi c/\lambda_0$. This is surely the most accurate approach, but it would need a very fine resolution and integration timestep and consequently a very long simulation time (see Fig. \ref{fig:envelope}). Note that in the most simple laser wakefield acceleration set-ups the laser pulse temporal envelope (often modeled with a Gaussian profile) will contain many optical oscillations.
 
@@ -197,11 +197,11 @@ Thus, using a laser envelope model it will be possible to describe the laser and
 
 The simulation now includes a moving window and a laser pulse, modeled with its envelope, as in Fig. \ref{Schema1}.\\
 
-\textbf{ - Exercise 3:} What are the waist size, FWHM duration in field of the laser specified in the namelist? Where is the laser pulse center placed in the simulation window at the start of the simulation? Where is the focal plane of the laser placed?\\
+\textbf{ - Exercise 3:} What are the waist size, FWHM duration in field and intensity of the laser pulse specified in the namelist? Where is the laser pulse center placed in the simulation window at the start of the simulation? Where is the focal plane of the laser?\\
 
 \textbf{ - Exercise 4:} The normalized laser peak field is given by $a_0=\frac{eE}{m_e\omega_0 c}$, where $E$ is the peak laser electric field and $\omega_0=2\pi c/\lambda_0$ is the laser central frequency ($\lambda_0=0.8$ $\mu m$.) What is the peak intensity $I=\frac{c\epsilon_0}{2}|E|^2$ of the laser pulse? Suggestion: the input namelist contains the physical quantities that you may need for the conversions.\\
 
-After you have uncommented the necessary lines (try again \commandline{./smilei\_test nameInputFile}), launch the simulation. Open \commandline{IPython} with the command \commandline{ipython}. Then, you can check the initial position of the laser through the commands:\\
+After you have uncommented the necessary lines (try again \commandline{./smilei\_test Inputnamelist.py}), launch the simulation.  When the simulation is completed, open \commandline{IPython} with the command \commandline{ipython}. Then, you can check the initial position of the laser through the commands:\\
 
 \commandline{import happi; S =  happi.Open("path/to/simulation")}
 
@@ -209,15 +209,17 @@ After you have uncommented the necessary lines (try again \commandline{./smilei\
 
 \commandline{S.Probe.Probe1("Env\_E\_abs",timesteps=0).plot( figure=2 )}\\
 
-\commandline{Probe0} is a 1D diagnostic defined on the laser propagation axis, while \commandline{Probe1} is a 2D diagnostic defined on the plane $xy$. Check that the initial laser position that you are seeing is the same specified in the input namelist. Remember that our laser pulse is modeled through its envelope, so you won't see its high frequency oscillations with wavelength $\lambda_0$.\\
+\commandline{Probe0} is a 1D diagnostic defined on the laser propagation axis, while \commandline{Probe1} is a 2D diagnostic defined on the plane $xy$.  Note that in the commands we have specified \commandline{timesteps=0} to see the laser pulse at the start of the simulation. Check that the initial laser position that you are seeing is the same specified in the input namelist. Remember that the laser pulse is modeled through its envelope, so you won't see its high frequency oscillations with wavelength $\lambda_0$.\\
 
-Let's now study the laser diffraction in vacuum. To see the evolution of the laser, use:\\ 
+Let's study the laser diffraction in vacuum. To see the evolution of the laser, use:\\ 
 
 \commandline{S.Probe.Probe1("Env\_E\_abs").animate( figure=3 )}\\
 
 Note that the use of the \commandline{Moving Window} will make the laser seem immobile in the simulation, but it is actually moving at speed $c$ and the \commandline{Moving Window} is following it with the same speed.
 
-If you don't specify a \commandline{vmax} value in the previous animation plot command, \commandline{happi} will change it at each iteration. To better see the laser diffraction, try to  specify \commandline{vmax=0.05} in the previous command, or use \commandline{.slide()} instead of \commandline{.animate()}.\\
+If you don't specify a \commandline{vmax} value (the colorbar maximum) in the previous animation command, \commandline{happi} will change it at each iteration. To better see the laser diffraction, try to  specify \commandline{vmax=0.05} in the previous command, or use \commandline{.slide()} instead of \commandline{.animate()}. For example:\\
+
+\commandline{S.Probe.Probe1("Env\_E\_abs").slide( figure=3,vmax=0.05 )}\\
 
 \textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theory for a Gaussian beam: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=\pi w_0^2/\lambda_0$. 
 
