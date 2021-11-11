@@ -32,21 +32,21 @@ os.chdir(vtk_folder)
 
 # export laser field
 for timestep in mytimesteps:
-print("Reading iteration ",timesteps.index(timestep)," of ",len(timesteps))
-E = S.Field.Field0("Env_E_abs",timesteps=timestep,build3d=build3d_interval_E)
-E.toVTK()
-del(E)
-print("Env_E exported")
+	print("Reading iteration ",timesteps.index(timestep)," of ",len(timesteps))
+	E = S.Field.Field0("Env_E_abs",timesteps=timestep,build3d=build3d_interval_E)
+	E.toVTK()
+	del(E)
+	print("Env_E exported")
 
-# export plasma electron density
-Rho_plasma = S.Field.Field1("-Rho_plasmaelectrons",timesteps=timestep,build3d=build3d_interval_Rho)
-Rho_plasma.toVTK()
-del(Rho_plasma)
-print("Rho_plasma exported")
+	# export plasma electron density
+	Rho_plasma = S.Field.Field1("-Rho_plasmaelectrons",timesteps=timestep,build3d=build3d_interval_Rho)
+	Rho_plasma.toVTK()
+	del(Rho_plasma)
+	print("Rho_plasma exported")
 
-# export electron bunch density
-Rho_bunch = S.Field.Field1("-Rho_electronbunch",timesteps=timestep,build3d=build3d_interval_Rho)
-Rho_bunch.toVTK()
-del(Rho_bunch)
-print("Rho_bunch exported")
-os.system(write_file_command)
+	# export electron bunch density
+	Rho_bunch = S.Field.Field1("-Rho_electronbunch",timesteps=timestep,build3d=build3d_interval_Rho)
+	Rho_bunch.toVTK()
+	del(Rho_bunch)
+	print("Rho_bunch exported")
+	os.system(write_file_command)
