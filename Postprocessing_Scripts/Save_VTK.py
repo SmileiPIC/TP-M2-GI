@@ -49,4 +49,3 @@ for timestep in mytimesteps:
 	Rho_bunch.toVTK()
 	del(Rho_bunch)
 	print("Rho_bunch exported")
-	os.system(write_file_command)
