@@ -213,11 +213,13 @@ After you have uncommented the necessary lines (try again \commandline{./smilei\
 
 Let's study the laser diffraction in vacuum. To see the evolution of the laser, use:\\ 
 
-\commandline{S.Probe.Probe1("Env\_E\_abs").animate( figure=3 )}\\
+\commandline{S.Probe.Probe1("Env\_E\_abs").slide( figure=3 )}\\
+
+You can move the horizontal time bar to see the snapshots at different iterations.
 
 Note that the use of the \commandline{Moving Window} will make the laser seem immobile in the simulation, but it is actually moving at speed $c$ and the \commandline{Moving Window} is following it with the same speed.
 
-If you don't specify a \commandline{vmax} value (the colorbar maximum) in the previous animation command, \commandline{happi} will change it at each iteration. To better see the laser diffraction, try to  specify \commandline{vmax=0.05} in the previous command, or use \commandline{.slide()} instead of \commandline{.animate()}. For example:\\
+If you don't specify a \commandline{vmax} value (the colorbar maximum) in the previous command, \commandline{happi} will change it at each iteration. To better see the laser diffraction, try to specify \commandline{vmax=0.05}. For example:\\
 
 \commandline{S.Probe.Probe1("Env\_E\_abs").slide( figure=3,vmax=0.05 )}\\
 
@@ -254,7 +256,13 @@ As we did with the simulation of the laser pulse diffraction in vacuum,  the fir
 
 \textbf{ - Exercise 7:} As you can see, the plasma density has a value $n_0=0.0008$ (in normalized units, i.e.  normalized by the critical density in this case) in the uniform region.  What is its value in physical units (electrons/cm$^{-3}$)? \textit{Hint:} see Table \ref{tab_normalisations} in Section \ref{units}. If you wanted to specify $n_0$ from SI units to code units using the conversion with the variable \commandline{ncrit} in the namelist, what command should you use? You don't have to change the namelist. \\
 
-\textbf{ - Exercise 8:} Launch the simulation with $a_0=0.01$. Study the evolution of the electric field \commandline{Ex} with \commandline{Probe0} and \commandline{Probe1} (same plot commands of the previous section, but applied to \commandline{Ex}). What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? What is the plasma wavelength inferred from the simulation results?\\
+\textbf{ - Exercise 8:} Launch the simulation with $a_0=0.01$. Study the evolution of the electric field \commandline{Ex} with \commandline{Probe0} and \commandline{Probe1}. You can use the same plot commands of the previous section, but applied to \commandline{Ex} instead of \commandline{Env\_E\_abs}), for example:\\
+
+\commandline{S.Probe.Probe0("Ex").slide( figure=3 )}\\
+
+\commandline{S.Probe.Probe1("Ex").slide( figure=3 )}\\
+
+What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? See the formula for $\omega_p$ reported just before Exercise 7 for the calculation. What is the plasma wavelength found from the simulation results? An estimate inferred from the plot will be sufficient for the purposes of this practical.\\
 
 
 \textbf{ - Exercise 9:} The longitudinal electric field on the axis of this linear plasma wave, according to the 1D linear theory, is given by (in physical units):
@@ -269,22 +277,22 @@ Increasing $a_0$, the laser will be more intense and when $a_0\gtrsim1$ the plas
 
 Create three folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, where you will launch the simulation  with $a_0=0.5,\thinspace 1.4,\thinspace 2.0$ respectively. Take a look to the longitudinal electric field on axis (\commandline{Probe0}) and to the 2D plasma density (\commandline{Probe1}):\\
 
-\commandline{S.Probe.Probe0("Ex").animate( figure=1 )}
+\commandline{S.Probe.Probe0("Ex").slide( figure=1 )}
 
-\commandline{S.Probe.Probe1("-Rho").animate( figure=2 )}\\
+\commandline{S.Probe.Probe1("-Rho").slide figure=2 )}\\
 
 In the linear case probably you will not be able to see easily the oscillations in the density, but they can be easily seen in the electric field $E_x$. In the nonlinear cases (higher $a_0$) you will need to lower the \commandline{vmax} in the plot/animate command to see the formation of  the wake. This because at the end of the plasma wave period there is an accumulation of electrons, which hides the other values of the charge density if \commandline{vmax}  is not properly chosen.
 As you can see, increasing the $a_0$, the nonlinearities of wake excitation will be progressively more evident. For each simulation, take a look to the excitation of the wave with the command \commandline{animate} of \commandline{happi}.\\
 
-\textbf{ - Exercise 10:} It is interesting to compare the longitudinal electric field of these three simulations to see how the wave changes increasing $a_0$. With \commandline{happi} (or Python if you prefer) you can easily do it. Here are the commands for \commandline{happi}:\\
+\textbf{ - Exercise 10:} It is interesting to compare the longitudinal electric field of these three simulations to see how the wave profile changes increasing $a_0$. With \commandline{happi} you can easily do it. Here are the commands for \commandline{happi}:\\
 
 \commandline{import happi}
 
-\small{\commandline{S1 = happi.Open("path/to/sim1"); Ex1 = S1.Probe.Probe0("Ex",timesteps=1000,label="a0 = 0.5")}}
+\small{\commandline{S1=happi.Open("path/to/sim1"); Ex1=S1.Probe.Probe0("Ex",timesteps=1000,label="a0 = 0.5")}}
 
-\commandline{S2 = happi.Open("path/to/sim2"); Ex2 = S2.Probe.Probe0("Ex",timesteps=1000,label="a0 = 1.4")}
+\commandline{S2=happi.Open("path/to/sim2"); Ex2=S2.Probe.Probe0("Ex",timesteps=1000,label="a0 = 1.4")}
 
-\commandline{S3 = happi.Open("path/to/sim3"); Ex3 = S3.Probe.Probe0("Ex",timesteps=1000,label="a0 = 2.0")}
+\commandline{S3=happi.Open("path/to/sim3"); Ex3=S3.Probe.Probe0("Ex",timesteps=1000,label="a0 = 2.0")}
 
 \commandline{happi.multiPlot(Ex1,Ex2,Ex3,figure=3)}\\
 
@@ -317,58 +325,78 @@ The simulation now includes a moving window, a laser pulse (modeled with its env
 \subsection*{The \commandline{DiagTrackParticles} block}
 To have a close look at the electron bunch during its propagation,  you will need to uncomment also the \commandline{DiagTrackParticles} block. As the name suggests, this diagnostic block allows to track particles, specified by their species name and some filter. Using a filter (e.g. selecting only the particles with energy higher than $50$ MeV) is particularly useful when you have many particles in a \commandline{Species}, like in the plasma of the namelist. In that case, not using a filter would make this diagnostic computationally heavy and would store the coordinates of too many particles. In the case of the bunch, there is no need to specify a filter, since the number of bunch macro-particles is sufficiently small to be manageable. As you can see from the namelist, in this diagnostic we will store the coordinates and momenta of their particles, as well as their weight (from which their charge can be computed). \\
 
-\textbf{ - Exercise 12:} Launch the simulation, remembering to uncomment also the \commandline{DiagTrackParticles} block. This time the simulation will run a little longer, because the self-consistent electromagnetic field of the relativistic electron bunch must be computed first as initial condition and it requires some time. Plot the charge density at the end  of the simulation and play with the parameter \commandline{vmax} to be able to see the electron bunch in the plasma wave, and include this image in your answers.\\
+\textbf{ - Exercise 12:} Launch the simulation, remembering to uncomment also the \commandline{DiagTrackParticles} block. Remember that the $a_0$ of the laser must be set again at $a_0=1.8$.  Remember to keep the folder and the data of this simulation, because they will be used in future exercises of the practical. This time the simulation will run a little longer, because the self-consistent electromagnetic field of the relativistic electron bunch must be computed first as initial condition and it requires some time. Plot the charge density at the end  of the simulation and play with the parameter \commandline{vmax} to be able to see the electron bunch in the plasma wave, and include this image in your answers.\\
 
-\textbf{ - Exercise 13:} Use the command \commandline{happi.multiPlot} (see Appendix \ref{happi}) to plot in the same window the longitudinal electric field \commandline{Ex} and the charge density \commandline{Rho} from \commandline{Probe0} at the end of the simulation in the same window. You may need to rescale the quantities - see Appendix \ref{happi}. Playing with multiplying factors in the plot you should be able to clearly see where the electron bunch is placed in the plasma wave. Include this image in your answers.\\
+\textbf{ - Exercise 13:} With the same simulation of Exercise 12, use the command \commandline{happi.multiPlot} (see Appendix \ref{happi}) to plot in the same window the longitudinal electric field \commandline{Ex} and the charge density \commandline{Rho} from \commandline{Probe0} at the end of the simulation in the same window. You may need to rescale the quantities - see Appendix \ref{happi}. Playing with multiplying factors in the plot you should be able to clearly see where the electron bunch is placed in the plasma wave (use a plot of \commandline{Probe0}, the diagnostic on axis). Include this image in your answers.\\
 
-\textbf{ - Exercise 14:} Run the script \commandline{Compute\_bunch\_parameters.py} in the simulation folder to read the electron bunch parameters at the end of the simulation. For this purpose, from \commandline{IPython} you can use \commandline{\%run Compute\_bunch\_parameters.py timestep}, where you specify the \commandline{timestep} you are interested in. What is the energy gain $\Delta E$ you measure from the start \commandline{timestep = 0} to the end of the simulation \commandline{timestep = 5000}? What is the simulated propagation distance $L$? From these data, compute the average accelerating  gradient $E_{acc}$. What is the absolute and relative rms energy spread at the beginning and at the end of the simulation? Report all the bunch parameters at the start and at the end of the simulation.\\
+\textbf{ - Exercise 14:} With the same simulation of Exercise 12, run the script \commandline{Compute\_bunch\_parameters.py} in the simulation folder to read the electron bunch parameters at the end of the simulation. For this purpose, from \commandline{IPython} you can use \commandline{\%run Compute\_bunch\_parameters.py timestep}, where you specify the \commandline{timestep} you are interested in. What is the energy gain $\Delta E$ you measure from the start \commandline{timestep = 0} to the end of the simulation \commandline{timestep = 5000}? What is the simulated propagation distance $L$? From these data, compute the average accelerating  gradient $E_{acc}$. What is the absolute and relative rms energy spread at the beginning and at the end of the simulation? Report all the bunch parameters at the start and at the end of the simulation.\\
 
-\textbf{ - Exercise 15:} Use the script \commandline{Follow\_electron\_bunch\_evolution.py} to see how the beam has evolved during the simulation. The script reads the \commandline{DiagTrackParticles} output and then computes some bunch quantities (rms size, emittance, energy, energy spread) at each available output iteration. Include the resulting image in your answers.  From the evolution of the bunch energy, can you estimate the average accelerating gradient? Compare this value to the one computed in the previous exercise\\
+\textbf{ - Exercise 15:} With the same simulation of Exercise 12, use the script
+ \commandline{Follow\_electron\_bunch\_evolution.py} to see how the beam has evolved during the simulation (\commandline{\%run Follow\_electron\_bunch\_evolution.py} in \commandline{IPython}).  The script reads the \commandline{DiagTrackParticles} output and then computes some bunch quantities (rms size, emittance, energy, energy spread) at each available output iteration. Include the resulting image in your answers.  From the evolution of the bunch energy, can you estimate the average accelerating gradient? Compare this value to the one computed in the previous exercise\\
 
-\textbf{ - Exercise 16:} Create four folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, \commandline{sim4} where you will launch the simulation varying the bunch charge: $40$, $60$, $80$, $100$ pC. Adapt the commands you have used in \textbf{Exercise 9} to plot the longitudinal electric field \commandline{Ex} on axis of the four simulations with \commandline{happi.multiPlot} (see Appendix \ref{happi}) and include this plot in the answers. What do you observe? Use the script \commandline{Compute\_bunch\_parameters.py} used for \textbf{Exercise 14} to find the energy of the electron bunch at timestep $5000$. Can you explain the different final energies with the deformation of the \commandline{Ex} waveform? Include also a plot of the energy gain of the bunch obtained for charges $20$, $40$, $60$, $80$, $100$ pC. In other words, include also a plot with the bunch charge on the horizontal axis and the energy gain on the vertical axis.\\
+\textbf{ - Exercise 16:} Create four folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, \commandline{sim4} where you will launch the simulation varying the bunch charge: $40$, $60$, $80$, $100$ pC. Adapt the commands you have used in Exercise 9 to plot the longitudinal electric field \commandline{Ex} on axis of the four simulations with \commandline{happi.multiPlot} (see Appendix \ref{happi}) and include this plot in the answers. What do you observe? Use the script \commandline{Compute\_bunch\_parameters.py} used for Exercise 14 to find the energy of the electron bunch at timestep $5000$. Can you explain the different final energies with the deformation of the \commandline{Ex} waveform? Include also a plot of the energy gain of the bunch obtained for charges $20$, $40$, $60$, $80$, $100$ pC. In other words, include also a plot with the bunch charge on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language for this simple plot.\\
 
-\textbf{ - Exercise 17:} Create other four folders, \commandline{sim5}, \commandline{sim6}, \commandline{sim7},  \commandline{sim8}, where you will launch the simulation varying the bunch distance from the laser playing with the variable \commandline{delay\_behind\_laser} (Set again the charge to $20$ pC). Try the values $17.8$ $\mu$m, $18.1$ $\mu$m, $18.4$, $\mu$m, $18.7$ $\mu$m. What is the final energy with these values? Using \commandline{happi.multiPlot} (see Appendix \ref{happi}) to plot the longitudinal electric field of the threes simulations in the same window (include this plot in the answers), can you explain why? Include also a plot of the energy gain of the bunch varying the \commandline{delay\_behind\_laser}. In other words, include also a plot with the \commandline{delay\_behind\_laser} on the horizontal axis and the energy gain on the vertical axis.\\
+\textbf{ - Exercise 17:} Create other four folders, \commandline{sim5}, \commandline{sim6}, \commandline{sim7},  \commandline{sim8}, where you will launch the simulation varying the bunch distance from the laser playing with the variable \commandline{delay\_behind\_laser} (Set again the charge to $20$ pC). Try the values $17$ $\mu$m, $18$ $\mu$m, $19$, $\mu$m, $20$ $\mu$m. What is the final energy with these values? Using \commandline{happi.multiPlot} (see Appendix \ref{happi}) to plot the longitudinal electric field of the threes simulations in the same window (include this plot in the answers), can you explain why? Include also a plot of the energy gain of the bunch varying the \commandline{delay\_behind\_laser}. In other words, include also a plot with the \commandline{delay\_behind\_laser} on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language for this simple plot.\\
 
-\textbf{- Exercise 18:} Using the same approach of the script \commandline{Compute\_bunch\_parameters.py} write a Python script to read the output of the \commandline{DiagTrackParticles} and draw the energy spectrum of the electron bunch, obtained using the original bunch parameters of the input namelist. Then, provide the script and the figure of the energy spectrum at timestep $5000$. Hint: use the function \commandline{numpy.histogram} to compute a histogram of the particles energies and the bins/edges of the horizontal axis.\\
+\textbf{- Exercise 18:} The accelerated bunch particles will not have the same energies, so it is interesting to see the energy distribution or energy spectrum of the bunch particles before and after the acceleration. With the same simulation of Exercise 12,  using the same approach of the script \commandline{Compute\_bunch\_parameters.py}, write a Python script to read the output of the \commandline{DiagTrackParticles} and draw the energy spectrum of the electron bunch (use MeV for the energies in the horizontal axis). Then, provide the script and the figures of the energy spectrum at timesteps \commandline{0} and \commandline{5000}.  Can you comment briefly on the differences in the energy spectrum before and after the acceleration?
 
-\textbf{- Exercise 19:} Using the \commandline{TrackParticles} diagnostic and \commandline{Probe} diagnostic, write a script that takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the longitudinal electric field \commandline{Ex} along the propagation axis $x$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{px} to show the particles' positions in the accelerating phase of \commandline{Ex} in that iteration. For an example with normalized units, see Fig. \ref{ExScatterXPx}. Include the script and a screenshot of this image for the iterations \commandline{3000} and \commandline{5000}.  Differently from Fig.  \ref{ExScatterXPx}, use SI units in the plots, using the appropriate conversions.
+\textit{Hint 1:} You can create a new script from scratch, using commands from \commandline{Compute\_bunch\_parameters.py} to read the particle energies and then add your commands to plot a histogram of the energies, that will be the bunch spectrum. Alternatively (easiest solution), you can append your histogram commands at the end of \commandline{Compute\_bunch\_parameters.py} or to a copy of that script.
 
-\textit{Hint 1:} Adapt the commands in the scripts you have already used to write this new script, in particular those ones reading the bunch electrons' coordinates and momenta and the \commandline{Ex} field on the propagation axis.
+\textit{Hint 2:} you can use the \commandline{matplotlib} function \commandline{numpy.histogram} to compute a histogram of the particles energies and the bins/edges of the horizontal axis.\\
 
-\textit{Hint 2:} To export the \commandline{Ex} data from \commandline{happi}, use the function \commandline{getData()}, e.g.:
+\textbf{- Exercise 19:} For the same simulation of Exercise 12, using the \commandline{TrackParticles} diagnostic and \commandline{Probe} diagnostic, write a script that takes as input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the longitudinal electric field \commandline{Ex} along the propagation axis $x$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{px} to show the particles' positions in the accelerating phase of \commandline{Ex} in that iteration. For an example with normalized units, see Fig. \ref{ExScatterXPx}. Include the script and a screenshot of this image for the iterations \commandline{3000} and \commandline{5000}.  Differently from Fig.  \ref{ExScatterXPx}, use SI units in the plots (except for \commandline{px}), using the appropriate conversions. For the plot of \commandline{px}, you can either use a scatter plot function or a classic plot function using only dot markers.
+
+\textit{Hint 1:} As for Exercise 18, you can either create a new script or you can add your commands at the end of \commandline{Compute\_bunch\_parameters.py} or a copy of that script. For the \commandline{Ex} field on the propagation axis, you will need data from \commandline{Probe0}. 
+
+\textit{Hint 2:} To export the \commandline{Ex} data from \commandline{Probe0} with \commandline{happi}, use the function \commandline{getData()}, e.g.:
+
+\commandline{import numpy as np}
 
 \commandline{Ex = np.asarray(S.Probe.Probe0("Ex",timesteps= timestep).getData())[0,:]}.
 
-\textit{Hint 3:} The bunch electrons' \commandline{x} coordinates are absolute, while the Probe coordinates along the axis are relative to the moving window. To shift them including the movement of the \commandline{MovingWindow}, you can define an auxiliary variable to add/subtract the moving window's relative coordinates through the \commandline{getXmoved()} command, e.g:
+You will also need an array for the horizontal axis with a size equal to the number of mesh points on the $x$ axis: 
+
+\commandline{import numpy as np}
+
+\commandline{x\_mesh=np.linspace(0,S.namelist.Lx,num=S.namelist.nx)}
+
+\textit{Hint 3:} The \commandline{Ex} and \commandline{px} will have very different scales, so you will need to use two $y$ axes with different scales to see something meaningful. With \commandline{matplotlib} you can do it through \commandline{twinx}.
+
+\textit{Hint 4:} The bunch electrons' \commandline{x} coordinates are absolute, while the \commandline{Probe} coordinates along the axis are relative to the moving window. To shift them including the movement of the \commandline{MovingWindow}, you can define an auxiliary variable to add/subtract the moving window's relative coordinates through the \commandline{getXmoved()} command, e.g:
 
 \commandline{moving\_window\_x\_shift = S.Probe.Probe0("Ex").getXmoved(timestep)}
 \\
 
 
 
-\textbf{- Exercise 20:} Write a new script adapting the one written for the previous exercise. As before, this new script takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the electric field \commandline{Ey} on the plane $xy$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{y} to show the electrons' positions in the focusing phase of \commandline{Ey} in that iteration. For an example with normalized units, see Fig. \ref{EyScatterXY}. Include the script and a screenshot of this image for the iterations \commandline{1000} and \commandline{5000}. Differently from Fig.  \ref{EyScatterXY}, use SI units in the plots, using the appropriate conversions.
+\textbf{- Exercise 20:} For the same simulation of Exercise 12, write a script similarly to how you did for Exercises 18, 19.  As before, this new script takes in input an iteration number, a variable called e.g. \commandline{timestep}. The script should plot in the same panel the electric field \commandline{Ey} on the plane $xy$ and a scatter plot of the bunch electrons' \commandline{x} and \commandline{y} to show the electrons' positions in the focusing phase of \commandline{Ey} in that iteration. For an example with normalized units, see Fig. \ref{EyScatterXY}. In your answers include the script and a screenshot of this image for the iterations \commandline{1000} and \commandline{5000}. Differently from Fig.  \ref{EyScatterXY}, use SI units in the plots, using the appropriate conversions.
 
 
+\textit{Hint 1} As for Exercises 18 and 19, you can either create a new script, or add your commands to \commandline{Compute\_bunch\_parameters.py} or a copy of that script.
 
+\textit{Hint 2:} You can obtain the \commandline{Ey} on the plane $xy$ exporting \commandline{Probe1} to a numpy array, e.g:
 
-\textit{Hint 1:} You can obtain the \commandline{Ey} on the plane $xy$ exporting \commandline{Probe1} to a numpy array, e.g:
+\commandline{import numpy as np}
 
 \commandline{Ey = np.asarray(S.Probe.Probe1("Ey",timesteps = timestep).getData())[0,:,:]}
 
-\textit{Hint 2:} for a 2D plot, the Python function \commandline{imshow()} of \commandline{matplotlib.pyplot} is recommended, which takes in input the field to plot, the extent of the window coordinates and in case the minimum and maximum field number, e.g.:
+\textit{Hint 3:} for a 2D plot, the Python function \commandline{imshow()} of \commandline{matplotlib.pyplot} is recommended, which takes in input the field to plot, the extent of the window coordinates and in case the minimum and maximum field number, e.g.:
 
-\commandline{imshow(Ey.T,extent = [Xmin,Xmax,Ymin,Ymax], vmin=..., vmax=...)}
+\commandline{import matplotlib.pyplot as plt}
+
+\commandline{plt.imshow(Ey.T,extent = [Xmin,Xmax,Ymin,Ymax], vmin=..., vmax=...)}
+
 
 \begin{figure}[!htb]
    \begin{minipage}{0.48\textwidth}
      \centering
      \includegraphics[width=1\linewidth]{ExScatterXPx.pdf}
-     \caption{Longitudinal electric field \commandline{Ex} on axis and scatter plot of the bunch electrons' \commandline{x} and \commandline{px}, at iteration \commandline{1000}. }\label{ExScatterXPx}
+     \caption{Longitudinal electric field \commandline{Ex} on axis and scatter plot of the bunch electrons' \commandline{x} and \commandline{px}, at iteration \commandline{1000}.  For the sake of clarity, only a subset of the bunch particles has been plotted.}\label{ExScatterXPx}
    \end{minipage}\hfill
    \begin{minipage}{0.48\textwidth}
      \centering
      \includegraphics[width=1\linewidth]{EyScatterXY.pdf}
-     \caption{Electric field \commandline{Ey} on the plane $xy$ and scatter plot of the bunch electrons' \commandline{x} and \commandline{y} coordinates, at iteration \commandline{3000}. }\label{EyScatterXY}
+     \caption{Electric field \commandline{Ey} on the plane $xy$ and scatter plot of the bunch electrons' \commandline{x} and \commandline{y} coordinates, at iteration \commandline{3000}. For the sake of clarity, only a subset of the bunch particles has been plotted.}\label{EyScatterXY}
    \end{minipage}
 \end{figure}
 
