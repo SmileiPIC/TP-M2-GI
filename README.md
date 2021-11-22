@@ -1,5 +1,5 @@
 # TP-M2-GI
-Numerical practical for the students of the M2 - Grands Instruments.
+Numerical practical for the Master M2 - Grands Instruments.
 
 <img width="350" alt="External_Injection_TP" src="https://user-images.githubusercontent.com/9608804/138692451-26cf6072-1513-4354-b632-f9ac7c499677.png">
 
