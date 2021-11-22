@@ -1,0 +1,256 @@
+@PREAMBLE{
+ "\providecommand{\noopsort}[1]{}"
+ # "\providecommand{\singleletter}[1]{#1}%"
+}
+
+
+@article{FaureCAS,
+	author = {J. Faure},
+	title = {Plasma Injection Schemes for Laser–Plasma Accelerators},
+	journal = {CERN Yellow Reports},
+	volume = {1},
+	number = {0},
+	year = {2016},
+	keywords = {Laser-plasma accelerators; laser wakefield; electron injection; ionization injection; colliding pulse injection; gradient injection.},
+	abstract = {Plasma injection schemes are crucial for producing high-quality electron beams in laser–plasma accelerators. This article introduces the general concepts of plasma injection. First, a Hamiltonian model for particle trapping and acceleration in plasma waves is introduced; ionization injection and colliding-pulse injection are described in the framework of this Hamiltonian model. We then proceed to consider injection in plasma density gradients.},
+
+	url = {https://e-publishing.cern.ch/index.php/CYR/article/view/218},
+	pages = {143}
+}
+
+@article{Terzani2019,
+	Abstract = {In laser-driven, plasma wakefield acceleration regimes (LWFA), when relevant scale lengths of the laser envelope and of the driven plasma waves are well separated from the wavelength and frequency of the laser fast oscillating component, a reduced physical model (usually referred to as the envelope model), has been introduced, allowing to formulate the laser--plasma equations in terms of laser cycle-averaged dynamical variables. As a main consequence, physical regimes where this reduced model applies, can be investigated with significant savings of computational resources still assuring comparable accuracy, with respect to standard Particle-In-Cell (PIC) models where all relevant space--time scales have to be resolved. Here we propose a computational framework characterized by two previously unexplored numerical implementations of the envelope model. The first one is based on explicit second order leapfrog integration of the exact wave equation for laser pulse propagation in a laboratory coordinate system in 3D cartesian geometry, replacing the usually quoted representation in an Eulerian frame moving at the speed of light. Since the laser and driven wakefield wave equations in a laboratory frame are advection dominated, we introduce a proper modification of finite differences approximating longitudinal space derivatives, to minimize dispersive numerical errors coming from the discretized advection operators. The proposed implementation, avoiding semi-implicit procedures otherwise required when dealing with a comoving frame, assures significant saving in computational time and ease of implementation for parallel platforms. The associated equation of motion for plasma particles has been integrated, as in standard PIC codes, using the Boris pusher, properly extended to take into account the specific form of the Lorentz force in the envelope model. As a second contribution, a novel numerical implementation of the plasma dynamics equations in the cold-fluid approximation, is presented. The scheme is based on the second-order one-step Adams--Bashforth time integrator coupled to upwind non-oscillatory WENO reconstruction for discretized space derivatives. The proposed integration scheme for the Eulerian fluid equations is equivalent to a leapfrog scheme with an added higher order dissipative truncation errors. It can be used either as a much faster, yet of comparable accuracy, alternative to the PIC representation of plasma particle motion, or even in a hybrid fluid--particle combination when kinetic effects and particle injection and acceleration in a wakefield have to be investigated.},
+	Author = {Davide Terzani and Pasquale Londrillo},
+	Doi = {https://doi.org/10.1016/j.cpc.2019.04.007},
+	Issn = {0010-4655},
+	Journal = {Computer Physics Communications},
+	Keywords = {Laser--plasma acceleration, Particle-in-cell, Reduced computational model, Cold fluid plasma numerical integration},
+	Pages = {49 - 59},
+	Title = {A fast and accurate numerical implementation of the envelope model for laser--plasma dynamics},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0010465519301195},
+	Volume = {242},
+	Year = {2019},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0010465519301195},
+	Bdsk-Url-2 = {https://doi.org/10.1016/j.cpc.2019.04.007}}
+
+
+@book{siegman86,
+  added-at = {2010-09-15T14:07:41.000+0200},
+  author = {Siegman, Anthony E.},
+  biburl = {https://www.bibsonomy.org/bibtex/24e85e2e517d12790f5ed78a6ee7d3917/mcclung},
+  interhash = {1e0949bf5ae8d057afa5f93dac76c2eb},
+  intrahash = {4e85e2e517d12790f5ed78a6ee7d3917},
+  keywords = {cavityQED laser optics},
+  publisher = {University Science Books},
+  timestamp = {2010-09-15T14:07:41.000+0200},
+  title = {Lasers},
+  year = 1986
+}
+
+@ARTICLE{Gordon2000,
+author={D. F. Gordon and W. B. Mori and T. M. Antonsen},
+journal={IEEE Transactions on Plasma Science},
+title={A ponderomotive guiding center particle-in-cell code for efficient modeling of laser-plasma interactions},
+year={2000},
+volume={28},
+number={4},
+pages={1135-1143},
+keywords={plasma light propagation;plasma simulation;ponderomotive guiding center particle-in-cell code;modeling;laser-plasma interactions;particle simulation code;optical cycles;electromagnetic field;laser component;wake component;high-frequency limit;laser frequency;time-averaged equations;quasistatic limit;laser pulse length;plasma length;Laser modes;Plasma simulation;Laser theory;Frequency;Optical pulses;Equations;Laser fusion;Integrated optics;Nonlinear optics;Plasma applications},
+doi={10.1109/27.893300},
+ISSN={0093-3813},
+month={Aug},}
+
+@article{Smilei2018,
+title = "Smilei : A collaborative, open-source, multi-purpose particle-in-cell code for plasma simulation",
+journal = "Computer Physics Communications",
+volume = "222",
+pages = "351 - 373",
+year = "2018",
+issn = "0010-4655",
+doi = "https://doi.org/10.1016/j.cpc.2017.09.024",
+url = "http://www.sciencedirect.com/science/article/pii/S0010465517303314",
+author = "J. Derouillat and A. Beck and F. Pérez and T. Vinci and M. Chiaramello and A. Grassi and M. Flé and G. Bouchard and I. Plotnikov and N. Aunai and J. Dargent and C. Riconda and M. Grech",
+keywords = "Plasma kinetic simulation, Particle-In-Cell (PIC), High-performance computing, Laser-plasma interaction, Astrophysical plasmas"
+}
+
+
+@article{Massimo2016,
+title = "Electromagnetic self-consistent field initialization and fluid advance techniques for hybrid-kinetic PWFA code Architect",
+journal = "Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment",
+volume = "829",
+number = "Supplement C",
+pages = "378 - 382",
+year = "2016",
+note = "2nd European Advanced Accelerator Concepts Workshop - EAAC 2015",
+issn = "0168-9002",
+doi = "https://doi.org/10.1016/j.nima.2016.02.043",
+url = "http://www.sciencedirect.com/science/article/pii/S0168900216002102",
+author = "F. Massimo and A. Marocchino and A.R. Rossi",
+keywords = "Plasma Wakefield Acceleration, Particle in Cell, Hybrid-model, Numerical simulation"
+}
+
+@article{Massimo2019,
+	Abstract = {Three dimensional particle in cell simulations of laser wakefield acceleration require a considerable amount of resources but are necessary to have realistic predictions and to design future experiments. The planned experiments for the Apollon laser also include two stages of plasma acceleration, for a total plasma length of the order of tens of millimeters or centimeters. In this context, where traditional 3D numerical simulations would be computationally very expensive, we present the results of the application of a recently proposed envelope method, to describe the laser pulse and its interaction with the plasma without the need to resolve its high frequency oscillations. The implementation of this model in the code Smilei is described, as well as the results of benchmark simulations against standard laser simulations and applications for the design of two stage Apollon experiments.},
+	Author = {F Massimo and A Beck and J Derouillat and M Grech and M Lobet and F P{\'{e}}rez and I Zemzemi and A Specka},
+	Doi = {10.1088/1361-6587/ab49cf},
+	Journal = {Plasma Physics and Controlled Fusion},
+	Month = {oct},
+	Number = {12},
+	Pages = {124001},
+	Publisher = {{IOP} Publishing},
+	Title = {Efficient start-to-end 3D envelope modeling for two-stage laser wakefield acceleration experiments},
+	Url = {https://doi.org/10.1088%2F1361-6587%2Fab49cf},
+	Volume = {61},
+	Year = 2019,
+	Bdsk-Url-1 = {https://doi.org/10.1088%2F1361-6587%2Fab49cf},
+	Bdsk-Url-2 = {https://doi.org/10.1088/1361-6587/ab49cf}}
+
+
+@article{Massimo2019cylindrical,
+	doi = {10.1088/1742-6596/1596/1/012055},
+	url = {https://doi.org/10.1088/1742-6596/1596/1/012055},
+	year = 2020,
+	month = {jul},
+	publisher = {{IOP} Publishing},
+	volume = {1596},
+	pages = {012055},
+	author = {F. Massimo and I. Zemzemi and A. Beck and J. Derouillat and A. Specka},
+	title = {Efficient cylindrical envelope modeling for laser wakefield acceleration},
+	journal = {Journal of Physics: Conference Series},
+	abstract = {The resolution of the system given by Maxwell’s equations and Vlasov equation in three dimensions can describe all the phenomena of interest for laser wakefield acceleration, with few exceptions (e.g. ionization). Such arduous task can be numerically completed using Particle in Cell (PIC) codes, where the plasma is sampled by an ensemble of macroparticles and the electromagnetic fields are defined on a computational grid. However, the resulting three dimensional PIC simulations require substantial resources and often yield a larger amount of information than the one necessary to study a particular aspect of a phenomenon. Reduced models, i.e. models of the Maxwell-Vlasov system taking into account approximations and symmetries, are thus of fundamental importance for preliminary studies and parametric scans. In this work, the implementation of one of these models in the code SMILEI, an envelope description of the laser-plasma interaction with cylindrical symmetry, is described.}
+}
+
+@misc{LapentaPIC,
+    title={Kinetic Plasma Simulation: Particle In Cell Method},
+    author={G. Lapenta},
+    howpublished = {\url{https://juser.fz-juelich.de/record/283633/files/Lapenta_KT-2.pdf}}
+}
+
+@misc{CommandLineCourse,
+    title={Command Line Crash Course},
+    author={Z. A. Shaw},
+    howpublished = {\url{https://www.computervillage.org/articles/CommandLine.pdf}}
+}
+
+@article{Mora1997,
+	Author = {Patrick Mora and Thomas M. Antonsen, Jr.},
+	Doi = {10.1063/1.872134},
+	Eprint = {https://doi.org/10.1063/1.872134},
+	Journal = {Physics of Plasmas},
+	Number = {1},
+	Pages = {217-229},
+	Title = {Kinetic modeling of intense, short laser pulses propagating in tenuous plasmas},
+	Url = {https://doi.org/10.1063/1.872134},
+	Volume = {4},
+	Year = {1997},
+	Bdsk-Url-1 = {https://doi.org/10.1063/1.872134},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1063/1.872134}}
+
+@article{Cowan2011,
+	Author = {Benjamin M. Cowan and David L. Bruhwiler and Estelle Cormier-Michel and Eric Esarey and Cameron G.R. Geddes and Peter Messmer and Kevin M. Paul},
+	Doi = {https://doi.org/10.1016/j.jcp.2010.09.009},
+	Issn = {0021-9991},
+	Journal = {Journal of Computational Physics},
+	Keywords = {Plasma accelerator, Laser--plasma acceleration, Laser wakefield acceleration, PIC, Envelope model},
+	Number = {1},
+	Pages = {61 - 86},
+	Title = {Characteristics of an envelope model for laser--plasma accelerator simulation},
+	Url = {http://www.sciencedirect.com/science/article/pii/S0021999110005036},
+	Volume = {230},
+	Year = {2011},
+	Bdsk-Url-1 = {http://www.sciencedirect.com/science/article/pii/S0021999110005036},
+	Bdsk-Url-2 = {https://doi.org/10.1016/j.jcp.2010.09.009}}
+
+@article{TajimaDawson79,
+  title = {Laser Electron Accelerator},
+  author = {Tajima, T. and Dawson, J. M.},
+  journal = {Phys. Rev. Lett.},
+  volume = {43},
+  issue = {4},
+  pages = {267--270},
+  numpages = {0},
+  year = {1979},
+  month = {Jul},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.43.267},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.43.267}
+}
+
+@article{Esarey2009,
+  title = {Physics of laser-driven plasma-based electron accelerators},
+  author = {Esarey, E. and Schroeder, C. B. and Leemans, W. P.},
+  journal = {Rev. Mod. Phys.},
+  volume = {81},
+  issue = {3},
+  pages = {1229--1285},
+  numpages = {0},
+  year = {2009},
+  month = {Aug},
+  publisher = {American Physical Society},
+  doi = {10.1103/RevModPhys.81.1229},
+  url = {https://link.aps.org/doi/10.1103/RevModPhys.81.1229}
+}
+
+@article{Malka2012,
+	Author = {V. Malka},
+	Doi = {10.1063/1.3695389},
+	Eprint = {http://dx.doi.org/10.1063/1.3695389},
+	Journal = {Physics of Plasmas},
+	Number = {5},
+	Pages = {055501},
+	Title = {Laser plasma accelerators},
+	Url = {http://dx.doi.org/10.1063/1.3695389},
+	Volume = {19},
+	Year = {2012},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1063/1.3695389}}
+
+@article{Malka2002,
+	Abstract = {Plasmas are an attractive medium for the next generation of particle accelerators because they can support electric fields greater than several hundred gigavolts per meter. These accelerating fields are generated by relativistic plasma waves{\textemdash}space-charge oscillations{\textemdash}that can be excited when a high-intensity laser propagates through a plasma. Large currents of background electrons can then be trapped and subsequently accelerated by these relativistic waves. In the forced laser wake field regime, where the laser pulse length is of the order of the plasma wavelength, we show that a gain in maximum electron energy of up to 200 megaelectronvolts can be achieved, along with an improvement in the quality of the ultrashort electron beam.},
+	Author = {Malka, V. and Fritzler, S. and Lefebvre, E. and Aleonard, M.-M. and Burgy, F. and Chambaret, J.-P. and Chemin, J.-F. and Krushelnick, K. and Malka, G. and Mangles, S. P. D. and Najmudin, Z. and Pittman, M. and Rousseau, J.-P. and Scheurer, J.-N. and Walton, B. and Dangor, A. E.},
+	Doi = {10.1126/science.1076782},
+	Eprint = {http://science.sciencemag.org/content/298/5598/1596.full.pdf},
+	Issn = {0036-8075},
+	Journal = {Science},
+	Number = {5598},
+	Pages = {1596--1600},
+	Publisher = {American Association for the Advancement of Science},
+	Title = {Electron Acceleration by a Wake Field Forced by an Intense Ultrashort Laser Pulse},
+	Url = {http://science.sciencemag.org/content/298/5598/1596},
+	Volume = {298},
+	Year = {2002},
+	Bdsk-Url-1 = {http://science.sciencemag.org/content/298/5598/1596},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1126/science.1076782}}
+
+@book{BirdsallLangdon2004,
+  Author =       "C. K. Birdsall and A. B. Langdon",
+  Title =        "Plasma Physics via Computer Simulation",
+  Publisher = "Taylor and Francis Group",
+  Year      = "2004"
+}
+
+@article{Rechatin2009,
+  title = {Observation of Beam Loading in a Laser-Plasma Accelerator},
+  author = {Rechatin, C. and Davoine, X. and Lifschitz, A. and Ismail, A. Ben and Lim, J. and Lefebvre, E. and Faure, J. and Malka, V.},
+  journal = {Phys. Rev. Lett.},
+  volume = {103},
+  issue = {19},
+  pages = {194804},
+  numpages = {4},
+  year = {2009},
+  month = {Nov},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.103.194804},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.103.194804}
+}
+
+@article{Rechatin2010,
+	Abstract = {In this study, electrons were injected into a laser plasma accelerator using colliding laser pulses. By varying the parameters of the injection laser pulse, the amount of charge accelerated in the plasma wave could be controlled. This external control of the injected load was used to investigate beam loading of the accelerating structure and especially its influence on the electron beam energy and energy spread. Information on the accelerating structure and bunch duration was then derived from these experimental observations.},
+	Author = {C Rechatin and J Faure and X Davoine and O Lundh and J Lim and A Ben-Isma{\"\i}l and F Burgy and A Tafzi and A Lifschitz and E Lefebvre and V Malka},
+	Journal = {New Journal of Physics},
+	Number = {4},
+	Pages = {045023},
+	Title = {Characterization of the beam loading effects in a laser plasma accelerator},
+	Url = {http://stacks.iop.org/1367-2630/12/i=4/a=045023},
+	Volume = {12},
+	Year = {2010},
+	Bdsk-Url-1 = {http://stacks.iop.org/1367-2630/12/i=4/a=045023}}

@@ -50,15 +50,15 @@ right=17mm,
 \tableofcontents
 
 \section{Introduction} %%% ------------------------------------------------------------------------------------------------------------------------------------------------
-In this practical you will familiarize with a Particle in Cell code (PIC) code, learn how to set up and run a PIC simulation of plasma acceleration, and how to analyze the results.
+In this practical you will familiarize with a Particle in Cell code (PIC) code \cite{LapentaPIC,BirdsallLangdon2004}, learn how to set up and run a PIC simulation of plasma acceleration, and how to analyze the results.
 
-The PIC code you will use, \smilei, is not a reduced version, but a full version that you can use for your future studies. Although here you will be given all the instructions you need to use the code for the purposes of this practical, you can find more details and more instructions on the code use here \url{https://smileipic.github.io/Smilei/index.html}, or tutorials in \url{https://smileipic.github.io/tutorials/}.
+The PIC code you will use, \smilei \cite{Smilei2018}, is not a reduced version, but a full version that you can use for your future studies. Although here you will be given all the instructions you need to use the code for the purposes of this practical, you can find more details and more instructions on the code use here \url{https://smileipic.github.io/Smilei/index.html}, or tutorials in \url{https://smileipic.github.io/tutorials/}.
 
-At the end of the practical you will be able to run and analyse a full PIC simulation of a plasma acceleration set-up, where an intense laser pulse is injected in the plasma. The laser pulse excites a relativistic plasma wave that accelerates a properly injected electron beam behind the laser pulse.  This plasma acceleration scheme is called laser wakefield acceleration (or LWFA).  A common analogy is that of a surfer (the injected electrons) being accelerated by the waves in the wake of a boat (the laser pulse) in the sea (the plasma).  In this particular LWFA set-up the a relativistic electron beam is externally injected in the plasma wave.
+At the end of the practical you will be able to run and analyse a full PIC simulation of a plasma acceleration set-up, where an intense laser pulse is injected in the plasma. The laser pulse excites a relativistic plasma wave that accelerates a properly injected electron beam behind the laser pulse.  This plasma acceleration scheme is called laser wakefield acceleration (or LWFA) \cite{TajimaDawson79,Malka2002,Esarey2009,Malka2012}.  A common analogy is that of a surfer (the injected electrons) being accelerated by the waves in the wake of a boat (the laser pulse) in the sea (the plasma).  In this particular LWFA set-up the a relativistic electron beam is externally injected in the plasma wave.
 
 However, you won't simulate immediately this case study.  You will arrive progressively to this simulation, familiarizing with the code and adding step by step all the necessary blocks to the input namelist file, called the \commandline{InputNamelist.py}. In this file, the lines starting with the symbol \texttt{\#} are comments, i.e. they are ignored by the code. The comments in the input namelist of this practical will have one of these two purposes: 1) help understanding a certain section of the namelist or 2) deactivate a certain block or variable definitions in the namelist, e.g. a block introducing a laser in the simulation: to activate that block and introduce the laser, you will only need to remove the symbols \texttt{\#} (also from the lines defining for example the laser length).
 
-This namelist is written in Python, but you don't need a deep knowledge of this language to understand its content. Knowing how to define variables (and optionally how to define \texttt{numpy} arrays) should be largely sufficient. This practical assumes that you are able to navigate in a directory tree, create folders and copy files from the command line (to have a quick recap, see the Sections 4,5,7,8,9,13,14,17 of \url{https://www.computervillage.org/articles/CommandLine.pdf}). 
+This namelist is written in Python, but you don't need a deep knowledge of this language to understand its content. Knowing how to define variables (and optionally how to define \texttt{numpy} arrays) should be largely sufficient. This practical assumes that you are able to navigate in a directory tree, create folders and copy files from the command line (to have a quick recap, see the Sections 4,5,7,8,9,13,14,17 of \cite{CommandLineCourse}). 
 
 You will start with a simple namelist which includes only a laser propagating in vacuum, then the plasma will be added to excite a plasma wave and finally the injected electron beam will be added. Each of these three elements is introduced into the simulation with a block of text that is read by the code. Since the very first exercises of this TP, you will have the full input namelist at your disposal. At first only few blocks will be functional, like the block to define a laser in the simulation, while the other blocks will be commented (i.e. having a symbol \texttt{\#} at the beginning of the line).
 
@@ -68,7 +68,7 @@ In each of these three steps you will also analyse the results of the simulation
 
 \section*{A quick word on \smilei} %%% 
 
-As previously stated, the numerical tool you will use for this practical is the PIC code \smilei. A prior knowledge of \smilei is not mandatory for the purposes of the practical exercises.
+As previously stated, the numerical tool you will use for this practical is the PIC code \smilei \cite{Smilei2018}. A prior knowledge of \smilei is not mandatory for the purposes of the practical exercises.
 Yet, checking \smilei's website for information on how to write a namelist can be useful. 
 Furthermore, the interested reader can find additional tutorials accessible from the code's website, and that focus on other physical processes and/or on how to use \smilei.
 
@@ -191,7 +191,7 @@ Normally you would simulate a laser pulse with all the high frequency oscillatio
    \end{minipage}
 \end{figure}
 
-Thus, using a laser envelope model it will be possible to describe the laser and its interaction with the plasma only in terms of its envelope and have quick simulations (due to the coarser sampling). In this kind of model, the laser evolution is described by an envelope equation (like in a paraxial wave equation for example). The laser radiation pressure on the plasma particles is described by the ponderomotive force (which depends only on the laser pulse envelope). With this approach, the accuracy of the results will be enough to explore the basic physics of laser plasma acceleration and at the same time you will be able to perform quicker simulations. \\
+Thus, using a laser envelope model it will be possible to describe the laser and its interaction with the plasma only in terms of its envelope and have quick simulations (due to the coarser sampling) \cite{Mora1997,Gordon2000,Cowan2011,Massimo2019,Terzani2019}. In this kind of model, the laser evolution is described by an envelope equation (like in a paraxial wave equation for example). The laser radiation pressure on the plasma particles is described by the ponderomotive force (which depends only on the laser pulse envelope). With this approach, the accuracy of the results will be enough to explore the basic physics of laser plasma acceleration and at the same time you will be able to perform quicker simulations \cite{Massimo2019,Terzani2019,Massimo2019cylindrical}.  \\ 
 
 \textbf{ Note:} since an envelope model is used for the laser,  the electromagnetic fields in output like \commandline{Ex},\commandline{Ey} (and the densities like \commandline{Rho}) will only show the average of these quantities over the optical oscillations of the laser and not including the laser field. Thus, these quantities will not show the oscillations at $\omega_0$ and $2\omega_0$ normally seen in a simulation of LWFA without an envelope model. The electromagnetic fields in output will be those generated in the plasma, while the absolute value of the envelope of the transverse electric field of the laser is contained in the quantity \commandline{Env\_E\_abs}. \\
 
@@ -223,7 +223,7 @@ If you don't specify a \commandline{vmax} value (the colorbar maximum) in the pr
 
 \commandline{S.Probe.Probe1("Env\_E\_abs").slide( figure=3,vmax=0.05 )}\\
 
-\textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theory for a Gaussian beam: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=\pi w_0^2/\lambda_0$. 
+\textbf{ - Exercise  5:} Let's check that the Gaussian laser pulse diffracts following the theory for a Gaussian beam \cite{siegman86}: $w(x)=w_0\sqrt{1+x^2/x_R^2}$, where $w_0$ is the initial laser waist size, $w(x)$ the laser waist size at propagation distance $x$, $x_R$ is the Rayleigh length $x_R=\pi w_0^2/\lambda_0$. 
 
 What is the theoretical Rayleigh length $x_R$ ?\\
 
@@ -265,7 +265,7 @@ As we did with the simulation of the laser pulse diffraction in vacuum,  the fir
 What is the theoretical plasma wavelength $\lambda_p=2\pi c/\omega_p$? See the formula for $\omega_p$ reported just before Exercise 7 for the calculation. What is the plasma wavelength found from the simulation results? An estimate inferred from the plot will be sufficient for the purposes of this practical.\\
 
 
-\textbf{ - Exercise 9:} The longitudinal electric field on the axis of this linear plasma wave, according to the 1D linear theory, is given by (in physical units):
+\textbf{ - Exercise 9:} The longitudinal electric field on the axis of this linear plasma wave, according to the 1D linear theory \cite{Esarey2009} applied to the considered case, is given by (in physical units):
 \begin{equation}\label{linear_theory}
 E_x(x) = \frac{m_e c^2}{e}\frac{k_p^2}{4} \int_x^{+\infty} |\tilde{A}|^2\rm{cos}\left[\omega_p(x-x')\right]dx'.\\
 \end{equation}
@@ -273,7 +273,7 @@ Use the script \commandline{Ex\_linear\_theory\_vs\_Smilei.py} to compare the an
 
 \subsubsection {Nonlinear plasma waves}
 With the laser and plasma parameters in the namelist, for $a_0\ll1$ the excited plasma waves will be in the linear regime. As we saw in the previous exercise, the plasma wave in the wake of  the laser is sinusoidal in this regime.
-Increasing $a_0$, the laser will be more intense and when $a_0\gtrsim1$ the plasma electrons will start to  be pushed to relativistic velocities. Their relativistically increased inertia will elongate the plasma period and plasma wavelength, and electron accumulation will occur at the end of each wave period. Increasing $a_0$, the longitudinal electric field waveform will change from a sinusoid to a sawtooth wave. In this regime of interest for plasma acceleration PIC simulations become necessary, because for this regime there are no general analytical solutions to the coupled Vlasov-Maxwell system of equations,  and fluid theory cannot be applied.\\
+Increasing $a_0$, the laser will be more intense and when $a_0\gtrsim1$ the plasma electrons will start to  be pushed to relativistic velocities. Their relativistically increased inertia will elongate the plasma period and plasma wavelength, and electron accumulation will occur at the end of each wave period. Increasing $a_0$, the longitudinal electric field waveform will change from a sinusoid to a sawtooth wave \cite{Esarey2009}. In this regime of interest for plasma acceleration PIC simulations become necessary, because for this regime there are no general analytical solutions to the coupled Vlasov-Maxwell system of equations,  and fluid theory cannot be applied.\\
 
 Create three folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, where you will launch the simulation  with $a_0=0.5,\thinspace 1.4,\thinspace 2.0$ respectively. Take a look to the longitudinal electric field on axis (\commandline{Probe0}) and to the 2D plasma density (\commandline{Probe1}):\\
 
@@ -304,7 +304,7 @@ In another plot window, adapting the commands above, plot the \commandline{-Rho}
 
 \subsection{Laser plasma acceleration with external injection}
 Finally everything is ready to simulate a plasma accelerator. As a surfer rides the waves in the sea,  under some conditions a bunch of electrons can be accelerated by plasma waves. Remember that an immobile surfer will not be accelerated by a wave. To efficiently interact with the wave, the surfer must first pad to acquire some velocity. If the surfer moves near to the speed of the wave, he will see an accelerating phase of the wave for a significant interval of the surfer-wave interaction.
-Following the same analogy,  the electrons to be accelerated must be injected in the accelerated phase of the plasma wave, with a speed near the wave velocity  ($\approx c$). Many clever injection schemes have been investigated since  the years 2000s, where the electrons of the plasma itself are in some way injected in the laser-driven wave. However, although it is more experimentally difficult to realize, in this practical the external injection scheme will be studied, i.e. the injection of a relativistic electron beam from outside the plasma. This will allow to understand the basic concepts of electron injection in a plasma wave. \\
+Following the same analogy,  the electrons to be accelerated must be injected in the accelerated phase of the plasma wave, with a speed near the wave velocity  ($\approx c$). Many clever injection schemes have been investigated since the years 2000s \cite{Malka2002,Esarey2009,Malka2012,FaureCAS}, where the electrons of the plasma itself are in some way injected in the laser-driven wave. However, although it is more experimentally difficult to realize, in this practical the external injection scheme will be studied, i.e. the injection of a relativistic electron beam from outside the plasma. This will allow to understand the basic concepts of electron injection in a plasma wave. \\
 
 Set again the $a_0$ of the laser to  the value $1.8$ . Uncomment the second \commandline{Species} block, the related variable definitions and take some time to read them carefully. As you can see, this block defines a \commandline{Species} called \commandline{electronbunch}, which we will inject in the plasma wave for acceleration. As for the \commandline{Species} called \commandline{plasmaelectrons} of the previous  Sections, these particles have normalized \commandline{charge} and \commandline{mass} equal to \commandline{-1.0} and \commandline{1.0} respectively, thus they are electrons. In this case,  the number density will not be defined through a density profile function, but the charge, the coordinates and the momenta of each of the bunch's macro-particles will be given to the code through arrays. The variable \commandline{npart} defines the number of macro-particles (in  this case 50000) of the bunch, and this will be also the length of the bunch arrays: to initialize \commandline{npart} particles one by one, you need an array of length \commandline{npart} for their $x$ coordinates, an array of length \commandline{npart} for their $y$ coordinates and for the $z$ coordinates. These coordinates will be stored in the variable called \commandline{array\_position}, which keeps also an array of length \commandline{npart} to store the charge of each macro-particle (you don't need to understand right now how it is defined). You will also need to initialize the momenta of the particle, which are stored similarly in the variable \commandline{array\_momentum}. In this case, these coordinates and momenta are generated from a Gaussian pseudorandom distribution, multiplying the numbers by their standard deviations to have a bunch with a rms size, rms momentum spread and rms energy spread that we want. You will note that the initialized bunch is already relativistic and has a Gaussian distribution in all the coordinate-momenta subplanes in the phase space. The electron bunch is initialized at waist.\\
 
@@ -334,7 +334,7 @@ To have a close look at the electron bunch during its propagation,  you will nee
 \textbf{ - Exercise 15:} With the same simulation of Exercise 12, use the script
  \commandline{Follow\_electron\_bunch\_evolution.py} to see how the beam has evolved during the simulation (\commandline{\%run Follow\_electron\_bunch\_evolution.py} in \commandline{IPython}).  The script reads the \commandline{DiagTrackParticles} output and then computes some bunch quantities (rms size, emittance, energy, energy spread) at each available output iteration. Include the resulting image in your answers.  From the evolution of the bunch energy, can you estimate the average accelerating gradient? Compare this value to the one computed in the previous exercise\\
 
-\textbf{ - Exercise 16:} Create four folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, \commandline{sim4} where you will launch the simulation varying the bunch charge: $40$, $60$, $80$, $100$ pC. Adapt the commands you have used in Exercise 9 to plot the longitudinal electric field \commandline{Ex} on axis of the four simulations with \commandline{happi.multiPlot} (see Appendix \ref{happi}) and include this plot in the answers. What do you observe? Use the script \commandline{Compute\_bunch\_parameters.py} used for Exercise 14 to find the energy of the electron bunch at timestep $5000$. Can you explain the different final energies with the deformation of the \commandline{Ex} waveform? Include also a plot of the energy gain of the bunch obtained for charges $20$, $40$, $60$, $80$, $100$ pC. In other words, include also a plot with the bunch charge on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language for this simple plot.\\
+\textbf{ - Exercise 16:} Create four folders, \commandline{sim1}, \commandline{sim2}, \commandline{sim3}, \commandline{sim4} where you will launch the simulation varying the bunch charge: $40$, $60$, $80$, $100$ pC. Adapt the commands you have used in Exercise 9 to plot the longitudinal electric field \commandline{Ex} on axis of the four simulations with \commandline{happi.multiPlot} (see Appendix \ref{happi}) and include this plot in the answers. What do you observe? Use the script \commandline{Compute\_bunch\_parameters.py} used for Exercise 14 to find the energy of the electron bunch at timestep $5000$. Can you explain the different final energies with the deformation of the \commandline{Ex} waveform? \textit{Hint:} see \cite{Rechatin2009,Rechatin2010}. Include also a plot of the energy gain of the bunch obtained for charges $20$, $40$, $60$, $80$, $100$ pC. In other words, include also a plot with the bunch charge on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language for this simple plot.\\
 
 \textbf{ - Exercise 17:} Create other four folders, \commandline{sim5}, \commandline{sim6}, \commandline{sim7},  \commandline{sim8}, where you will launch the simulation varying the bunch distance from the laser playing with the variable \commandline{delay\_behind\_laser} (Set again the charge to $20$ pC). Try the values $17$ $\mu$m, $18$ $\mu$m, $19$, $\mu$m, $20$ $\mu$m. What is the final energy with these values? Using \commandline{happi.multiPlot} (see Appendix \ref{happi}) to plot the longitudinal electric field of the threes simulations in the same window (include this plot in the answers), can you explain why? Include also a plot of the energy gain of the bunch varying the \commandline{delay\_behind\_laser}. In other words, include also a plot with the \commandline{delay\_behind\_laser} on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language for this simple plot.\\
 
@@ -416,11 +416,11 @@ Remember that the results are in normalized units. The library \commandline{happ
 It is sufficient to use the command \commandline{make happi} in the code folder (after you have loaded the Python modules, see the file \commandline{RucheEnvironment.pdf}). Then, to analyze the results of your simulation, open the \commandline{IPython} interface (just use the command \commandline{ipython} in the command line terminal). 
 
 \subsection*{Open a simulation}
-To import the library \commandline{happi} in \commandline{IPython} and open a simulation in the folder,  called for example \commandline{"path/to/simulation"}, use:\\
+To import the library \commandline{happi} in \commandline{IPython} and open a simulation in the folder,  use:\\
 
 \commandline{import happi; S =  happi.Open("path/to/simulation")}\\
 
-This will create an object called \commandline{S}, our simulation, which contains all the necessary data, taken from the input namelist and from the output files. You can easily access parameters from the input namelist, for  example:\\
+In this specific example the folder's path is \commandline{"path/to/simulation"}. The last command will create an object called \commandline{S}, our simulation, which contains all the necessary data, taken from the input namelist and from the output files. You can easily access parameters from the input namelist, for  example:\\
 
 \commandline{S.namelist.dx}
 
@@ -516,9 +516,10 @@ Interfacing with the real world is surely easier with SI units, nonetheless simu
 
 \end{appendices}
 
-\bibliographystyle{plain}
-\bibliography{references}
-
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{section}{References}
+{\footnotesize
+\bibliography{Bibliography}}
 
 
 
