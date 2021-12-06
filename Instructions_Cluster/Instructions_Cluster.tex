@@ -123,7 +123,7 @@ If you see the line \commandline{END TEST MODE}, the namelist does not contain s
 \commandline{sbatch submission\_script.sh}
 
 \item To check the status (running/queueing etc) of yout job:\\
-\commandline{squeue -u username}\\
+\commandline{squeue -u \$USER}\\
 This should also give you the number \commandline{JobId} of your job, necessary for the next command.
 
 \item To delete your job from the queue:\\
