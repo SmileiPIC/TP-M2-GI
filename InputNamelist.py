@@ -133,7 +133,7 @@ MovingWindow(
 #  c_part_max = 1.0,
 #  mass = 1.0,
 #  charge = -1.0,
-#  charge_density = plasma_density,
+#  number_density = plasma_density,
 #  mean_velocity = [0.0, 0.0, 0.0],
 #  temperature = [0.,0.,0.],
 #  pusher = "ponderomotive_boris",
