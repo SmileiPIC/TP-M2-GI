@@ -6,7 +6,9 @@ The case study, simulated with the Particle in Cell (PIC) code Smilei, is a set-
 The exercises introduce the physics of the considered set-up, teach some sanity checks to compare the code results with theory and introduce the basic postprocessing of interest for PIC simulations of plasma acceleration. 
 
 
-An animation of the first laser wakefield acceleration simulation in the practical:
+Following is an animation of the first laser wakefield acceleration simulation in the practical.
+The laser pulse (envelope of the electric field depicted in red) excites a relativistic plasma wave, whose electronic density is shown with a blue-white volume rendering.
+The white particles represent the relativistic electron bunch that is injected and accelerated in the plasma wave.
 
 https://user-images.githubusercontent.com/9608804/190160422-dbfdf027-2160-4f0d-a34c-7b96af4e563c.mp4
 
