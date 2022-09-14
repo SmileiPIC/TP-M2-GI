@@ -5,7 +5,11 @@ The case study, simulated with the Particle in Cell (PIC) code Smilei, is a set-
 
 The exercises introduce the physics of the considered set-up, teach some sanity checks to compare the code results with theory and introduce the basic postprocessing of interest for PIC simulations of plasma acceleration. 
 
-<img width="350" alt="External_Injection_TP" src="https://user-images.githubusercontent.com/9608804/138692451-26cf6072-1513-4354-b632-f9ac7c499677.png">
+
+An animation of the first laser wakefield acceleration simulation in the practical:
+
+https://user-images.githubusercontent.com/9608804/190160422-dbfdf027-2160-4f0d-a34c-7b96af4e563c.mp4
+
 
 # List of contents
 - folder `Answers_Form`, which contains the form to submit the answers to the practical exercises.
