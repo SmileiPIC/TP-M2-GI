@@ -10,7 +10,7 @@ Following is an animation of the first laser wakefield acceleration simulation i
 The laser pulse (envelope of the electric field depicted in red) excites a relativistic plasma wave, whose electronic density is shown with a blue-white volume rendering.
 The white particles represent the relativistic electron bunch that is injected and accelerated in the plasma wave.
 
-https://user-images.githubusercontent.com/9608804/190160422-dbfdf027-2160-4f0d-a34c-7b96af4e563c.mp4
+![LWFA_TP_M2-GI](https://user-images.githubusercontent.com/9608804/191453308-a7670636-b676-4b1f-a1b4-dbf6b81d895a.gif)
 
 
 # List of contents
