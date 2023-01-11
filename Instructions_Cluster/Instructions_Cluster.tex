@@ -94,18 +94,29 @@ This command will display the path to your current working directory,  for examp
 \item Enter your working space:\\
 \commandline{cd \$WORKDIR}
 
-\item Create a new directory \texttt{sim} where you will run your simulation:\\
+\item Create a new simulation folder, for example called \texttt{sim}, where you will run your simulation:\\
 \commandline{mkdir sim}\\
-\commandline{cd sim}
+\commandline{cd sim}\\
+Each time you do it, choose a convenient name of the folder to remember which simulation it contains.
+It is recommended to create a new simulation folder for each simulation in order to avoid overwriting data.
 
-\item Inside this folder, create a link to the executables:\\
+\item Inside the simulation folder, create a link to the executables:\\
 \commandline{ln -s path/to/executable/smilei}\\
 \commandline{ln -s path/to/executable/smilei\_test}\\
-The expression \commandline{path/to/executable} is just an example, you will need to insert the path where your files \commandline{smilei} and \commandline{smilei\_test} are.
+The expression \commandline{path/to/executable} is just an example: you will need to insert the actual path where your files \commandline{smilei} and \commandline{smilei\_test} are.
+In the case of the cluster Ruche, the code should be in \commandline{\$HOME/Smilei}, so the command should be:\\
+\commandline{ln -s \$HOME/Smilei/smilei}\\
+\commandline{ln -s \$HOME/Smilei/smilei\_test}
 
-\item Inside this folder, you will need a file to submit a simulation job to the job scheduler, e.g. \commandline{submission\_script.sh}. You can transfer the file you already have through \commandline{scp} or just copy and paste it in a new file inside your simulation folder. 
+\item Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. \commandline{submission\_script.sh}. You can transfer the file you already have through \commandline{scp} or just copy and paste it in a new file inside your simulation folder. 
+A copy of the \commandline{submission\_script.sh} should be in \commandline{cd \$WORKDIR/TP-M2-GI} of Ruche, so if you are already inside your simulation folder, you can copy the \commandline{submission\_script.sh} with this command:\\
+\commandline{cp \$WORKDIR/TP-M2-GI/submission\_script.sh .}
 
-\item Inside this folder, you will need also the input file of your simulation \commandline{InputNamelist.py}. Once you have all these files in your simulation folder (executables, submission script, input namelist) you are ready to run your simulation. If you change the name of your namelist,  remember that it must be a \commandline{.py} file and it must appear a the end of the \commandline{submission\_script.sh}.
+\item Inside the simulation folder, you will need also the input file of your simulation \commandline{InputNamelist.py}. 
+A copy of the \commandline{InputNamelist.py} should be in \commandline{cd \$WORKDIR/TP-M2-GI} of Ruche, so if you are already inside your simulation folder, you can copy the \commandline{InputNamelist.py} with this command:\\
+\commandline{cp \$WORKDIR/TP-M2-GI/InputNamelist.py .}\\
+
+Once you have all these files in your simulation folder (executables, submission script, input namelist) you are ready to run your simulation. If you change the name of your namelist,  remember that it must be a \commandline{.py} file and it must appear a the end of the \commandline{submission\_script.sh}.
 
 \section{Run your simulation}
 \item IMPORTANT WARNING: do NOT launch a simulation directly,  always use a simulation job submission script as described below. You are now connected in the login nodes of the cluster,  made to transfer files and compile codes, and shared among the connected users.  If you launch a simulation directly it will be run on this shared space where all the machine users can connect, slowing down or blocking their operations.  Imagine to have a very slow home wifi connection, sufficient only to send some e-mails to work, shared among you and many house-mates.  In this analogy running a simulation directly on the login node is equivalent to start a long video-call, blocking everyone elses' attempt to send e-mails and work properly. \\
