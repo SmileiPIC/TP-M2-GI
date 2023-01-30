@@ -3,7 +3,7 @@ name: docs
 on:
   push:
     branches:    
-      - master
+      - main
 
 jobs:
   build:
@@ -16,11 +16,11 @@ jobs:
       run: |
         sudo apt-get --allow-releaseinfo-change update -y 
         sudo apt-get install -y git make sphinx
-        make -C doc/Sphinx html
+        make -C doc html
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: doc/Sphinx/_build/html
+        publish_dir: doc/build/html
         enable_jekyll: false
         force_orphan: true
