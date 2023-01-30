@@ -1,0 +1,394 @@
+{%- extends "basic/layout.html" %}
+
+{# Extract the toctree in a list of menus and sections #}
+{%- set theTocTree = toctree(collapse=False, includehidden=True)
+    | replace("</a>", "")
+    | replace(" href=\"", "></a>")
+    | replace("<li ", ";<li ")
+    | replace("</ul>", "</ul>*")
+    | striptags
+    | replace("\">", "%") %}
+{%- set menus = [] %}
+{%- set current_menu = [] %}
+{%- for menu in theTocTree.split("*") %}
+    {%- set sections = menu.split(";") %}
+    {%- if sections|length > 1 %}
+        {%- set this_menu = sections[1].split("%") %}
+        {%- set this_menu_url = this_menu[0] | trim | safe %}
+        {%- set this_menu_name = this_menu[1] | trim | safe %}
+        {%- set this_menu = [this_menu_url, this_menu_name] %}
+        {%- for section in sections[2:] %}
+            {%- set this_section = section.split("%")%}
+            {%- set this_section_url = this_section[0] | trim | safe %}
+            {%- set this_section_name = this_section[1] | trim | safe %}
+            {%- if this_section_name == title %}
+                {%- set _ = current_menu.append(this_menu_name) %}
+            {%- endif %}
+            {%- set _ = this_menu.append([this_section_url, this_section_name]) %}
+        {%- endfor %}
+        {%- set _ = menus.append(this_menu) %}
+    {%- endif %}
+{%- endfor %}
+{%- set last_menu = menus[-1][1] %}
+
+{%- block extrahead %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+  {{ super() }}
+{%- endblock %}
+
+{%- block sidebarlogo %}
+{%- endblock %}
+
+{%- block header %}
+
+<div id="smallScreenMenu" class="off">
+
+    {# Loop through toctree #}
+    <div class="toctree-smilei">
+    {%- for menu in menus %}
+        <ul>
+        {%- set menu_name = menu[1] %}
+        {%- set sections = menu[2:] %}
+        {%- for section in sections %}
+            {%- set url = section[0] %}
+            {%- set entry = section[1] %}
+            {%- if entry == title %}
+            </ul>
+                {{ toc }}
+            <ul>
+            {%- else %}
+                <li class="outer">
+                    <a href="{{ url }}">{{ entry }}</a>
+                </li>
+            {%- endif %}
+        {%- endfor %}
+        </ul>
+        <hr />
+    {%- endfor %}
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">{{ title }}</a></div>
+                {{ toc }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="{{ pathto(master_doc) }}">
+                <img class="logo" src="{{ pathto('_static/smileiLogo.svg' ~ logo, 1) }}" alt="Logo" />
+            </a>
+        </div>
+        
+    {%- for menu in menus %}
+        {%- set menu_url = menu[0] %}
+        {%- set menu_name = menu[1] %}
+        {%- set sections = menu[2:] %}
+        <div class="{% if menu_name == last_menu %}last {% endif %}menu"
+            id="menu_{{ menu_name }}"
+            {% if menu_name == current_menu[0] %}style="font-weight:bold"{% endif %}
+        >
+            <div id="menuButton_{{menu_name}}" class="menuButton"
+                 onmouseenter="prepareMenu('menu_{{ menu_name }}')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="{{ menu_url }}">
+                    <span>{{ menu_name }}</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_{{ menu_name }}',this)">
+                <div class="toctree-smilei">
+                    <ul>
+        
+        {%- for section in sections %}
+            {%- set url = section[0] %}
+            {%- set entry = section[1] %}
+            {%- if entry == title %}
+                        <li >
+            {%- else %}
+                        <li class="outer">
+            {%- endif %}
+                            <a href="{{ url }}">{{ entry }}</a>
+                        </li>
+        {%- endfor %}
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {%- endfor %}
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="{{ pathto('search') }}" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="10" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="10" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+{%- endblock %}
+
+
+
+{%- block footer %}
+    <div class="footer">
+      <div>
+      <a href="site.html">Site index</a>
+      </div>
+      {%- if last_updated %}
+      <div>
+        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}{% endtrans %}
+      </div>
+      {%- endif %}
+      {% if theme_show_powered_by|lower == 'true' %}
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx {{ sphinx_version }}</a>
+      </div>
+      {% endif %}
+      {%- if show_source and has_source and sourcename %}
+      <div>
+      <a href="{{ pathto('_sources/' + sourcename, true)|e }}"
+          rel="nofollow">{{ _('Page source') }}</a></li>
+      </div>
+      {%- endif %}
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+
+{%- endblock %}
+
+{%- block relbar1 %}
+{%- endblock %}
+
+{%- block relbar2 %}
+{%- endblock %}
+
+{%- block sidebar1 %}
+{%- endblock %}
+
+{%- block sidebar2 %}
+{%- endblock %}
