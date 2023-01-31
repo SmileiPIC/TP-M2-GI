@@ -3,16 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to TP-M2-GI_doc's documentation!
-========================================
+Handouts of the M2 GI-PLATO's TP
+===============================================
+"Laser Plasma Acceleration simulation"
+===============================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contributors: F. Massimo, S. Marini
 
    introduction
-   happi
-   simulation_exercises
+   useful_tools
+   exercises
 
 
 

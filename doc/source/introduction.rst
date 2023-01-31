@@ -64,7 +64,7 @@ A quick word on Smilei
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-As mentioned previously stated, the numerical tool you will use for this 
+As previously stated, the numerical tool you will use for this 
 practical is the PIC code Smilei [Derouillat2018]_. A prior knowledge of Smilei 
 is not mandatory for the purposes of the practical exercises. Yet, 
 checking `Smilei’s website <https://smileipic.github.io/Smilei/>`_  for information 
