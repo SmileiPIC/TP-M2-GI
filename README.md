@@ -1,5 +1,5 @@
 # TP-M2-GI
-Numerical practical for the Master M2 - Grands Instruments.
+Numerical practical (Travaux Pratiques, or TP) for the Master M2 - Grands Instruments.
 
 The case study, simulated with the Particle in Cell (PIC) code Smilei, is a set-up of laser-plasma acceleration with external injection of a relativistic electron bunch. At first, only the propagation of an intense laser pulse in vacuum is simulated. Afterwards, the plasma is added, to study the generation of plasma waves. Finally, a relativistic electron bunch is added and injected in the plasma wave, to be accelerated.
 
@@ -23,4 +23,17 @@ The white particles represent the relativistic electron bunch that is injected a
 - file `submission_script.sh`, a slurm job submission script to run the practical's simulations on the cluster.
 
 
+### Acknowledgements
 
+For this TP, the participants have launched their simulations using HPC resources 
+from the “Mésocentre” computing center of CentraleSupélec and 
+École Normale Supérieure Paris-Saclay supported by CNRS and Région Île-de-France 
+(http://mesocentre.centralesupelec.fr/).
+We would like to thank the Mésocentre engineers for their assistance in the organization
+of this TP, in particular K. Hasnaoui.
+
+We would like to acknowledge the help of S. Kazamias and O. Guilbaud in the conception and realization of this TP.
+
+Last but not least, we are grateful to the students who attend this TP each year,
+contributing to the improvement of its material through their 
+invaluable feedback.
