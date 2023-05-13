@@ -63,10 +63,12 @@ Main(
     number_of_patches = [npatch_x,npatch_r],
 
     EM_boundary_conditions = [
-        ["silver-muller","silver-muller"],
-        ["buneman","buneman"],
+        ["PML","PML"],
+        ["PML","PML"],
     ],
 
+    number_of_pml_cells = [[20,20],[20,20]],
+  
     solve_poisson = False,
     solve_relativistic_poisson = True,
     print_every = 100,
@@ -192,7 +194,14 @@ MovingWindow(
 #  	["remove", "remove"], 
 #  ],
 #)
- 
+
+
+######################### Current filter
+CurrentFilter(
+    model = "binomial",
+    passes = [1],
+)
+
 ######################### Diagnostics
 
 ##### 1D Probe diagnostic on the x axis
