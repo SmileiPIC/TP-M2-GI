@@ -39,9 +39,10 @@ waist_analytical      = []  	                                  # waist according
 
 
 ###### Auxiliary variables
-waist0                = S.namelist.laser_waist  			      # laser initial waist, adimensional
-Zr                    = waist0*waist0/2.                          # Rayileigh length, adimensional 
-Rayleigh_length       = Zr * conversion_factor                    # Rayleigh length in um
+waist0                = S.namelist.laser_waist  			      # laser initial waisti in normalized units
+Zr                    = waist0*waist0/2.                          # Rayileigh length in normalized units
+Rayleigh_length       = Zr                                        # Rayleigh length in normalized units
+focal_plane           = S.namelist.x_focus                        # position of the laser focal plane in normalized units
 
 ###### Loop over iterations in field diagnosic and compute the waist
 for iter in iters:
@@ -61,14 +62,14 @@ for iter in iters:
         half_waist_simulated.append(  half_waist )
                  
         # analytical waist, Rayleigh formula 
-        waist_analytical.append(waist0*math.sqrt(1.+(iter*dt/Zr)**2))
+        waist_analytical.append(waist0*math.sqrt(1.+((iter*dt-S.namelist.x_focus)/Zr)**2))
 
 waist_analytical= np.asarray(waist_analytical)                
 waist_simulated = 2.*np.asarray(half_waist_simulated)
 
 ####### Plot
 fig = plt.figure()
-plt.title("Comparison between simulated \n and theoretical Gaussian beam diffraction")
+plt.title("Comparison between simulated \n and theoretical Gaussian bunch diffraction")
 fig.set_facecolor('w')
 plt.plot(iters*dt*conversion_factor,waist_analytical*conversion_factor,label="theory",color='b',linewidth=2)
 plt.plot(iters*dt*conversion_factor,waist_simulated*conversion_factor,label="simulation",linewidth=2,color='r',linestyle="--")

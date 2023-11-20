@@ -1,137 +1,74 @@
 .. _UsefulTools:
-Useful Tools
-----------------
-
-Instructions for using the cluster
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Before starting, it may be importannt to check the documentation for the Smilei PIC code. For this, go to `Smilei website <https://smileipic.github.io/Smilei/index.html>`_.
-
-A.1- Login to the cluster
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Open a shell/Terminal window to work on command line
-
-- Login to the the Ruche cluster and then enter your password, which will not appear on your screen (see the access credentials you have received):
-
-.. code-block:: bash
-
-    ssh -XY username@...
-
-Once you are connected, you will be in your home space, whose path is also referenced with the shortcut ``$HOME``.
-It is highly recommended to use this space only to compile the code. As explained in the following, run your simulations in the space called ``$WORKDIR``.
+Appendix: Cheatsheet
+----------------------------
 
 
-A.2- Compile the code Smilei
-^^^^^^^^^^^^^^^^^^^^^^^^
+A: Command Line Terminal Cheatsheet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before performing this step, make sure that smile is not installed on your workspace. If so, skip this step and go to step A.3.
+- When you feel lost, use the command ``pwd`` (mnemonic ``pwd``: present working directory) to display your present path. In general a path will have for example the form ``/gpfs/users/user_01``. This specific example means that you are in the folder ``user_01``, which is inside the folder ``users``, which is inside the folder ``gpfs``.
 
-To compile the code `Smilei`:
+- To check the content of your present path, use the command ``ls`` (mnemonic ``ls``: list) 
+  
+- Similarly, you can check the content of another directory, e.g. with a path called ``folder/subfolder``, using the command ``ls folder/subfolder/``
 
-- Download `Smilei`:
-.. code-block:: bash
+- To move to a specific path, e.g. ``path/to/your/folder`` use ``cd path/to/your/folder`` (mnemonic ``cd``: change directory)
+  
+- To move up by one level from your present path, use the shortcut ``cd ..``
 
-    git clone https://github.com/SmileiPIC/Smilei.git
+- To change the name of a file or directory, use ``mv old_name new_name`` (mnemonic ``mv``: move) 
 
-- Enter the newly created folder `Smilei`:
+- To move a file/folder into a folder ``move source destination_folder/``. The `source` can be a file or a folder.
 
-.. code-block:: bash
+- *Warning* This operation is irreversible! To remove a file, use ``rm filename`` (mnemonic ``rm``: remove). 
 
-    cd Smilei
+- *Warning* This operation is irreversible! To remove an entire folder and its content, use ``rm foldername``
 
-- Clean potentially incomplete build files:
-
-.. code-block:: bash
-
-    make clean
-
-- Compile the code from the code folder:
-
-.. code-block:: bash
-
-    make -j 10 machine=ruche
-
-This should create the files called ``smilei`` and ``smilei_test``. If you see the line ``Linking smilei_test for test mode`` and no errors are displayed, it means everything worked well. It is normal to see messages like ``In file included from ...``
-
-- Compile the postprocessing library `happi`:
-
-.. code-block:: bash
-
-    make happi
-
-- To know the location of your executable file, just use:
-
-.. code-block:: bash
-
-    pwd
-
-This command will display the path to your current working directory, for example ``path/to/executable``. This path will be used later. Now your executables ``smilei`` and ``smilei_test`` should be found in your folder ``path/to/executable``.
+----------
 
 .. _sec13:
-A.3- Prepare your simulation
-^^^^^^^^^^^^^^^^^^^^^^^^
+B: How to prepare a simulation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Enter your working space:
+Each time an exercise asks to run a new simulation, it is recommended to
+create a new directory, where you will insert the required files and run this new simulation.
+This will ensure that no previous data is lost or overwritten.
 
-.. code-block:: bash
-
-    cd $WORKDIR
+Following are the instructions to complete this process.
 
 - Create a new simulation folder, for example called ``sim``, where you will run your simulation:
 
 .. code-block:: bash
 
-    mkdir sim
-    cd sim
+    mkdir simulation_folder_name
+    cd simulation_folder_name
 
 Each time you do it, choose a convenient name of the folder to
 remember which simulation it contains. In order to avoid overwriting data, it is recommended to create 
 a new simulation folder for each simulation.
 
-- Inside the simulation folder, create a link to the executables:
-.. code-block:: bash
-
-    ln -s path/to/executable/smilei
-    ln -s path/to/executable/smilei_test
-
-The expression ``path/to/executable`` is just an example. You need to insert the actual path where your files ``smilei``
-and ``smilei_test`` are. In the case of the cluster Ruche, the files ``smilei``
-and ``smilei_test`` code should be in ``$HOME/Smilei``, so the command is:
-
-.. code-block:: bash
-
-    ln -s $HOME/Smilei/smilei
-    ln -s $HOME/Smilei/smilei_test
+- Go inside the simulation folder, e.g. with the command ``cd simulation_folder_name``.
 
 - Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. ``submission_script.sh``. 
-You can transfer the file you already have through  the comand ``scp`` or just copy and paste it in a new file inside your simulation folder. 
-A copy of the ``submission_script.sh`` should be in the folder ``cd $WORKDIR/TP-M2-GI`` of Ruche, so if you are already inside your simulation folder, you can copy the 
-``submission_script.sh`` with this command:
+You can transfer the file you already have through  the comand ``cp``:
 
 .. code-block:: bash
-   
-    cp $WORKDIR/TP-M2-GI/submission_script.sh
 
-- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. A copy of the ``InputNamelist.py`` should be in ``cd $WORKDIR/TP-M2-GI`` of Ruche, so if you are already inside your simulation folder, you can copy the ``InputNamelist.py`` with this command: ``cp $WORKDIR/TP-M2-GI/InputNamelist.py``. Once you have all these files in your simulation folder (executables, submission script, input namelist) you are ready to run your simulation. If you change the name of your namelist, remember that it must be a ``.py`` file and it must appear a the end of the ``submission_script.sh``.
+  cp $WORKDIR/TP-M2-GI/submission_script.sh simulation_folder_name/ 
+  
+The last command will copy the file ``$WORKDIR/TP-M2-GI/submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
 
-A.4- Run your simulation
-^^^^^^^^^^^^^^^^^^^^^^^^
+- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. A copy of the ``InputNamelist.py`` should be in ``cd $WORKDIR/TP-M2-GI`` of Ruche, 
+have a copy in another folder you can use the ``cp`` command (add the source and destination paths.)
 
-IMPORTANT WARNING: do NOT launch a simulation directly in your workspace. Indead, use the simulation job submission script as described below. You are now
-connected in the login nodes of the cluster, made to transfer files and compile codes, and shared among the connected users. If you 
-launch a simulation directly it will be run on this shared space  where all the machine users can connect, slowing down or blocking  their operations. Imagine to have a very slow home wifi connection,
-sufficient only to send some e-mails to work, shared among you and many house-mates. In this analogy running a simulation directly on  the login node is equivalent to start a long video-call, blocking
-everyone elses’ attempt to send e-mails and work properly. Instead, launching a simulation with a job submission script as described in the following will make the simulation run on the compute nodes, 
-where the necessary resources are safely distributed among the machine users. Science is also learning to work together and to respect each other’s space.
+----------
 
-- Check if you have all the required files (executables, submission script, input namelist) through the command:
+C: How to Run your simulation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
-   
-    ls
+- Check if you have all the required files (submission script, input namelist) through the command ``ls``
 
-- To check that your namelist does not contain syntax errors, use the ``smilei_test`` executable on the namelist (you will need to load the same libraries used for the code compilation): ``./smilei_test InputNamelist.py``. If you see the line ``END TEST MODE``, the namelist does not contain syntax errors and can be run.
+- Remember to uncomment the necessary variables and blocks as explained in the exercise before launching a simulation.
 
 - Launch your simulation job:
 
@@ -161,14 +98,10 @@ This should also return the number ``JobId`` of your job, necessary for the next
    
 The the comand ``ctrl+C`` will allow you to stop watching the file `smilei.log`.
 
-- If you want to change the time you want for your simulation, change the corresponding line in the file ``submission_script.sh`` (here 20 minutes) ``#SBATCH –time=00:20:00``. The longest simulation of the session runs approximately for 3 minutes with 10 MPI processes and 2 OpenMP threads. These parameters are already set in the submission script.
+----------
 
-- If you want to change the number of OpenMP threads in your simulation, change the corresponding line in the file ``submission_script.sh``(here 2 threads) as written in this line ``export OMP_NUM_THREADS=2``
-
-- If you want to change the number of MPI process in your simulation, change the corresponding line  ``#SBATCH –ntasks=10`` in the file ``submission_script.sh`` (here 10 processes).
-
-A.5- Postprocess your simulation results
-^^^^^^^^^^^^^^^^^^^^^^^^
+D: How to postprocess your simulation results
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Open ``IPython`` (before, you will need to load the Python modules and define variables like how you did to compile the code, and be sure you have compiled ``happi``):
 
@@ -193,62 +126,18 @@ file ``smilei.py``, generated at the start of your simulation.
    
     S = happi.Open("path/to/my/results")
 
-again, ``"path/to/my/results"`` is an example, you need to put the path of your simulation. 
+Here, ``"path/to/my/results"`` is just an example of path, you need to put the path of your simulation. 
 If you use simply ``S = happi.Open()``, the library ``happi`` open the results inside the current working directory.
 
--  Now you can use the commands in the section postprocessing.
+For your convenience and quick reference, some of the most commonly used commands of ``happi`` are reported. 
+Do not hesitate to copy and paste the following commands in ``IPython`` and adapt them to the problem you are solving.
 
-A.6- Command line cheatsheet
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-- ``pwd``: shows the path of the current working directory.
-
-- ``cd path``: go to ``path``
-
-- ``ls``: shows the content of the current directory.
-
-- ``ls path``: shows the content in ``path``.
-
-- ``rm file``: removes ``file``. To remove a folder, you will need an additional flag: ``rm -r folder`` (be careful).
-
-- ``cp source_file destination_path``: copies ``source_file`` to the ``destination_path``.
-
-- ``scp source_file destination_path`` : same as ``cp``, but you can also transfer folders and files to a different machine, e.g. from the cluster to your computer and vice versa. You have to provide your username, the server address and your password, e.g. ``scp source_file username@server:/destination_path/``. This command can be used to transfer output files from the cluster to your computer for later postprocessing if so you prefer (of course larger data files will need more time to transfer).
-
-- ``mv source destination``: move ``source`` (can be a file or directory) to a ``destination``. If the ``destination`` does not specify a path, the command renames ``source`` with the name
-``destination``.
-
-- ``ipython``: opens ``Ipython``, where also the previous commands can be used. To run a Python script inside this interface, use ``%run script_name.py``.
-
-.. _Postprocessing:
-Postprocessing
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-A fundamental part of working with simulation codes is the 
-postprocessing of the results. Smilei includes an entire ``Python`` library 
-for postprocessing. 
-However, to plot your first results and make quantitative evaluations 
-you do not need to be an expert of ``Python``.
-
-For your convenience and quick reference, here we include only the commands 
-you will need for this practical. Do not hesitate to copy and paste 
-the following commands in ``IPython`` and adapt them to the problem you are solving.
-
-Remember that the results are in normalized units. 
-The library ``happi`` also allows to convert to SI units, but this will not be taught in this practical 
-(details in the `documentation <https://smileipic.github.io/Smilei/Use/post-processing.html>`_).
+Remember that the results are in normalized units, but you can specify also SI units for the plot. 
 
 
-B.1- Compilation of happi
-^^^^^^^^^^^^^^^^^^^^^^^^
 
-It is sufficient to use the command ``make happi`` in the code folder 
-(after you have loaded the Python modules, see the file ``ClusterEnvironment.pdf``). 
-Then, to analyze the results of your simulation, open the ``IPython`` interface 
-(just use the command ``ipython`` in the command line terminal).
-
-B.2- Open a simulation
-^^^^^^^^^^^^^^^^^^^^^^^^
+D.02: Open a simulation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To import the library ``happi`` in ``IPython`` and open a simulation in the folder, use::
 
    import happi; S = happi.Open("path/to/simulation")
@@ -268,8 +157,8 @@ You can easily access parameters from the input namelist, for example::
 In general, if you tap ``S.`` or add the name of the blocks and then use the tab key, 
 you will see the available blocks and variables.
 
-B.3- Plot diagnostics
-^^^^^^^^^^^^^^^^^^^
+D.03: Plot diagnostics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To open a specific diagnostic, like the ``Probe1`` defined in the namelist, 
 and plot the longitudinal electric field ``Ex`` contained in that diagnostic, use::
 
@@ -293,9 +182,19 @@ is the simulation timestep, which can be found with ``dt=S.namelist.Main.timeste
 To know which iterations are available in your diagnostic, you can use::
 
    S.Probe.Probe1("Ex").getAvailableTimesteps()
+   
+   
+D.04: Specifying the physical units 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-B.4- Visualize multiple timesteps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The code, including its outputs, uses normalized units.
+You can specify the units you want to use, e.g.::
+
+    S.Probe.Probe1("Ex",units=["um","GV/m"]).plot()
+        
+
+D.05: Visualize multiple timesteps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Normally you have a sequence of outputs, so you may want to see an animation 
 of the outputs or to be able to slide between the saved timesteps. 
@@ -307,8 +206,8 @@ It is possible to do it with these commands respectively::
 In the last case, just slide with the horizontal bar to see the evolution of the plotted quantity at
 different iterations.
 
-B.5- Modify elements of the plot
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+D.06: Modify elements of the plot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Like in Python, you may be interested into specifying the figure number, 
 or change the colormap, or specifying a maximum or minimum value plotted. 
 You can include the same corresponding keywords inside the plot/animate/slide command. 
@@ -316,8 +215,8 @@ As an example where all these elements are specified::
 
    S.Probe.Probe1("Ex").plot(figure=2, vmin = -0.1, vmax = 0.1 , cmap = "seismic")
 
-B.6- Plot multiple lines
-^^^^^^^^^^^^^^^^^^^^^^^^^
+D.07: Plot multiple lines in the same window
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 You may be interested in visualizing multiple curves in the same plot window. 
 Then the command ``happi.multiPlot`` is what you need.
 
@@ -342,8 +241,8 @@ Similarly, you can plot two quantities from two or more simulations::
    Ex2 = S2.Probe.Probe0("Ex",timesteps=1000)
    happi.multiPlot(Ex1,Ex2)
 
-B.7- Export the data
-^^^^^^^^^^^^^^^^^^^^
+D.08: Export the data
+^^^^^^^^^^^^^^^^^^^^^^^^^
 Those shown above are all the ``happi`` commands you may need for this practical. 
 If you prefer instead to analyze your results with ``numpy`` arrays in Python, 
 you can easily export your diagnostic to a ``numpy`` array, for example::

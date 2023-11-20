@@ -97,7 +97,7 @@ print (" ")
 iters = track_part.getAvailableTimesteps()
 
 ######### Define the auxiliary arrays
-Bunch_position= np.zeros(np.size(iters))
+bunch_position= np.zeros(np.size(iters))
 Sigma_y       = np.zeros(np.size(iters))
 Sigma_z       = np.zeros(np.size(iters))
 Energy        = np.zeros(np.size(iters))
@@ -132,7 +132,7 @@ for timestep in iters:
 # 		print(" ")
 		
 		### Save the bunch parameters
-		Bunch_position[i]= np.average(x,weights=w)*conversion_factor           # um
+		bunch_position[i]= np.average(x,weights=w)*conversion_factor           # um
 		Sigma_y[i]       = weighted_std(y,w)*conversion_factor                 # um
 		Sigma_z[i]       = weighted_std(z,w)*conversion_factor                 # um
 		Energy[i]        = np.average(E,weights=w)                             # normalized
@@ -148,30 +148,30 @@ for timestep in iters:
 ######### Plot
 	
 fig = plt.figure()
-plt.title("Evolution of the Electron Bunch Parameters")
+plt.title("Evolution of the Electron bunch Parameters")
 fig.set_facecolor('w')
 
 
 plt.subplot(221)
-plt.plot(Bunch_position,Sigma_y)
+plt.plot(bunch_position,Sigma_y)
 plt.xlabel("Position [um]")
 plt.ylabel("Rms Transverse Size\n[um]")
 plt.xticks([0.,100.,200.,300.,400.])
 
 plt.subplot(222)
-plt.plot(Bunch_position,Emittance_y)
+plt.plot(bunch_position,Emittance_y)
 plt.xlabel("Position [um]")
 plt.ylabel("Normalized Emittance\n[mm-mrad]")
 plt.xticks([0.,100.,200.,300.,400.])
 
 plt.subplot(223)
-plt.plot(Bunch_position,Energy)
+plt.plot(bunch_position,Energy)
 plt.xlabel("Position [um]")
 plt.ylabel("Energy\n[MeV]")
 plt.xticks([0.,100.,200.,300.,400.])
 
 plt.subplot(224)
-plt.plot(Bunch_position,Energy_spread)
+plt.plot(bunch_position,Energy_spread)
 plt.xlabel("Position [um]")
 plt.ylabel("Relative Energy Spread\n[%]")
 plt.xticks([0.,100.,200.,300.,400.])

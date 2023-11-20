@@ -10,16 +10,19 @@ iteration = sys.argv[1]
 data_folder = os.getcwd() 
 vtk_folder  = os.getcwd()
 
-# 3D Cartesian space interval where the cylindrical data are reconstructed
-# format: [ [x_min,x_max,dx], [y_min,y_max,dy] [z_min,z_max,dz] ]
-build3d_interval_Rho = [[0.,400.,0.8],[-140,140,1.5],[-140,140,1.5]]
-build3d_interval_E = [[0.,400,0.8],[-140,140,1.5],[-140,140,1.5]]
-
 
 #### Read the data
 S = happi.Open(data_folder)
 timesteps = S.Field.Field0("Env_E_abs",theta=0).getAvailableTimesteps()
 timesteps = timesteps.tolist()
+
+# 3D Cartesian space interval where the cylindrical data are reconstructed
+# format: [ [x_min,x_max,dx], [y_min,y_max,dy] [z_min,z_max,dz] ]
+
+# the following intervals are in normalized units
+# you do not always have to use the same interval for Rho and E as in this case
+build3d_interval_Rho = [[0.,S.namelist.Lx,S.namelist.dx],[-S.namelist.Lr,-S.namelist.Lr,-S.namelist.dr],[-S.namelist.Lr,-S.namelist.Lr,-S.namelist.dr]]
+build3d_interval_E   = build3d_interval_Rho
 
 if iteration not in timesteps:
 	print("Selected iteration not available")

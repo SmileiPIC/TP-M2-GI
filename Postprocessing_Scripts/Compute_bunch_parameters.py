@@ -26,7 +26,7 @@ q                       = scipy.constants.e              # electron charge, C
 species_name            = "electronbunch"
 
 ########## Laser-plasma Params
-lambda0                 = S.namelist.lambda0              # laser central wavelength, m
+lambda0                 = S.namelist.lambda0             # laser central wavelength, m
 conversion_factor       = lambda0/2./math.pi*1.e6        # from c/omega0 to um, corresponds to laser wavelength 0.8 um
 nc                      = epsilon0*me/q/q*(2.*math.pi/lambda0*c)**2 #critical density in m^-3 for lambda0
 
@@ -111,7 +111,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     py           = particle_chunk["py"]
     pz           = particle_chunk["pz"]
     w            = particle_chunk["w"]
-    #w            = np.ones(np.shape(x))*S.namelist.weight               # Particles weights
+    #w            = np.ones(np.shape(x))*S.namelist.weight              # Particles weights
     p            = np.sqrt((px**2+py**2+pz**2))                         # Particles Momentum 
     E            = np.sqrt((1.+p**2))                                   # Particles energy
         
