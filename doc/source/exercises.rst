@@ -19,7 +19,7 @@ One of the first variables we define in this simulation is the ``lambda0``, i.e.
 .. _exercise1:
 .. admonition:: Exercise 1
 
-   Assuming :math:`\lambda_0=0.8 \mu m` (a typical Ti:Sa laser system), what is the value of the critical density :math:`n_c`?
+   Assuming :math:`\lambda_0=0.8 \mu m` (a Ti:Sa laser system), what is the value of the critical density :math:`n_c`?
    
    What is the value of the reference electric field :math:`E_0=(2\pi m_e c^2)/(e\lambda_0)`? 
    
@@ -543,7 +543,7 @@ as well as their weight (from which their charge can be computed).
    With the same simulation of :ref:`Exercise 13 <exercise13>`, use the script `Follow_electron_bunch_evolution.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Follow_electron_bunch_evolution.py>`_ to see how the bunch has evolved during 
    the simulation (``%run Follow_electron_bunch_evolution.py``
    in ``IPython``). The script reads the ``DiagTrackParticles`` output and 
-   then computes some bunch quantities (`rms` size, emittance, energy, energy spread) 
+   then computes some bunch quantities (`rms` size, emittance, energy, divergence) 
    at each available output iteration. 
    
    Include the resulting image in your answers.
