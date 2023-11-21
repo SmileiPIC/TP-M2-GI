@@ -104,7 +104,8 @@ Energy        = np.zeros(np.size(iters))
 Energy_spread = np.zeros(np.size(iters))
 Emittance_y   = np.zeros(np.size(iters))
 Emittance_z   = np.zeros(np.size(iters))
-
+Divergence_y   = np.zeros(np.size(iters))
+Divergence_z   = np.zeros(np.size(iters))
 
 ######### Read the DiagTrackParticles data, for each available timestep
 i = 0
@@ -140,6 +141,8 @@ for timestep in iters:
 		Energy[i]        = Energy[i]*0.51099895                                # MeV
 		Emittance_y[i]   = normalized_emittance(y,py,w)*conversion_factor      # mm-mrad
 		Emittance_z[i]   = normalized_emittance(z,pz,w)*conversion_factor      # mm-mrad
+        Divergence_y[i]  = weighted_std(np.divide(py,px),w)                    # rad
+        Divergence_z[i]  = weighted_std(np.divide(pz,px),w)                    # rad
 
 		i = i + 1
 		
@@ -148,33 +151,42 @@ for timestep in iters:
 ######### Plot
 	
 fig = plt.figure()
-plt.title("Evolution of the Electron bunch Parameters")
+plt.title("Evolution of the Electron Bunch Parameters")
 fig.set_facecolor('w')
 
 
 plt.subplot(221)
-plt.plot(bunch_position,Sigma_y)
-plt.xlabel("Position [um]")
+plt.plot(Bunch_position/1e3,Sigma_y,c="b",label="y")
+plt.plot(Bunch_position/1e3,Sigma_z,c="r",linestyle="--",label="z")
+plt.xlabel("Position [mm]")
 plt.ylabel("Rms Transverse Size\n[um]")
-plt.xticks([0.,100.,200.,300.,400.])
+plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
+plt.ylim(0,2.5)
+plt.legend()
 
 plt.subplot(222)
-plt.plot(bunch_position,Emittance_y)
-plt.xlabel("Position [um]")
+plt.plot(Bunch_position/1e3,Emittance_y,c="b",label="y")
+plt.plot(Bunch_position/1e3,Emittance_z,c="r",linestyle="--",label="z")
+plt.xlabel("Position [mm]")
 plt.ylabel("Normalized Emittance\n[mm-mrad]")
-plt.xticks([0.,100.,200.,300.,400.])
+plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
+plt.ylim(2.5,3.5)
+plt.legend()
 
 plt.subplot(223)
-plt.plot(bunch_position,Energy)
-plt.xlabel("Position [um]")
+plt.plot(Bunch_position/1e3,Energy,c="b")
+plt.xlabel("Position [mm]")
 plt.ylabel("Energy\n[MeV]")
-plt.xticks([0.,100.,200.,300.,400.])
+plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
 
 plt.subplot(224)
-plt.plot(bunch_position,Energy_spread)
-plt.xlabel("Position [um]")
-plt.ylabel("Relative Energy Spread\n[%]")
-plt.xticks([0.,100.,200.,300.,400.])
+plt.plot(Bunch_position/1e3,Divergence_y/1e-3,c="b",label="y")
+plt.plot(Bunch_position/1e3,Divergence_z/1e-3,c="r",linestyle="--",label="z")
+plt.xlabel("Position [mm]")
+plt.ylabel("Divergence \n[mrad]")
+plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
+plt.legend()
+#plt.ylim(0,7.0)
 
 plt.subplots_adjust(hspace=0.4,wspace=0.4)
 
