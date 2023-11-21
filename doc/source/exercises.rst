@@ -326,7 +326,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
 
       Env_E  = S.Probe.Probe1("Env_E_abs",units=["um"],cmap="hot",vmin=0.8,transparent="under")
       Rho    = S.Probe.Probe1("-Rho/e",units=["fs","um","1/cm^3"],cmap="Blues_r",vmin=0.,vmax=3e18)
-      happi.multiSlide(Rho_bunch,Env_E,xmin=0,figure=10, xlabel="x [um]",ylabel="y [um]")
+      happi.multiSlide(Rho,Env_E,xmin=0,figure=10, xlabel="x [um]",ylabel="y [um]")
       
    Using ``timestep=2500`` in the definition of ``Env_E`` and ``Rho``, and then using ``multiPlot`` instead of ``multiSlide``,
    you should have a plot of the data at half of the propagation length.
@@ -595,7 +595,7 @@ as well as their weight (from which their charge can be computed).
    where you will launch the simulation varying the bunch distance from the laser, changing the ``delay_behind_laser`` parameter (Set again the charge to :math:`20 pC` for all these simulations). 
    This parameter controls the distance between the electron bunch and the laser center, therefore its phase in the plasma wave behind the laser pulse.
    
-   For ``delay_behind_laser``, try the values :math:`17.5, 18.5, 19.5, 20.5 \mu m`.
+   For ``delay_behind_laser``, try the values :math:`16.5, 18.5, 20.5, 22.5 \mu m`.
    
    What is the observed final energy for each of the four ``delay_behind_laser`` parameters? 
    
