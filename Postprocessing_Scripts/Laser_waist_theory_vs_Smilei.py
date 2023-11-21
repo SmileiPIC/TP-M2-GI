@@ -58,7 +58,7 @@ for iter in iters:
         half_waist_simulated.append(  half_waist )
                  
         # analytical waist, Rayleigh formula 
-        waist_analytical.append(waist0*math.sqrt(1.+((S.namelist.Lx+iter*dt-S.namelist.x_focus)/Zr)**2))
+        waist_analytical.append(waist0*math.sqrt(1.+((S.namelist.center_laser+iter*dt-S.namelist.x_focus)/Zr)**2))
 
 waist_analytical= np.asarray(waist_analytical)                
 waist_simulated = 2.*np.asarray(half_waist_simulated)
