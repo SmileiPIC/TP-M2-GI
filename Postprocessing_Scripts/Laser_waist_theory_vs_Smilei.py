@@ -12,10 +12,6 @@ S    = happi.Open(".")
 lambda0           = S.namelist.lambda0*1e6                        # laser wavelength, um 
 conversion_factor = lambda0/(2.*math.pi)
 
-
-####### load simulation
-S    = happi.Open(".")
-
 ####### create grid
 dx   = S.namelist.Main.cell_length[0]                             # resolution on the x direction
 nx   = S.namelist.Main.number_of_cells[0]                         # number of grid points in the x direction
@@ -62,7 +58,7 @@ for iter in iters:
         half_waist_simulated.append(  half_waist )
                  
         # analytical waist, Rayleigh formula 
-        waist_analytical.append(waist0*math.sqrt(1.+((iter*dt-S.namelist.x_focus)/Zr)**2))
+        waist_analytical.append(waist0*math.sqrt(1.+((S.namelist.Lx+iter*dt-S.namelist.x_focus)/Zr)**2))
 
 waist_analytical= np.asarray(waist_analytical)                
 waist_simulated = 2.*np.asarray(half_waist_simulated)
