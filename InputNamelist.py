@@ -28,15 +28,15 @@ pC                  = 1.e-12/e                  # 1 picoCoulomb in normalized un
 #########################  Simulation parameters
 
 ##### mesh resolution
-dx                  = 0.15*um                   # longitudinal mesh resolution
-dr                  = 0.65*um                   # transverse mesh resolution
+dx                  = 0.095*um                   # longitudinal mesh resolution
+dr                  = 0.5*um                   # transverse mesh resolution
 
 
 dt                  = 0.9*dx/c_normalized       # integration timestep
 
 ##### simulation window size
-nx                  = 352                       # number of mesh points in the longitudinal direction
-nr                  = 48                        # number of mesh points in the transverse direction
+nx                  = 544                       # number of mesh points in the longitudinal direction
+nr                  = 56                        # number of mesh points in the transverse direction
 Lx                  = nx * dx                   # longitudinal size of the simulation window
 Lr                  = nr * dr                   # transverse size of the simulation window
 
