@@ -9,7 +9,7 @@
 #SBATCH --partition=cpu_med 
 
 #source /gpfs/workdir/labotm/miniconda3/smilei_env.sh
-source /gpfs/workdir/labotm/Installations/miniconda3/smilei_env.sh
+source /gpfs/workdir/perezf/smilei_env.sh
 
 # Dynamic scheduling for patch-spec loop
 export OMP_SCHEDULE=dynamic
