@@ -245,18 +245,18 @@ LoadBalancing(
 )
 
 ##### Field diagnostics, used for 3D export
-# DiagFields(
-#     every = 1000,
-#     fields = ["Env_A_abs","Env_E_abs"],
-# )
-# 
-# DiagFields(
-#     every = 1000,
-#     fields = ["Rho","Rho_plasmaelectrons"],
-# )
+#DiagFields(
+#    every = 50,
+#    fields = ["Env_E_abs"],
+#)
 
 #DiagFields(
-#    every = 1000,
+#    every = 50,
+#    fields = ["Rho","Rho_plasmaelectrons"],
+#)
+
+#DiagFields(
+#    every = 50,
 #    fields = ["Rho_electronbunch"],
 #)
 

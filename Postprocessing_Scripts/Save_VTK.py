@@ -24,7 +24,7 @@ timesteps = timesteps.tolist()
 build3d_interval_Rho = [[0.,S.namelist.Lx,S.namelist.dx],[-S.namelist.Lr,-S.namelist.Lr,-S.namelist.dr],[-S.namelist.Lr,-S.namelist.Lr,-S.namelist.dr]]
 build3d_interval_E   = build3d_interval_Rho
 
-if iteration not in timesteps:
+if float(iteration) not in timesteps:
 	print("Selected iteration not available")
 	print("Available iterations:")
 	print(timesteps)
@@ -34,7 +34,7 @@ if iteration not in timesteps:
 os.chdir(vtk_folder)
 
 # export laser field
-for timestep in mytimesteps:
+for timestep in timesteps:
 	print("Reading iteration ",timesteps.index(timestep)," of ",len(timesteps))
 	E = S.Field.Field0("Env_E_abs",timesteps=timestep,build3d=build3d_interval_E)
 	E.toVTK()
