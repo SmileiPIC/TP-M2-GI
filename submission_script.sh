@@ -1,11 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=smilei
 #SBATCH --nodes=1
-#SBATCH --output=smilei.out
+#SBATCH --output=smilei.log
 #SBATCH --error=smilei.err
-#SBATCH --time=00:10:00
+#SBATCH --time=00:20:00
 #SBATCH --ntasks=4           # number of MPI processes
 #SBATCH --cpus-per-task=5    # number of threads per MPI process
+#SBATCH --partition=cpu_med 
 
 #source /gpfs/workdir/labotm/miniconda3/smilei_env.sh
 source /gpfs/workdir/labotm/Installations/miniconda3/smilei_env.sh
@@ -18,8 +19,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OMP_PLACES=cores
 
 
-cp ${WORKDIR}/Smilei/smilei .
-cp ${WORKDIR}/Smilei/smilei_test .
+cp $HOME/Smilei/smilei .
+cp $HOME/Smilei/smilei_test .
 
 set -x
 cd ${SLURM_SUBMIT_DIR}
