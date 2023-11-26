@@ -96,14 +96,22 @@ Laser pulse in vacuum
 --------------------------------------------------------
 --------------------------------------------------------
 
-Everything is ready to run your first simulation, we will start adding a laser pulse propagating vacuum.
+Everything is ready to run your first simulation. 
+We will start adding a laser pulse propagating in vacuum, along the positive ``x`` direction.
 
 **Action** in the ``InputNamelist.py`` file, uncomment the lines 
 with the laser pulse parameters and the ``LaserEnvelopeGaussian`` block. 
 Afterwards, launch the simulation with ``sbatch submission_script.sh``.
 
-This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_. 
-Furthermore, the considered pulse is modulated with Gaussian temporal envelope profile, whose FWHM length is much larger than the laser carrier wavelength ```lambda0``.
+This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_, with a carrier wavelength :math:`\lambda_0=0.8 \mu m`. 
+Furthermore, the considered pulse is modulated with Gaussian temporal profile, whose FWHM length is much larger than the laser carrier wavelength :math:`\lambda_0`, defined in the variable ``lambda0`` (see :ref:`Fig. 3 <laser_figure>`).
+The laser transverse electric field is linearly polarized in the ``y`` direction.
+
+.. _laser_figure:
+.. figure:: _static/Laser_definition.png
+  :width: 13cm
+
+  Definition of the laser parameters (not in scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. Both axes are in normalized units (:math:`\lambda_0/2\pi` for the ``x`` axis, :math:`m_e\omega_0c/e` for the vertical axis).
 
 The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 4 <Schema_Simulation_1>`.
 
