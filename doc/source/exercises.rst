@@ -111,7 +111,7 @@ The laser transverse electric field is linearly polarized in the ``y`` direction
 .. figure:: _static/Laser_definition.png
   :width: 13cm
 
-  Definition of the laser parameters (not in scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. Both axes are in normalized units (:math:`\lambda_0/2\pi` for the ``x`` axis, :math:`m_e\omega_0c/e` for the vertical axis).
+  Definition of the laser parameters (not in scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. All quantities are in normalized units (e.g. :math:`\lambda_0/2\pi` for the lengths, :math:`m_e\omega_0c/e` for the fields).
 
 The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 4 <Schema_Simulation_1>`.
 
