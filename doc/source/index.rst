@@ -10,7 +10,7 @@ A tutorial on Particle in Cell simulation of Laser Wakefield Acceleration
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contributors: F. Massimo, S. Marini
+   :caption: Main contributors: F. Massimo, S. Marini. We are grateful to all the students who attend this TP each year, contributing to the improvement of its material through their invaluable feedback.
 
    introduction
    exercises
