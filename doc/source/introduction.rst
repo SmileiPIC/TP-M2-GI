@@ -1,6 +1,5 @@
 Introduction 
 -------------------
--------------------
 
 
 In this practical work, you will familiarize yourself with a Particle in Cell (PIC) code ([BirdsallLangdon]_, [Lapenta]_), 
@@ -15,13 +14,15 @@ Summary of this practical
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the case study of this practical work, an intense laser pulse is injected into the plasma, 
-exciting a relativistic plasma wave, used to accelerate an externally injected relativistic electron bunch. 
+exciting a relativistic plasma wave used to accelerate an externally injected relativistic electron bunch. 
 This plasma acceleration scheme is known as laser wakefield acceleration, or LWFA ([Esarey2009]_, [Malka2012]_). 
 
-- :ref:`Exploring the Input Namelist;  <exploringthenamelist>` (**Exercises 1-2**): we will explore the Python ``InputNamelist.py`` file to understand the basic set-up of the problem (simulation window size, resolution, ...). In this part the simulation window is empty.
-- :ref:`Laser pulse in vacuum;  <laserpulseinvacuum>` (**Exercises 4-6**): we will add a laser laser pulse propagating in vacuum and check that its diffraction follows the one predicted for a Gaussian beam.
-- :ref:`Laser wakefield excitation; <plasmawave>` (**Exercises 7-11**): we will add a pre-ionized plasma and visualize how the laser pulse excites plasma waves in its wake, also checking the results against the analytical theory in the linear regime.
-- :ref:`Laser wakefield acceleration of an electron bunch. <laserplasmainjection>` (**Exercises 12-20**): we will add a relativistic electron bunch, injecting it into the plasma waves and studying its acceleration. 
+The practical will consist in four parts:
+
+- :ref:`Exploring the Input Namelist  <exploringthenamelist>` (**Exercises 1-2**): we will explore the Python ``InputNamelist.py`` file to understand the basic set-up of the problem (simulation window size, resolution, ...). In this part the simulation window is empty.
+- :ref:`Laser pulse in vacuum  <laserpulseinvacuum>` (**Exercises 4-6**): we will add a laser laser pulse propagating in vacuum and check that its diffraction follows the one predicted for a Gaussian beam.
+- :ref:`Laser wakefield excitation <plasmawave>` (**Exercises 7-11**): we will add a pre-ionized plasma and visualize how the laser pulse excites plasma waves in its wake, also checking the results against the analytical theory in the linear regime.
+- :ref:`Laser wakefield acceleration of an electron bunch <laserplasmainjection>` (**Exercises 12-20**): we will add a relativistic electron bunch, injecting it into the plasma waves and studying its acceleration. 
 
 We will arrive progressively to the full simulation set-up,
 familiarizing with the postprocessing using the Python postprocessing library
@@ -43,7 +44,7 @@ no extensive knowledge of that language is required to understand its contents.
 Knowing how to define variables (and, optionally, how to define numpy arrays) should be sufficient.
  
 This practical work assumes that the reader knows how to navigate in a directory tree, create folders, 
-and copy files from the command line (for a quick recap, see Sections 4, 5, 7, 8, 9, 13, 14, and 17 
+and copy files from the command line (for a quick recap, see Sections 4-9, 13-14, and 17 
 in [ShawCommandLineCrashCourse]_).
 
 Some clarifications
@@ -62,7 +63,7 @@ A quick word on Smilei
 As previously stated, the numerical tool you will use for this 
 practical is the PIC code Smilei [Derouillat2018]_. A prior knowledge of Smilei 
 is not mandatory for the purposes of the practical exercises. Yet, 
-feel free to check `Smilei’s website on GitHub<https://smileipic.github.io/Smilei/>`_ . 
+feel free to check `Smilei’s website on GitHub <https://smileipic.github.io/Smilei/>`_ . 
 The interested reader can also find additional 
 `tutorials <https://smileipic.github.io/tutorials/>`_ focusing on physical 
 processes not covered by this practical.
