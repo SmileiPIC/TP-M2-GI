@@ -4,8 +4,6 @@ Exercises
 .. _exploringthenamelist:
 Exploring the input namelist
 ------------------------------------------
---------------------------------------------------------
-
 
 To run a simulation, you need to specify the phenomena it will describe and 
 the numerical parameters to study your case, e.g. the resolution, the integration timestep, the grid size,
@@ -60,7 +58,7 @@ the laser pulse is almost immobile in the simulation window.
 .. figure:: _static/Schema_Simulation_0.png
   :width: 15cm
 
-  Simulation Setup in this Section (not in scale)
+  Simulation set-up at the start of the simulation in this Section (not in scale)
 
 .. _exercise2:    
 .. admonition:: Exercise 2
@@ -94,7 +92,6 @@ This is the second probe of the namelist, so it is called ``Probe1`` (Python sta
 .. _laserpulseinvacuum:
 Laser pulse in vacuum
 --------------------------------------------------------
---------------------------------------------------------
 
 Everything is ready to run your first simulation. 
 We will start adding a laser pulse propagating in vacuum, along the positive ``x`` direction.
@@ -119,7 +116,7 @@ The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 
 .. figure:: _static/Schema_Simulation_1.png
   :width: 15cm
 
-  Simulation Setup in this Section (not in scale). 
+  Simulation set-up at the start of the simulation(s) in this Section (not in scale). 
 
 
 **Note:**  an envelope model is used to describe the laser pulse, as described in [Massimo]_.
@@ -219,7 +216,6 @@ try to specify a colormap maximum with ``vmax``. For example::
 .. _plasmawave:
 Laser wakefield excitation
 ----------------------------
-----------------------------
 
 
 Now we will add a preionized hydrogen plasma to excite plasma waves in the wake of the laser pulse. 
@@ -248,7 +244,7 @@ and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
 .. figure:: _static/Schema_Simulation_2.png
   :width: 15cm
 
-  Simulation Setup in this Section (not in scale).
+  Simulation Setup at the start of the simulation(s) in this Section (not in scale).
 
 .. _exercise7:    
 .. admonition:: Exercise 7 
@@ -415,7 +411,6 @@ The complete answer for the interested reader can be found in the dedicated sect
 .. _laserplasmainjection:
 Laser wakefield acceleration of an electron bunch
 --------------------------------------------------------
-------------------------------------------------------------------------------------
 
 
 We are ready to simulate a basic laser wakefield accelerator for electrons. 
@@ -469,7 +464,7 @@ plasma electrons and an electron bunch, as in :ref:`Fig. 6 <Schema_Simulation_3>
 .. figure:: _static/Schema_Simulation_3.png
   :width: 15cm
 
-  Simulation Setup in this Section (not in scale).
+  Simulation Setup at the start of the simulation(s) in this Section (not in scale).
   
 .. _exercise12:    
 .. admonition:: Exercise 12  
