@@ -432,7 +432,7 @@ in which a relativistic electron bunch is injected from outside the plasma.
 This will allow us to understand the basic concepts of electron injection in a plasma wave,
 even though it is challenging to achieve experimentally.
 
-**Action** In a new simulation folder, set again the :math:`a_0` of the laser to the value :math:`1.8`
+**Action** In a new simulation folder, set again the :math:`a_0` of the laser to the value :math:`2.3`
 Uncomment the second ``Species`` block, the related variable definitions and 
 take some time to read them carefully. To track the evolution of the electron bunch during its propagation, 
 you will have to uncomment also the ``DiagTrackParticles`` block. Afterwards, you can launch the simulation.
@@ -595,7 +595,7 @@ as well as their weight (from which their charge can be computed).
 .. admonition:: Exercise 18
  
    Create other four folders, ``sim5``, ``sim6``, ``sim7``, ``sim8``, 
-   where you will launch the simulation varying the bunch distance from the laser, changing the ``delay_behind_laser`` parameter (Set again the charge to :math:`20 pC` for all these simulations). 
+   where you will launch the simulation varying the bunch distance from the laser, changing the ``delay_behind_laser`` parameter (Set again the charge to :math:`60 pC` for all these simulations). 
    This parameter controls the distance between the electron bunch and the laser center, therefore its phase in the plasma wave behind the laser pulse.
    
    For ``delay_behind_laser``, try the values :math:`20, 22, 24, 26. \mu m`.
