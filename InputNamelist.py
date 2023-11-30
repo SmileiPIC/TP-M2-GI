@@ -28,15 +28,15 @@ pC                  = 1.e-12/e                  # 1 picoCoulomb in normalized un
 #########################  Simulation parameters
 
 ##### mesh resolution
-dx                  = 0.095*um                   # longitudinal mesh resolution
-dr                  = 0.5*um                   # transverse mesh resolution
+dx                  = 0.1*um                   # longitudinal mesh resolution
+dr                  = 0.35*um                   # transverse mesh resolution
 
 
 dt                  = 0.9*dx/c_normalized       # integration timestep
 
 ##### simulation window size
-nx                  = 544                       # number of mesh points in the longitudinal direction
-nr                  = 56                        # number of mesh points in the transverse direction
+nx                  = 576                       # number of mesh points in the longitudinal direction
+nr                  = 80                        # number of mesh points in the transverse direction
 Lx                  = nx * dx                   # longitudinal size of the simulation window
 Lr                  = nr * dr                   # transverse size of the simulation window
 
@@ -85,7 +85,7 @@ Main(
 #laser_waist       = 12*um                                             # laser waist, conversion from um
 #center_laser      = Lx-1.7*laser_fwhm                                 # laser position at the start of the simulation
 #x_focus           = (center_laser+0.1*laser_fwhm)                     # laser focal plane position
-#a0                = 1.8                                               # laser peak field, normalized by E0 defined above
+#a0                = 2.3                                               # laser peak field, normalized by E0 defined above
 
 #### Define a Gaussian bunch with Gaussian temporal envelope
 #LaserEnvelopeGaussianAM(
@@ -112,7 +112,7 @@ MovingWindow(
 ########################## Define the plasma
 #
 ###### plasma parameters
-#plasma_plateau_density_1_ov_cm3    = 1.3e18
+#plasma_plateau_density_1_ov_cm3    = 1.e18
 #n0 = plasma_plateau_density_1_ov_cm3*1e6/ncrit  # plasma plateau density in units of critical density defined above
 #Radius_plasma = 30.*um                          # Radius of plasma
 #Lramp         = 15*um                           # Plasma density upramp length
@@ -137,7 +137,7 @@ MovingWindow(
 #  position_initialization = "regular",
 #  momentum_initialization = "cold",
 #  particles_per_cell = 4,
-#  regular_number = [2,2,1],
+#  regular_number = [1,4,1],
 #  mass = 1.0,
 #  charge = -1.0,
 #  number_density = plasma_density,
@@ -155,12 +155,12 @@ MovingWindow(
 ######################## Define the electron bunch
 
 ###### electron bunch parameters
-#Q_bunch                    = -15*pC                          # Total charge of the electron bunch
+#Q_bunch                    = -60*pC                          # Total charge of the electron bunch
 #sigma_x                    = 1.5*um                          # initial longitudinal rms size
 #sigma_r                    = 2*um                            # initial transverse/radial rms size (cylindrical symmetry)
 #bunch_energy_spread        = 0.01                            # initial rms energy spread / average energy (not in percent)
 #bunch_normalized_emittance = 3.*mm_mrad                      # initial rms emittance, same emittance for both transverse planes
-#delay_behind_laser         = 18.5*um                         # distance between center_laser and center_bunch
+#delay_behind_laser         = 22.*um                         # distance between center_laser and center_bunch
 #center_bunch               = center_laser-delay_behind_laser # initial position of the electron bunch in the window   
 #gamma_bunch                = 200.                            # initial relativistic Lorentz factor of the bunch
 

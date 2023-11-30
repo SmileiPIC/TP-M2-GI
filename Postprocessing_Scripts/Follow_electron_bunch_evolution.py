@@ -150,45 +150,37 @@ for timestep in iters:
 		
 ######### Plot
 	
-fig = plt.figure()
+fig = plt.figure(figsize=(12,4))
 plt.title("Evolution of the Electron Bunch Parameters")
 fig.set_facecolor('w')
 
 
-plt.subplot(221)
-plt.plot(Bunch_position/1e3,Sigma_y,c="b",label="y")
-plt.plot(Bunch_position/1e3,Sigma_z,c="r",linestyle="--",label="z")
+plt.subplot(131)
+plt.plot(bunch_position/1e3,Sigma_y,c="b",label="y")
+plt.plot(bunch_position/1e3,Sigma_z,c="r",linestyle="--",label="z")
 plt.xlabel("Position [mm]")
 plt.ylabel("Rms Transverse Size\n[um]")
 plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-plt.ylim(0,2.5)
+plt.ylim(0.5,2.5)
 plt.legend()
 
-plt.subplot(222)
-plt.plot(Bunch_position/1e3,Emittance_y,c="b",label="y")
-plt.plot(Bunch_position/1e3,Emittance_z,c="r",linestyle="--",label="z")
+plt.subplot(132)
+plt.plot(bunch_position/1e3,Emittance_y,c="b",label="y")
+plt.plot(bunch_position/1e3,Emittance_z,c="r",linestyle="--",label="z")
 plt.xlabel("Position [mm]")
 plt.ylabel("Normalized Emittance\n[mm-mrad]")
 plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-plt.ylim(2.5,3.5)
+plt.ylim(2.8,3.2)
 plt.legend()
 
-plt.subplot(223)
-plt.plot(Bunch_position/1e3,Energy,c="b")
+plt.subplot(133)
+plt.plot(bunch_position/1e3,Energy,c="b")
 plt.xlabel("Position [mm]")
 plt.ylabel("Energy\n[MeV]")
 plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
 
-plt.subplot(224)
-plt.plot(Bunch_position/1e3,Divergence_y/1e-3,c="b",label="y")
-plt.plot(Bunch_position/1e3,Divergence_z/1e-3,c="r",linestyle="--",label="z")
-plt.xlabel("Position [mm]")
-plt.ylabel("Divergence \n[mrad]")
-plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-plt.legend()
-#plt.ylim(0,7.0)
 
-plt.subplots_adjust(hspace=0.4,wspace=0.4)
+plt.subplots_adjust(hspace=2.,wspace=0.4)
 
 plt.savefig('Electron_bunch_evolution.png', format='png')
 plt.show()

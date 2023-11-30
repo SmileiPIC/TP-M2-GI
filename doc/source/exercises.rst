@@ -175,7 +175,7 @@ If you do not specify a ``vmax`` value (the colorbar maximum) in the previous co
 ``happi`` will change it at each iteration. To better see the laser diffraction, 
 try to specify a colormap maximum with ``vmax``. For example::
 
-   S.Probe.Probe1("Env_E_abs",units=["um","fs","TV/m"]).slide( figure=3,vmax=0.2, xlabel="x [um]",ylabel="y [um]" )
+   S.Probe.Probe1("Env_E_abs",units=["um","fs","TV/m"]).slide( figure=3,vmax=0.3, xlabel="x [um]",ylabel="y [um]" )
 
 .. _exercise5:    
 .. admonition:: Exercise 5
@@ -250,7 +250,7 @@ and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
 .. admonition:: Exercise 7 
 
    As you can see, the plasma density has a value 
-   :math:`n_0 = 1.3\cdot10^{18} electrons/cm^{3}`.
+   :math:`n_0 = 1.\cdot10^{18} electrons/cm^{3}`.
    
    What is the ratio between the plasma density and the critical density (computed for :ref:`Exercise 1 <exercise1>`)? 
    
@@ -323,7 +323,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
 .. _exercise10:    
 .. admonition:: Exercise 10
 
-   Launch a new simulation with ``a0=1.8``. 
+   Launch a new simulation with ``a0=2.3``, i.e. its original value. 
    This simulation will be in the nonlinear regime (:math:`a_0>1`), so the plasma wave will not be sinusoidal.
    You can visualize both the normalized absolute value of the envelope of the laser field and the electron number density by defining a transparency
    for the parts where the latter field is lower than a threshold ``vmin``:: 
@@ -546,7 +546,7 @@ as well as their weight (from which their charge can be computed).
    With the same simulation of :ref:`Exercise 13 <exercise13>`, use the script `Follow_electron_bunch_evolution.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Follow_electron_bunch_evolution.py>`_ to see how the bunch has evolved during 
    the simulation (``%run Follow_electron_bunch_evolution.py``
    in ``IPython``). The script reads the ``DiagTrackParticles`` output and 
-   then computes some bunch quantities (`rms` size, emittance, energy, divergence) 
+   then computes some bunch quantities (rms size, emittance, energy) 
    at each available output iteration. 
    
    Include the resulting image in your answers.
@@ -560,7 +560,7 @@ as well as their weight (from which their charge can be computed).
 .. admonition:: Exercise 17 
    
    Create four new folders, ``sim1``, ``sim2``, ``sim3``, ``sim4`` 
-   where you will run four new simulation. In each simulation, the charge of the electron bunch will be changed to :math:`40, 60, 80,100 pC`, respectively.
+   where you will run four new simulation. In each simulation, the charge of the electron bunch will be changed to :math:`20, 40, 60, 100 pC`, respectively.
    
    **Warning:** Do not forget the minus sign or the bunch will be made of positrons!
    
@@ -580,7 +580,7 @@ as well as their weight (from which their charge can be computed).
    You can use Python or any other language for this simple plot. For example, using Python: ::
 
      import matplotlib.pyplot as plt
-     bunch=[40,60,80,100]
+     bunch=[20,40,60,100]
      energy=[...,...,...,...] #replace by the energy values you obtained
      fig = plt.figure()
      plt.plot(bunch, energy, 'ro', markersize=10)
@@ -598,7 +598,7 @@ as well as their weight (from which their charge can be computed).
    where you will launch the simulation varying the bunch distance from the laser, changing the ``delay_behind_laser`` parameter (Set again the charge to :math:`20 pC` for all these simulations). 
    This parameter controls the distance between the electron bunch and the laser center, therefore its phase in the plasma wave behind the laser pulse.
    
-   For ``delay_behind_laser``, try the values :math:`16.5, 18.5, 20.5, 22.5 \mu m`.
+   For ``delay_behind_laser``, try the values :math:`20, 22, 24, 26. \mu m`.
    
    What is the observed final energy for each of the four ``delay_behind_laser`` parameters? 
    
