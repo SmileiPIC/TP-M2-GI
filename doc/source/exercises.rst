@@ -58,7 +58,7 @@ the laser pulse is almost immobile in the simulation window.
 .. figure:: _static/Schema_Simulation_0.png
   :width: 15cm
 
-  Simulation set-up at the start of the simulation in this Section (not in scale)
+  Simulation set-up at the start of the simulation in this Section (not to scale)
 
 .. _exercise2:    
 .. admonition:: Exercise 2
@@ -108,7 +108,7 @@ The laser transverse electric field is linearly polarized in the ``y`` direction
 .. figure:: _static/Laser_definition.png
   :width: 13cm
 
-  Definition of the laser parameters (not in scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. All quantities are in normalized units (e.g. :math:`\lambda_0/2\pi` for the lengths, :math:`m_e\omega_0c/e` for the fields).
+  Definition of the laser parameters (not to scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. All quantities are in normalized units (e.g. :math:`\lambda_0/2\pi` for the lengths, :math:`m_e\omega_0c/e` for the fields).
 
 The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 4 <Schema_Simulation_1>`.
 
@@ -116,7 +116,7 @@ The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 
 .. figure:: _static/Schema_Simulation_1.png
   :width: 15cm
 
-  Simulation set-up at the start of the simulation(s) in this Section (not in scale). 
+  Simulation set-up at the start of the simulation(s) in this Section (not to scale). 
 
 
 **Note:**  an envelope model is used to describe the laser pulse, as described in [Massimo]_.
@@ -244,7 +244,7 @@ and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
 .. figure:: _static/Schema_Simulation_2.png
   :width: 15cm
 
-  Simulation Setup at the start of the simulation(s) in this Section (not in scale).
+  Simulation Setup at the start of the simulation(s) in this Section (not to scale).
 
 .. _exercise7:    
 .. admonition:: Exercise 7 
@@ -464,7 +464,7 @@ plasma electrons and an electron bunch, as in :ref:`Fig. 6 <Schema_Simulation_3>
 .. figure:: _static/Schema_Simulation_3.png
   :width: 15cm
 
-  Simulation Setup at the start of the simulation(s) in this Section (not in scale).
+  Simulation Setup at the start of the simulation(s) in this Section (not to scale).
   
 .. _exercise12:    
 .. admonition:: Exercise 12  
