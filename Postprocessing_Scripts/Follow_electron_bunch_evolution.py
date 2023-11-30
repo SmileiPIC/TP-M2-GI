@@ -141,8 +141,6 @@ for timestep in iters:
 		Energy[i]        = Energy[i]*0.51099895                                # MeV
 		Emittance_y[i]   = normalized_emittance(y,py,w)*conversion_factor      # mm-mrad
 		Emittance_z[i]   = normalized_emittance(z,pz,w)*conversion_factor      # mm-mrad
-        Divergence_y[i]  = weighted_std(np.divide(py,px),w)                    # rad
-        Divergence_z[i]  = weighted_std(np.divide(pz,px),w)                    # rad
 
 		i = i + 1
 		
