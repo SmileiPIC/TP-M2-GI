@@ -328,7 +328,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
    You can visualize both the normalized absolute value of the envelope of the laser field and the electron number density by defining a transparency
    for the parts where the latter field is lower than a threshold ``vmin``:: 
 
-      Env_E  = S.Probe.Probe1("Env_E_abs",units=["um"],cmap="hot",vmin=0.8,transparent="under")
+      Env_E  = S.Probe.Probe1("Env_E_abs",units=["um","fs"],cmap="hot",vmin=0.8,transparent="under",pad=0.5)
       Rho    = S.Probe.Probe1("-Rho/e",units=["fs","um","1/cm^3"],cmap="Blues_r",vmin=0.,vmax=3e18)
       happi.multiSlide(Rho,Env_E,xmin=0,figure=10, xlabel="x [um]",ylabel="y [um]")
       
