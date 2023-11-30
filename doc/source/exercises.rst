@@ -433,11 +433,11 @@ This will allow us to understand the basic concepts of electron injection in a p
 even though it is challenging to achieve experimentally.
 
 **Action** In a new simulation folder, set again the :math:`a_0` of the laser to the value :math:`2.3`
-Uncomment the second ``Species`` block, the related variable definitions and 
+Uncomment the two ``Species`` blocks, the related variable definitions and 
 take some time to read them carefully. To track the evolution of the electron bunch during its propagation, 
 you will have to uncomment also the ``DiagTrackParticles`` block. Afterwards, you can launch the simulation.
 
-As you can see, the new ``Species`` block defines a ``Species`` 
+As you can see, the second ``Species`` block defines a ``Species`` 
 called ``electronbunch``, which we will inject in the plasma wave for acceleration. 
 As for the ``Species`` called ``plasmaelectrons`` of the previous Sections, 
 these particles have normalized charge and mass equal to ``-1.0`` and ``1.0`` respectively, 
