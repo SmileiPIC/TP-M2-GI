@@ -151,7 +151,7 @@ The envelope of the laser transverse electric field is contained in the field ``
 **Action** When the simulation is completed (the word ``END`` should appear in the log file), open ``IPython`` with the command ``ipython``. 
 Then, you can check the initial position of the laser through the commands::
 
-   import happi; S = happi.Open("path/to/simulation")
+   import happi; S = happi.Open()
    S.Probe.Probe0("Env_E_abs",units=["um","fs","TV/m"],timesteps=0).plot( figure=1, xlabel="x [um]")
    S.Probe.Probe1("Env_E_abs",units=["um","fs","TV/m"],timesteps=0).plot( figure=2, xlabel="x [um]",ylabel="y [um]")
 
@@ -277,6 +277,7 @@ the laser pulse satisfy the conditions for the applicability of the
    You can use the same plot commands of the previous section, but applied to ``Ex`` instead of ``Env_E_abs``, 
    for example with ::
    
+      import happi; S=happi.Open()
       S.Probe.Probe0("Ex",units=["um","fs","GV/m"]).slide( figure=3, xlabel="x [um]" );
       S.Probe.Probe1("Ex",units=["um","fs","GV/m"]).slide( figure=3, xlabel="x [um]",ylabel="y [um]" )
 
@@ -328,6 +329,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
    You can visualize both the normalized absolute value of the envelope of the laser field and the electron number density by defining a transparency
    for the parts where the latter field is lower than a threshold ``vmin``:: 
 
+      import happi; S=happi.Open()
       Env_E  = S.Probe.Probe1("Env_E_abs",units=["um","fs"],cmap="hot",vmin=0.8,transparent="under",pad=0.5)
       Rho    = S.Probe.Probe1("-Rho/e",units=["fs","um","1/cm^3"],cmap="Blues_r",vmin=0.,vmax=3e18)
       happi.multiSlide(Rho,Env_E,xmin=0,figure=10, xlabel="x [um]",ylabel="y [um]")
@@ -342,6 +344,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
 :math:`a_0 = 0.5, 1.4, 2.0` respectively. Take a look at the longitudinal electric 
 field on axis (``Probe0``) and to the 2D plasma density (``Probe1``)::
 
+    import happi; S=happi.Open()
     S.Probe.Probe0("Ex",units=["um","fs","GV/m"]).slide( figure=1,xlabel="x [um]" )
     S.Probe.Probe1("-Rho/e",units=["um","fs","1/cm^3"]).slide( figure=2,xlabel="x [um]",ylabel="y [um]" )
       
@@ -373,7 +376,8 @@ which hides the other charge density values.
      Ex3=S3.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=1000,label="a0 = 2.0")
      happi.multiPlot(Ex1,Ex2,Ex3,figure=3,xlabel="x [um]")
 
-   The last command, ``multiPlot``, is used to superpose multiple lines in the same plot window. 
+   Remember to substitute the real path of your simulations in the ``Open`` command.
+   The command ``multiPlot`` is used to superpose multiple lines in the same plot window. 
    This command is also used in some of the exercises of the following section. 
 
    Include the resulting image of the command above in your answers. 
