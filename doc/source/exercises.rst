@@ -688,7 +688,7 @@ as well as their weight (from which their charge can be computed).
       epsilon0                = scipy.constants.epsilon_0 # vacuum permittivity, Farad/m
       me                      = scipy.constants.m_e       # electron mass, kg
       q                       = scipy.constants.e         # electron charge, C
-      electron_mass_MeV        = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
+      electron_mass_MeV       = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
       
       lambda0                 = S.namelist.lambda0        # laser central wavelength, m
       conversion_factor_length= lambda0/2./math.pi*1.e6   # from c/omega0 to um, corresponds to laser wavelength 0.8 um
