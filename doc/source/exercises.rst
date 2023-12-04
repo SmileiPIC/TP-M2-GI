@@ -334,7 +334,7 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
       Rho    = S.Probe.Probe1("-Rho/e",units=["fs","um","1/cm^3"],cmap="Blues_r",vmin=0.,vmax=3e18)
       happi.multiSlide(Rho,Env_E,xmin=0,figure=10, xlabel="x [um]",ylabel="y [um]")
       
-   Using ``timestep=2500`` in the definition of ``Env_E`` and ``Rho``, and then using ``multiPlot`` instead of ``multiSlide``,
+   Using ``timesteps=2500`` in the definition of ``Env_E`` and ``Rho``, and then using ``multiPlot`` instead of ``multiSlide``,
    you should have a plot of the data at half of the propagation length.
    
    Include this image in your answers.
@@ -501,7 +501,7 @@ as well as their weight (from which their charge can be computed).
    Check that the simulation with the electron bunch has ended.
    This time the simulation will run a little longer. 
    
-   Plot the 2D charge density (use ``Probe1``) at ``timestep=3000`` and ``timestep=5000`` 
+   Plot the 2D charge density (use ``Probe1``) at ``timesteps=3000`` and ``timesteps=5000`` 
    and play with the parameter ``vmax`` to be able to see the electron bunch 
    in the plasma wave. 
    
@@ -513,7 +513,7 @@ as well as their weight (from which their charge can be computed).
     With the same simulation of :ref:`Exercise 13 <exercise13>`, use the command 
     ``happi.multiPlot`` to plot in the same window 
     the longitudinal electric field ``Ex`` and the number density ``Rho/e`` 
-    from ``Probe0`` (1D diagnostic) at ``timestep=3000`` and ``timestep=5000``. 
+    from ``Probe0`` (1D diagnostic) at ``timesteps=3000`` and ``timesteps=5000``. 
     You may need to rescale the quantities (see Postprocessing). 
     Playing with multiplying factors in the plot you should be able 
     to clearly see where the electron bunch is placed in the plasma wave.
@@ -622,7 +622,7 @@ as well as their weight (from which their charge can be computed).
    to show the particles’ positions in the accelerating phase of ``Ex`` in that iteration. 
    The plot should report the correct units and labels in the axes.
    
-   In your answers, include the script and the output image using ``timestep=3000`` and ``timestep=5000``.
+   In your answers, include the script and the output image using ``timesteps=3000`` and ``timesteps=5000``.
    function using only dot markers.
 
    **Hint 1:** To extract the propagation axis (in :math:`\mu m`) and the ``Ex`` field (in GV/m) at the required ``timestep``, you can use::
