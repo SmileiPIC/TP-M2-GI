@@ -475,7 +475,7 @@ plasma electrons and an electron bunch, as in :ref:`Fig. 6 <Schema_Simulation_3>
 
    Reading the namelist, provide a description of the electron bunch at ``t = 0``.
    
-   What is the total charge, the maximum energy, the `rms` sizes along `x`, `y`, `z`, the `rms` energy spread, and the normalized emittance 
+   What is the total charge, the energy, the `rms` sizes along `x`, `y`, `z`, the `rms` energy spread, and the normalized emittance 
    along the transverse planes?
    
    Where is the electron bunch placed in relation to the simulation window at the instant of time ``t = 0``?
