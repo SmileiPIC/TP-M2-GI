@@ -678,8 +678,10 @@ as well as their weight (from which their charge can be computed).
    **Hint 1:** You can extract the energy and charge of each macro-particle of the bunch at the desired ``timestep``, using::
    
       import happi
+      import numpy as np
       import scipy.constants
       import math
+      import matplotlib.pyplot as plt
       
       S=happi.Open()
       
