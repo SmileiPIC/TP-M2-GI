@@ -385,7 +385,7 @@ which hides the other charge density values.
    In another plot window, adapt the last commands to plot the plasma number density ``-Rho/e`` (with ``units=["um","fs","1/cm^3"]``) from the three simulations. 
    Include also this image in your answers.
    
-   Include a plot of the plasma wavelength as function of the ``a0`` of the laser pulse.
+   Include a plot of the period of the plasma wave as function of the ``a0`` of the laser pulse.
    You should see the plasma wavelength relativistically elongated with a more intense laser pulse.
    
    **Hint:** You may estimate as the distance between two consecutives zeros in the ``Ex`` field on the propagation axis.
