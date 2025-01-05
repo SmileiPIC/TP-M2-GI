@@ -3,25 +3,25 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+import scipy.constants
 import happi
 
 
 ########################## Preliminary  calculations
 
 ########## Constants
-c                       = 2.99792e8                      # lightspeed in vacuum,  m/s
-epsilon0                = 8.854e-12                      # vacuum permittivity, Farad/m
-me                      = 9.109e-31                      # electron mass, kg
-q                       = 1.602e-19                      # electron charge, C
+c                       = scipy.constants.c              # lightspeed in vacuum,  m/s
+epsilon0                = scipy.constants.epsilon_0      # vacuum permittivity, Farad/m
+me                      = scipy.constants.m_e            # electron mass, kg
+q                       = scipy.constants.e              # electron charge, C
 
 ########## Open the Simulation
 S                       = happi.Open(".")
-iter                    = 1000                           # iteration used for the comparison
+iter                    = 2000                           # iteration used for the comparison
 
-########## Laser-plasma Params
-lambda0                 = 0.8e-6                         # laser central wavelength, m
-conversion_factor       = lambda0/2./math.pi*1.e6        # from c/omega0 to um, corresponds to laser wavelength 0.8 um
-nc                      = epsilon0*me/q/q*(2.*math.pi/lambda0*c)**2 #critical density in m^-3 for lambda0
+########## Variables used for conversions
+lambda0                 = S.namelist.lambda0             # laser central wavelength, m
+nc                      = S.namelist.ncrit               # critical density in m^-3 for lambda0
 n0                      = nc*S.namelist.n0               # plasma density, m^-3  
 wp                      = math.sqrt(q**2*n0/epsilon0/me) # plasma frequency, rad/s
 kp                      = wp/c                           # plasma wavenumber, rad/m
@@ -32,7 +32,7 @@ E0                      = me*wp*c/q                      # cold wavebreaking lim
 
 
 ########## Read mesh parameters
-dx                      = S.namelist.Main.cell_length[0]*conversion_factor*1.e-6
+dx                      = S.namelist.Main.cell_length[0]*S.namelist.c_over_omega0*1.e-6 # m
 dx_prime                = dx
 Nx                      = S.namelist.nx
 

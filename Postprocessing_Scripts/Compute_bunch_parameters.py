@@ -21,14 +21,16 @@ c                       = scipy.constants.c              # lightspeed in vacuum,
 epsilon0                = scipy.constants.epsilon_0      # vacuum permittivity, Farad/m
 me                      = scipy.constants.m_e            # electron mass, kg
 q                       = scipy.constants.e              # electron charge, C
+electron_mass_MeV       = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
 
 ########## Species name
 species_name            = "electronbunch"
 
-########## Laser-plasma Params
+########## Variables used for conversions
 lambda0                 = S.namelist.lambda0             # laser central wavelength, m
-conversion_factor       = lambda0/2./math.pi*1.e6        # from c/omega0 to um, corresponds to laser wavelength 0.8 um
-nc                      = epsilon0*me/q/q*(2.*math.pi/lambda0*c)**2 #critical density in m^-3 for lambda0
+um                      = S.namelist.um                  # 1 um in normalized units
+nc                      = S.namelist.ncrit               # critical density in m^-3 for lambda0
+c_over_omega0           = S.namelist.c_over_omega0       # c/omega0, m
 
 ########## Auxiliary functions
 def weighted_std(values, weights):
@@ -66,13 +68,13 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
     print("average position = "+str(np.average(x,weights=weights)*conversion_factor)+" um")
     print("----------------")
     print("")
-    print("sigma_x   = "+str(weighted_std(x,weights)*conversion_factor)+" um")
-    print("sigma_y   = "+str(weighted_std(y,weights)*conversion_factor)+" um")
-    print("sigma_z   = "+str(weighted_std(z,weights)*conversion_factor)+" um")
-    print("E         = "+str(np.average(E,weights=weights)*0.51099895)+" MeV")
+    print("sigma_x   = "+str(weighted_std(x,weights)/um)+" um")
+    print("sigma_y   = "+str(weighted_std(y,weights)/um)+" um")
+    print("sigma_z   = "+str(weighted_std(z,weights)/um)+" um")
+    print("E         = "+str(np.average(E,weights=weights)*electron_mass_MeV)+" MeV")
     print("DE/E(rms) = "+str(weighted_std(E,weights)/np.average(E,weights=weights)*100)+ "%")
-    print("eps_ny    = "+str(normalized_emittance(y,py,weights)*conversion_factor)+" mm-mrad")
-    print("eps_nz    = "+str(normalized_emittance(z,pz,weights)*conversion_factor)+" mm-mrad")
+    print("eps_ny    = "+str(normalized_emittance(y,py,weights)/um)+" mm-mrad")
+    print("eps_nz    = "+str(normalized_emittance(z,pz,weights)/um)+" mm-mrad")
     print("")
     print("sigma_i (i=x,y,z): rms size along the coordinate i")
     print("E                : mean energy")
@@ -120,7 +122,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     #print("Read "+str(Nparticles)+" particles from the file")
     print(" ")
     total_weight = w.sum()
-    Q            = total_weight* q * nc * (conversion_factor*1e-6)**3 * 10**(12) # Total charge in pC
+    Q            = total_weight* q * nc * (c_over_omega0*1e-6)**3 * 10**(12) # Total charge in pC
     print(" ")
     print("Total charge = "+str(Q)+" pC")
 

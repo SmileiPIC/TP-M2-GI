@@ -6,15 +6,15 @@ import numpy as np
 # Use: python Save_VTK.py iteration
 # takes data from a simulation in data_folder, iteration specified at input and writes the vtk in the folder from which this script is used
 
-iteration = sys.argv[1]
+iteration   = sys.argv[1]
 data_folder = os.getcwd() 
 vtk_folder  = os.getcwd()
 
 
 #### Read the data
-S = happi.Open(data_folder)
-timesteps = S.Field.Field0("Env_E_abs",theta=0).getAvailableTimesteps()
-timesteps = timesteps.tolist()
+S           = happi.Open(data_folder)
+timesteps   = S.Field.Field0("Env_E_abs",theta=0).getAvailableTimesteps()
+timesteps   = timesteps.tolist()
 
 # 3D Cartesian space interval where the cylindrical data are reconstructed
 # format: [ [x_min,x_max,dx], [y_min,y_max,dy] [z_min,z_max,dz] ]

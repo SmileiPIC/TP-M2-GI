@@ -19,15 +19,16 @@ c                       = scipy.constants.c              # lightspeed in vacuum,
 epsilon0                = scipy.constants.epsilon_0      # vacuum permittivity, Farad/m
 me                      = scipy.constants.m_e            # electron mass, kg
 q                       = scipy.constants.e              # electron charge, C
+electron_mass_MeV       = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
 
 
 ########## Species name
 species_name            = "electronbunch"
 
-########## Laser-plasma Params
-lambda0                 = S.namelist.lambda0                         # laser central wavelength, m
-conversion_factor       = lambda0/2./math.pi*1.e6        # from c/omega0 to um, corresponds to laser wavelength 0.8 um
-nc                      = epsilon0*me/q/q*(2.*math.pi/lambda0*c)**2 #critical density in m^-3 for lambda0
+########## Variables used for conversions
+lambda0                 = S.namelist.lambda0             # laser central wavelength, m
+um                      = S.namelist.um                  # 1 micron in normalized units             
+nc                      = S.namelist.ncrit               # critical density in m^-3 for lambda0
 n0                      = nc*S.namelist.n0               # plasma density, m^-3  
 
 
@@ -66,16 +67,16 @@ def normalized_emittance(transv_coordinate,transv_momentum,weights):
 def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
     # conversion factor converts from normalized units to um
     print(" ")
-    print("average position = ",np.average(x,weights=weights)*conversion_factor," um")
+    print("average position = ",np.average(x,weights=weights)/um," um")
     print("----------------")
     print("")
-    print("sigma_x   = ",weighted_std(x,weights)*conversion_factor," um")
-    print("sigma_y   = ",weighted_std(y,weights)*conversion_factor," um")
-    print("sigma_z   = ",weighted_std(z,weights)*conversion_factor," um")
-    print("E         = ",np.average(E,weights=weights)*0.51099895," MeV")
+    print("sigma_x   = ",weighted_std(x,weights)/um," um")
+    print("sigma_y   = ",weighted_std(y,weights)/um," um")
+    print("sigma_z   = ",weighted_std(z,weights)/um," um")
+    print("E         = ",np.average(E,weights=weights)*electron_mass_MeV," MeV")
     print("DE/E(rms) = ",weighted_std(E,weights)/np.average(E,weights=weights)*100, "%")
-    print("eps_ny    = ",normalized_emittance(y,py,weights)*conversion_factor*1e-6," mm-mrad")
-    print("eps_nz    = ",normalized_emittance(z,pz,weights)*conversion_factor*1e-6," mm-mrad")
+    print("eps_ny    = ",normalized_emittance(y,py,weights)/um," mm-mrad")
+    print("eps_nz    = ",normalized_emittance(z,pz,weights)/um," mm-mrad")
     print("")
     print("sigma_i (i=x,y,z): rms size along the coordinate i")
     print("E                : mean energy")
@@ -104,8 +105,8 @@ Energy        = np.zeros(np.size(iters))
 Energy_spread = np.zeros(np.size(iters))
 Emittance_y   = np.zeros(np.size(iters))
 Emittance_z   = np.zeros(np.size(iters))
-Divergence_y   = np.zeros(np.size(iters))
-Divergence_z   = np.zeros(np.size(iters))
+Divergence_y  = np.zeros(np.size(iters))
+Divergence_z  = np.zeros(np.size(iters))
 
 ######### Read the DiagTrackParticles data, for each available timestep
 i = 0
@@ -121,26 +122,26 @@ for timestep in iters:
 		py           = particle_chunk["py"]
 		pz           = particle_chunk["pz"]
 		w            = particle_chunk["w"]
-		#w            = np.ones(np.shape(x))*S.namelist.weight                  # Particles weights
+		#w            = np.ones(np.shape(x))*S.namelist.weight                 # Particles weights
 		p            = np.sqrt((px**2+py**2+pz**2))                            # Particles Momentum 
 		E            = np.sqrt((1.+p**2))                                      # Particles energy
 		
 # 		Nparticles   = np.size(w)                                              # Number of particles read   	
 # 		total_weight = w.sum()
-# 		Q            = total_weight* q * nc * (conversion_factor*1e-6)**3 * 10**(12) # Total charge in pC
+# 		Q            = total_weight* q * nc * (S.namelist.c_over_omega0*1e-6)**3 * 10**(12) # Total charge in pC
 # 		print(" ")
 # 		print("Total charge = ",Q," pC")
 # 		print(" ")
 		
 		### Save the bunch parameters
-		bunch_position[i]= np.average(x,weights=w)*conversion_factor           # um
-		Sigma_y[i]       = weighted_std(y,w)*conversion_factor                 # um
-		Sigma_z[i]       = weighted_std(z,w)*conversion_factor                 # um
-		Energy[i]        = np.average(E,weights=w)                             # normalized
-		Energy_spread[i] = weighted_std(E,w)/Energy[i]*100                     # %
-		Energy[i]        = Energy[i]*0.51099895                                # MeV
-		Emittance_y[i]   = normalized_emittance(y,py,w)*conversion_factor      # mm-mrad
-		Emittance_z[i]   = normalized_emittance(z,pz,w)*conversion_factor      # mm-mrad
+		bunch_position[i]= np.average(x,weights=w)/um           # um
+		Sigma_y[i]       = weighted_std(y,w)/um                 # um
+		Sigma_z[i]       = weighted_std(z,w)/um                 # um
+		Energy[i]        = np.average(E,weights=w)              # normalized
+		Energy_spread[i] = weighted_std(E,w)/Energy[i]*100      # %
+		Energy[i]        = Energy[i]*electron_mass_MeV          # MeV
+		Emittance_y[i]   = normalized_emittance(y,py,w)/um      # mm-mrad
+		Emittance_z[i]   = normalized_emittance(z,pz,w)/um      # mm-mrad
 
 		i = i + 1
 		
@@ -156,27 +157,29 @@ fig.set_facecolor('w')
 plt.subplot(131)
 plt.plot(bunch_position/1e3,Sigma_y,c="b",label="y")
 plt.plot(bunch_position/1e3,Sigma_z,c="r",linestyle="--",label="z")
-plt.xlabel("Position [mm]")
+plt.xlabel("x [mm]")
 plt.ylabel("Rms Transverse Size\n[um]")
-plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-plt.ylim(0.5,2.5)
+plt.ylim(0,2.5)
+plt.xticks([0.,0.1,0.2,0.3,0.4,0.5])
 plt.legend()
+plt.grid("on")
 
 plt.subplot(132)
 plt.plot(bunch_position/1e3,Emittance_y,c="b",label="y")
 plt.plot(bunch_position/1e3,Emittance_z,c="r",linestyle="--",label="z")
-plt.xlabel("Position [mm]")
+plt.xlabel("x [mm]")
 plt.ylabel("Normalized Emittance\n[mm-mrad]")
-plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-plt.ylim(2.8,3.2)
+plt.ylim(0,3.2)
+plt.xticks([0.,0.1,0.2,0.3,0.4,0.5])
 plt.legend()
+plt.grid("on")
 
 plt.subplot(133)
 plt.plot(bunch_position/1e3,Energy,c="b")
-plt.xlabel("Position [mm]")
+plt.xlabel("x [mm]")
 plt.ylabel("Energy\n[MeV]")
-plt.xticks([0.0,0.1,0.2,0.3,0.4,0.5])
-
+plt.xticks([0.,0.1,0.2,0.3,0.4,0.5])
+plt.grid("on")
 
 plt.subplots_adjust(hspace=2.,wspace=0.4)
 

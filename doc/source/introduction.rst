@@ -2,9 +2,9 @@ Introduction
 -------------------
 
 
-In this practical work, you will familiarize yourself with a Particle in Cell (PIC) code ([BirdsallLangdon]_, [Lapenta]_), 
-learn how to set up and run a basic PIC simulation to study laser plasma acceleration of electrons, and how to analyze the results.
-The PIC code you will use, `Smilei <https://smileipic.github.io/Smilei/index.html>`_ ([Derouillat2018]_), is not a simplified version 
+In this practical work, you will familiarize with a Particle in Cell (PIC) code ([BirdsallLangdon]_, [Lapenta]_), 
+learn how to set up and run a basic PIC simulation to study laser wakefield acceleration of electrons, and how to analyze the results.
+The PIC code used for this tutorial, `Smilei <https://smileipic.github.io/Smilei/index.html>`_ ([Derouillat2018]_), is not a simplified version 
 but a full PIC code that you can use for your future studies.
 
 
@@ -24,7 +24,7 @@ The practical will consist in four parts:
 - :ref:`Laser wakefield excitation <plasmawave>` (**Exercises 7-11**): we will add a pre-ionized plasma and visualize how the laser pulse excites plasma waves in its wake, also checking the results against the analytical theory in the linear regime.
 - :ref:`Laser wakefield acceleration of an electron bunch <laserplasmainjection>` (**Exercises 12-20**): we will add a relativistic electron bunch, injecting it into the plasma waves and studying its acceleration. 
 
-We will arrive progressively to the full simulation set-up,
+We will arrive progressively to the full laser wakefield acceleration simulation set-up,
 familiarizing with the postprocessing using the Python postprocessing library
 `happi <https://smileipic.github.io/Smilei/Use/post-processing.html>`_ and adding step by step all 
 the necessary blocks to the input namelist file called `InputNamelist.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py>`_ . 
@@ -41,7 +41,9 @@ Prerequisites
 
 Although the `InputNamelist.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py>`_ is written in Python,
 no extensive knowledge of that language is required to understand its contents. 
-Knowing how to define variables (and, optionally, how to define numpy arrays) should be sufficient.
+The first exercises will use pre-made Python scripts and commands for the analysis of simulations, while the last exercises 
+will ask to modify these scripts to extend their scope. These exercises include basic numpy array manipulation
+and plotting of 1D and 2D arrays.
  
 This practical work assumes that the reader knows how to navigate in a directory tree, create folders, 
 and copy files from the command line (for a quick recap, see Sections 4-9, 13-14, and 17 
@@ -50,13 +52,16 @@ in [ShawCommandLineCrashCourse]_).
 Some clarifications
 ^^^^^^^^^^^^^^^^^^^^^^^^
 **Warning** Although external injection of an electron bunch in a plasma wave
-is not common or easy to realize experimentally, it was chosen due its conceptual simplicity, 
-which allows to easily study some basic concepts underlying laser-plasma acceleration.
+is not the most common nor easy laser plasma acceleration scheme to realize experimentally, 
+it was chosen due its conceptual simplicity, which allows to easily study some basic concepts underlying 
+laser wakefield acceleration. The interested reader can find 
+`here <https://smileipic.github.io/tutorials/advanced_wakefield_envelope.html>`_ a tutorial which 
+includes laser wakefield acceleration with ionization injection, a more common laser wakefield acceleration scheme.
 
 **Warning:** Many parameters of the simulation were chosen as a compromise between having a quick simulation
 and being able to describe the physical phenomena of laser plasma acceleration of electron.
 More physically accurate simulations of this phenomenon would require larger mesh sizes, a different resolution,
-etc., that would require much longer simulations. 
+etc., that would require longer simulations less suited for a basic tutorial. 
 
 A quick word on Smilei
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
