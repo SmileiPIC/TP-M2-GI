@@ -6,7 +6,9 @@ Appendix: Cheatsheet
 A: Command Line Terminal Cheatsheet
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- When you feel lost, use the command ``pwd`` (mnemonic ``pwd``: present working directory) to display your present path. In general a path will have for example the form ``/gpfs/users/user_01``. This specific example means that you are in the folder ``user_01``, which is inside the folder ``users``, which is inside the folder ``gpfs``.
+- When you feel lost, use the command ``pwd`` (mnemonic ``pwd``: present working directory) to display your present path. For example, a path may have the form ``/gpfs/users/user_01``. This specific example means that you are in the folder ``user_01``, which is inside the folder ``users``, which is inside the folder ``gpfs``.
+
+- To go back to your home (the path where you connect with the ``ssh`` command), use ``cd ~`` (useful if you feel lost in your directory tree).
 
 - To check the content of your present path, use the command ``ls`` (mnemonic ``ls``: list) 
   
@@ -20,9 +22,9 @@ A: Command Line Terminal Cheatsheet
 
 - To move a file/folder into a folder ``move source destination_folder/``. The `source` can be a file or a folder.
 
-- *Warning* This operation is irreversible! To remove a file, use ``rm filename`` (mnemonic ``rm``: remove). 
+- **Risky command** To remove a file, use ``rm filename`` (mnemonic ``rm``: remove). To remove an entire folder and its content, use ``rm -rf foldername`` or ``rmdir foldername``.
 
-- *Warning* This operation is irreversible! To remove an entire folder and its content, use ``rm foldername``
+- **Warning** This operation is irreversible! 
 
 ----------
 
@@ -49,16 +51,16 @@ a new simulation folder for each simulation.
 
 - Go inside the simulation folder, e.g. with the command ``cd simulation_folder_name``.
 
-- Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. ``submission_script.sh``. 
-You can transfer the file you already have through  the comand ``cp``:
+- Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. ``JJ_submission_script.sh``. 
+You can transfer the file you already have in your home through  the comand ``cp``:
 
 .. code-block:: bash
 
-  cp $WORKDIR/TP-M2-GI/submission_script.sh simulation_folder_name/ 
+  cp ~/TP-M2-GI/JJ_submission_script.sh simulation_folder_name/ 
   
-The last command will copy the file ``$WORKDIR/TP-M2-GI/submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
+The last command will copy the file ``~/TP-M2-GI/JJ_submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
 
-- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. A copy of the ``InputNamelist.py`` should be in ``cd $WORKDIR/TP-M2-GI`` of Ruche, 
+- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. A copy of the ``InputNamelist.py`` should be in ``~/TP-M2-GI``, 
 have a copy in another folder you can use the ``cp`` command (add the source and destination paths.)
 
 ----------
@@ -74,21 +76,21 @@ C: How to Run your simulation
 
 .. code-block:: bash
    
-    sbatch submission_script.sh
+    jjsub JJ_submission_script.sh
 
-- To check the status (running/queueing etc) of yout job:
+- To check the status (running/queueing etc) of your job:
 
 .. code-block:: bash
    
-    squeue -u $USER
+    jjstat -u $USER
 
 This should also return the number ``JobId`` of your job, necessary for the next command.
 
-- To delete your job from the queue:
+- To stop/delete your job from the queue (this operation is irreversible!):
 
 .. code-block:: bash
    
-    scancel JobId
+    jjdel JobId
 
 - To read the end of the log file and let it refresh (if you want to watch your simulation execute for example):
 
@@ -143,7 +145,14 @@ To import the library ``happi`` in ``IPython`` and open a simulation in the fold
    import happi; S = happi.Open("path/to/simulation")
 
 In this specific example the folder’s path is called for example ``"path/to/simulation"`` 
-(use the path of your simulation instead!). 
+(use the path of your simulation instead!).
+
+Using instead::
+
+   import happi; S = happi.Open()
+   
+will open the simulation in your current path. If you are not in a simulation folder, 
+an error message will be displayed. 
 
 The last command will create an object called ``S``, our simulation, 
 which contains all the necessary data, taken from the input namelist and from the 

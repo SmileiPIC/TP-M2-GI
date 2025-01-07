@@ -81,6 +81,7 @@ with a diverse suite of physical models and numerical techniques,
 from a laptop to supercomputers.
 
 
+
 ----
 
 References
@@ -92,3 +93,6 @@ References
 .. [Esarey2009] `E. Esarey et al., Physics of laser-driven plasma-based electron accelerators, Rev. Mod. Phys., 81:1229–1285, 2009 <http://dx.doi.org/10.1103/RevModPhys.81.1229>`_
 .. [Malka2012] `V. Malka, Laser plasma accelerators, Physics of Plasmas, 19(5):055501, 2012 <https://doi.org/10.1063/1.3695389>`_
 .. [ShawCommandLineCrashCourse] `Z. A. Shaw, Command line crash course <https://www.computervillage.org/articles/CommandLine.pdf>`_
+
+
+
