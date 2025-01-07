@@ -29,7 +29,6 @@ iters                 = S.Probe.Probe1("Env_A_abs").getAvailableTimesteps() # ar
 waist0                = S.namelist.laser_waist  			                 # laser initial waisti in normalized units
 Zr                    = waist0*waist0/2.                                     # Rayileigh length in normalized units
 Rayleigh_length       = Zr                                                   # Rayleigh length in normalized units
-focal_plane           = S.namelist.x_focus                                   # position of the laser focal plane in normalized units
 
 ###### Loop over iterations in Probe diagnosic and compute the simulated and analytical waist
 
@@ -49,7 +48,7 @@ for iter in iters:
     waist_simulated.append( 2*waist )
     
     # analytical waist, Rayleigh formula 
-    waist_analytical.append(waist0*math.sqrt(1.+((S.namelist.center_laser+iter*dt-S.namelist.x_focus)/Zr)**2))
+    waist_analytical.append(waist0*math.sqrt(1.+((S.namelist.x_center_laser+iter*dt-S.namelist.x_focus_laser)/Zr)**2))
 
 waist_analytical      = np.asarray(waist_analytical)                
 waist_simulated       = np.asarray(waist_simulated)

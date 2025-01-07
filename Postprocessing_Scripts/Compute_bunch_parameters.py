@@ -63,9 +63,11 @@ def normalized_emittance(transv_coordinate,transv_momentum,weights):
     norm_emittance        = (sigma_transv**2)*(sigma_p_transv**2)-sigma_transv_p_transv**2
     return math.sqrt(norm_emittance) 
 
-def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
-    # conversion factor converts from normalized units to um
-    print("average position = "+str(np.average(x,weights=weights)*conversion_factor)+" um")
+def print_bunch_params(x,y,z,px,py,pz,E,weights,um):
+    # x,y,z,px,py,pz,E are the coordinates, momenta and energy arrays (1 array element : 1 macro-particle)
+    # weights is the array of their statistical weights
+    # um is a variable used for convertions to the SI system
+    print("average position = "+str(np.average(x,weights=weights)/um)+" um")
     print("----------------")
     print("")
     print("sigma_x   = "+str(weighted_std(x,weights)/um)+" um")
@@ -89,16 +91,17 @@ chunk_size = 60000
 
 track_part = S.TrackParticles(species = species_name, chunksize=chunk_size, sort=False)
 
+print("Usage: %run Compute_bunch_parameters.py timestep")
+
 if (timestep not in track_part.getAvailableTimesteps()):
-	print(" ")
 	print("Selected timestep not available in the DiagTrackParticles output")
-	print("Available timesteps = "+str(track_part.getAvailableTimesteps()))
+	print("Available output timesteps = "+str(track_part.getAvailableTimesteps()))
 	print(" ")
 	exit()
 
 
 print(" ")
-print("Reading timestep "+str(timestep)+" from "+os.getcwd())
+print("Reading iteration "+str(timestep)+" from "+os.getcwd())
 
 # Read the DiagTrackParticles data
 for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
@@ -127,6 +130,6 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     print("Total charge = "+str(Q)+" pC")
 
     ### Print the bunch parameters
-    print_bunch_params(x,y,z,px,py,pz,E,w,conversion_factor)
+    print_bunch_params(x,y,z,px,py,pz,E,w,um)
 
     
