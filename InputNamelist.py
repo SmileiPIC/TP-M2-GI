@@ -32,7 +32,7 @@ dx                  = 0.05*um                   # longitudinal mesh resolution
 dr                  = 0.3*um                    # transverse mesh resolution
 
 
-dt                  = 0.97*dx/c_normalized      # integration timestep
+dt                  = 0.96*dx/c_normalized      # integration timestep
 
 ##### Simulation window size
 nx                  = 1152                      # number of mesh points in the longitudinal direction
