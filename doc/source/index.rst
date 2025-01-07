@@ -10,7 +10,7 @@ A tutorial on Particle in Cell simulation of Laser Wakefield Acceleration
 
 .. toctree::
    :maxdepth: 2
-   :caption: Main contributors: F. Massimo, S. Marini. We are grateful to all the students who attend this TP each year since 2019, contributing to the improvement of its material through their invaluable feedback.
+   :caption: Main contributors: F. Massimo, S. Marini. The simulations in this practical use many features in Smilei that would not exist without the dedicated teamwork of the code developers and maintainers, to whom we extend our profound gratitude. We are grateful to all the students who attend this TP each year since 2019, contributing to the improvement of its material through their invaluable feedback. The authors also wish to thank the engineers of the cluster Ruche in the Moulon Mesocentre and the engineers of the LLR HPC clusters for computer resources and help. Computing time has been granted by the École polytechnique through 3Lab Computing infrastructure.
 
    introduction
    exercises
