@@ -163,7 +163,7 @@ The envelope of the laser transverse electric field is contained in the field ``
    is the laser central frequency (:math:`\lambda_0 = 0.8 \mu m`.) 
    
    Using the laser :math:`a_0` set in the namelist for the calculations, 
-   what is the laser peak intensity :math:`I = c\varepsilon_0 |E|^2` of the laser pulse? 
+   what is the laser peak averaged intensity :math:`I = c\varepsilon_0 |E|^2/2` of the laser pulse? 
    
    **Hint**: the input namelist contains the physical quantities that you may 
    need for the conversions.
