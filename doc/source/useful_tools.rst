@@ -38,7 +38,7 @@ This will ensure that no previous data is lost or overwritten.
 
 Following are the instructions to complete this process.
 
-- Create a new simulation folder, for example called ``sim``, where you will run your simulation:
+- Create a new simulation folder, for example called ``simulation_folder_name`` in your home directory, where you will run your simulation:
 
 .. code-block:: bash
 
@@ -56,21 +56,32 @@ You can transfer the file you already have in your home through  the comand ``cp
 
 .. code-block:: bash
 
-  cp ~/TP-M2-GI/JJ_submission_script.sh simulation_folder_name/ 
+  cp ~/TP-M2-GI/JJ_submission_script.sh ~/simulation_folder_name/ 
   
 The last command will copy the file ``~/TP-M2-GI/JJ_submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
 
-- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. A copy of the ``InputNamelist.py`` should be in ``~/TP-M2-GI``, 
-have a copy in another folder you can use the ``cp`` command (add the source and destination paths.)
+- Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. 
+  A copy of the ``InputNamelist.py`` should be in ``~/TP-M2-GI``.
+  To make a copy of this file in another folder you can use the ``cp`` command (add the source and destination paths), e.g.::
+  
+.. code-block:: bash
 
+  cp ~/TP-M2-GI/InputNamelist.py ~/simulation_folder_name/
+
+Similarly, copy the ``smilei`` executable from the ``~/TP-M2-GI`` folder to your simulation directory.
+    
 ----------
 
-C: How to Run your simulation
+C: How to run your simulation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Check if you have all the required files (submission script, input namelist) through the command ``ls``
+- Check if you have all the required files 
+  (submission script ``JJ_submission_script.sh``, input namelist ``InputNamelist.py``, executable ``smilei``) 
+  through the command ``ls``.
 
 - Remember to uncomment the necessary variables and blocks as explained in the exercise before launching a simulation.
+
+- Remember to set the variables to different values when asked by the exercise.
 
 - Launch your simulation job:
 
@@ -92,13 +103,15 @@ This should also return the number ``JobId`` of your job, necessary for the next
    
     jjdel JobId
 
-- To read the end of the log file and let it refresh (if you want to watch your simulation execute for example):
+- To read the end (command ``tail``) of the log file ``smilei.log`` and let it refresh 
+  (option ``-f``, e.g. if you want to watch your simulation execute for example):
 
 .. code-block:: bash
    
     tail -f smilei.log
-   
-The the comand ``ctrl+C`` will allow you to stop watching the file `smilei.log`.
+
+Sometimes the simulation may seem stuck, normally this is just a lag of the system in displaying the log file.
+The combination ``ctrl+C`` will allow you to stop watching the file ``smilei.log``.
 
 ----------
 
@@ -127,10 +140,15 @@ file ``smilei.py``, generated at the start of your simulation.
 
 .. code-block:: bash
    
-    S = happi.Open("path/to/my/results")
+    S = happi.Open("eaxmple/path/to/my/results")
 
-Here, ``"path/to/my/results"`` is just an example of path, you need to put the path of your simulation. 
-If you use simply ``S = happi.Open()``, the library ``happi`` open the results inside the current working directory.
+If you use simply
+
+.. code-block:: bash 
+   
+    S = happi.Open()
+    
+without specifying a path, the library ``happi`` open the results inside the current working directory.
 
 For your convenience and quick reference, some of the most commonly used commands of ``happi`` are reported. 
 Do not hesitate to copy and paste the following commands in ``IPython`` and adapt them to the problem you are solving.
@@ -167,7 +185,7 @@ You can easily access parameters from the input namelist, for example::
 In general, if you tap ``S.`` or add the name of the blocks and then use the tab key, 
 you will see the available blocks and variables.
 
-D.03: Plot diagnostics
+D.03: Plot diagnostic outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To open a specific diagnostic, like the ``Probe1`` defined in the namelist, 
 and plot the longitudinal electric field ``Ex`` contained in that diagnostic, use::
@@ -235,22 +253,34 @@ For example, if you want to plot two quantities from the same simulation,
 scaling them through multiplying factors::
 
    import happi
-   S = happi.Open("path/to/simulation")
+   S = happi.Open("example/path/to/simulation")
    E = S.Probe.Probe1("0.1*Ex", timesteps=1000, label = "E")
    rho = S.Probe.Probe1("-10.*Rho", timesteps=1000, label="charge density")
    happi.multiPlot(E, rho, figure = 1)
 
-The previous example draws two curves, but you can use multiPlot to plot more curves.
+The previous example draws two curves, but you can use ``multiPlot`` to plot more curves.
 
 Note that you can plot also different timesteps from the same simulation with the same procedure. 
 Similarly, you can plot two quantities from two or more simulations::
 
    import happi
-   S1 = happi.Open("path/to/simulation1")
+   S1 = happi.Open("example/path/to/simulation1")
    Ex1 = S1.Probe.Probe0("Ex",timesteps=1000)
-   S2 = happi.Open("path/to/simulation2")
+   S2 = happi.Open("example/path/to/simulation2")
    Ex2 = S2.Probe.Probe0("Ex",timesteps=1000)
    happi.multiPlot(Ex1,Ex2)
+   
+There is an equivalent of ``multiPlot()`` for the ``slide()`` command,
+often used to study the evolution of two quantities in the same window.
+Its name is ``multiSlide()``::
+
+   import happi
+   S1 = happi.Open("example/path/to/simulation1")
+   Ex1 = S1.Probe.Probe0("Ex",timesteps=1000)
+   S2 = happi.Open("example/path/to/simulation2")
+   Ex2 = S2.Probe.Probe0("Ex",timesteps=1000)
+   happi.multiPlot(Ex1,Ex2)
+
 
 D.08: Export the data
 ^^^^^^^^^^^^^^^^^^^^^^^^^
