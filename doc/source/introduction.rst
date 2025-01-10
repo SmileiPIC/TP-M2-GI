@@ -60,10 +60,13 @@ laser wakefield acceleration. The interested reader can find
 `here <https://smileipic.github.io/tutorials/advanced_wakefield_envelope.html>`_ a tutorial which 
 includes laser wakefield acceleration with ionization injection, a more common laser wakefield acceleration scheme.
 
-**Warning:** Many parameters of the simulation were chosen as a compromise between having a quick simulation
-and being able to describe the physical phenomena of laser plasma acceleration of electron.
-More physically accurate simulations of this phenomenon would require larger mesh sizes, a different resolution,
-etc., that would require longer simulations less suited for a basic tutorial. 
+**Warning:** Many parameters of the simulation were chosen as a compromise between having a quick and simple simulation,
+and being able to describe the basic physical phenomena underlying laser wakefield acceleration of electrons.
+More realistic simulations of this phenomenon would require a larger number of mesh cells, a different space-time resolution,
+more realistic laser field distributions and plasma density distributions etc., 
+that would require longer and more complex simulations, less suited for a basic tutorial. 
+
+
 
 A quick word on Smilei
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

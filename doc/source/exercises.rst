@@ -5,14 +5,14 @@ Exercises
 Tips for the exercises
 ------------------------------------------
 
-- **Organization**: you will soon arrive to exercises that will ask to run one or more simulations.
+- **Organization**: you will soon arrive to exercises that ask to run one or more simulations.
   To avoid overwriting previous simulation data, and to avoid forgetting where previous simulations were run 
   (especially if you want to recheck your answers), create a new folder for each simulation, 
   giving it a meaningful name, and keeping your data space organized. 
   If it helps, you may also take notes on the path of the folders to remember where each simulation was run.
 - **Read the namelist**: the comments in the namelist and the defined variables contain also useful information for exercises.
 - **Read again the practical presentation**: some of the explained concepts may help you during the exercises.
-- **Parallelizing the simulations**: While working on a big supercomputer, to launch a new simulation you don't have to wait for the last one you have launched to be complete.
+- **Parallelizing the simulations**: While working on a supercomputer, normally to launch a new simulation you don't have to wait for the last one you have launched to be complete.
   If no computing resources are available yet, the newly launched simulations will wait in the queue.
 - **Questions? Doubts?** Ask the instructor!
 
@@ -115,8 +115,10 @@ We will start adding a laser pulse propagating in vacuum, along the positive ``x
 with the laser pulse parameters and the ``LaserEnvelopeGaussian`` block. 
 Afterwards, launch the simulation with ``sbatch submission_script.sh``.
 
-This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_, with a carrier wavelength :math:`\lambda_0=0.8 \mu m`. 
-Furthermore, the considered pulse is modulated with Gaussian temporal profile, whose FWHM length is much larger than the laser carrier wavelength :math:`\lambda_0`, defined in the variable ``lambda0`` (see :ref:`Fig. 3 <laser_figure>`).
+This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_, 
+with a carrier wavelength :math:`\lambda_0 = 0.8 \mu m`. 
+The considered pulse also has Gaussian temporal profile, whose FWHM length is much larger 
+than the laser carrier wavelength :math:`\lambda_0`, defined in the variable ``lambda0`` (see :ref:`Fig. 3 <laser_figure>`).
 The laser transverse electric field is linearly polarized in the ``y`` direction.
 
 .. _laser_figure:
@@ -137,7 +139,7 @@ The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 
 **Note:**  an envelope model is used to describe the laser pulse, as described in [Massimo]_.
 Therefore, the laser field and the electromagnetic fields it will excite in the plasma
 will not show the high frequency oscillations.
-The envelope of the laser transverse electric field is contained in the field ``Env_E_abs``.
+The absolute value of the complex envelope of the laser transverse electric field is contained in the field ``Env_E_abs``.
 
 .. _exercise3:    
 .. admonition:: Exercise 3
@@ -206,10 +208,10 @@ try to specify a colormap maximum with ``vmax``. For example::
    waist size at propagation distance :math:`x`, :math:`x_R` is the Rayleigh length 
    :math:`x_R = \pi w_0^2/\lambda_0`. 
    
-   What is the theoretical Rayleigh length :math:`x_R`?
+   In our case, what is the theoretical Rayleigh length :math:`x_R`?
    
    **Action**: Use the script `Laser_waist_theory_vs_Smilei.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Laser_waist_theory_vs_Smilei.py>`_ 
-   to compare the analytical diffraction law of the previous exercise and the your Particle-in-Cell (PIC) simulations results. 
+   to compare the analytical diffraction law for :math:`w(x)` and the laser waist extracted from your Particle-in-Cell (PIC) simulations results. 
    Copy the script in the simulation folder or call the script from that folder. 
    The script loads the field quantities on the plane ``xy``, then loops over the iterations available in output 
    and computes the laser pulse waist :math:`w(x)` along that plane as
@@ -218,7 +220,7 @@ try to specify a colormap maximum with ``vmax``. For example::
    .. math::
      :label: AzimuthalDecomposition1
 
-     w(x) = 2\frac{\int\int y^2 |\tilde{A}|^2~dx~dy}{\int\int |\tilde{A}|^2~dx~dy},
+     w(x) = 2\frac{\int\int y^2 |\tilde{A}(x,y)|^2~dx~dy}{\int\int |\tilde{A}(x,y)|^2~dx~dy},
 
    where :math:`\tilde{A}` is the complex envelope of the laser transverse vector potential.
    
@@ -233,11 +235,13 @@ try to specify a colormap maximum with ``vmax``. For example::
    We are using boundary conditions called Perfectly Matched Layers to prevent unphysical field reflections 
    at the borders of the simulation window, but no numerical boundary condition can perfectly absorb a laser which 
    does not fit in the window from the start. All PIC codes have the habit of running without telling you if something unphysical
-   happens, so we often need to check if unphysical phenomena are happening in the simulation.
+   happens, so we often need to check if unphysical phenomena are occurring in the simulation.
    
    **Action**: in another folder, run the same simulation, but with a smaller simulation window.
-   Change the variable ``nr`` to 64 at the start of the namelist. What is the resulting transverse size ``Lr``
-   of the new window? Use again the script of the previous exercise to compare the results with the theory and include the image in your answers.
+   Change the variable ``nr`` to 64 at the start of the namelist, to simulate what would have happened if we had 
+   chosen a window size too small compared to the laser transverse size. 
+   What is the resulting transverse size ``Lr`` of the new window? 
+   Use again the script of the previous exercise to compare the results with the theory and include the image in your answers.
    
    How do you explain the results?
    
