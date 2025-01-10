@@ -102,6 +102,7 @@ The the comand ``ctrl+C`` will allow you to stop watching the file `smilei.log`.
 
 ----------
 
+.. _postprocessing:
 D: How to postprocess your simulation results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -224,6 +225,7 @@ As an example where all these elements are specified::
 
    S.Probe.Probe1("Ex").plot(figure=2, vmin = -0.1, vmax = 0.1 , cmap = "seismic")
 
+.. _multilines:
 D.07: Plot multiple lines in the same window
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 You may be interested in visualizing multiple curves in the same plot window. 

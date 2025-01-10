@@ -476,25 +476,27 @@ The complete answer for the interested reader can be found in the dedicated sect
 Laser wakefield acceleration of an electron bunch
 --------------------------------------------------------
 
-
 We are ready to simulate a basic laser wakefield accelerator for electrons. 
-Just as a surfer rides the waves in the water,
+As a surfer rides the waves in the water, under certain conditions
 an electron bunch can be accelerated by plasma waves.
-Remember, an immobile surfer will not be accelerated by a wave. 
-To effectively interact with the wave, the surfer must first paddle to acquire some velocity. 
-If the surfer moves near the speed of the wave, an accelerating phase of the wave will be experienced 
-by the surfer for a significant portion of the surfer-wave interaction. 
+An immobile surfer will not be accelerated by a wave. 
+To effectively interact with the wave, the surfer must first acquire some speed. 
+If the surfer speed is close to the speed of the wave, they will be subject to 
+an accelerating phase of the wave for a significant portion of the surfer-wave interaction. 
 
 Following the same analogy, to be accelerated, the electrons must be injected in the accelerated phase 
 of the plasma wave with a speed near the wave's speed (which is close to the speed of light). 
 Many clever injection schemes have been investigated since the 2000s, such as those described in 
 [Esarey2009]_, [Malka2012]_, [FaureCAS]_ , where the electrons of the plasma itself are in some way 
-injected into the laser-driven wave. 
+injected into the laser-driven wave. In other injection schemes, often the electron beam 
+parameters are not independent of the laser and plasma parameters.
 
 As already mentioned, in this practical work we will study an external injection scheme, 
 in which a relativistic electron bunch is injected from outside the plasma. 
-This will allow us to understand the basic concepts of electron injection in a plasma wave,
-even though it is challenging to achieve experimentally.
+Even though it is challenging to achieve experimentally, this 
+conceptually simple injection scheme will allow us to understand the basic concepts 
+of electron injection in a plasma wave
+by only changing the electron bunch parameters without changing the laser and plasma parameters.
 
 **Action**: In a new simulation folder, set again the :math:`a_0` of the laser to the value :math:`2.3`
 Uncomment the two ``Species`` blocks, the related variable definitions and 
@@ -537,14 +539,14 @@ plasma electrons and an electron bunch, as in :ref:`Fig. 6 <Schema_Simulation_3>
    What is the total charge, the energy, the `rms` sizes along `x`, `y`, `z`, the `rms` energy spread, 
    and the normalized emittance along the transverse planes? 
    
-   How many macro-particles are contained in the electron bunch?
+   How many macro-particles are modeling the electron bunch?
    
    Where is the electron bunch placed in relation to the simulation window at the instant of time ``t = 0``?
 
 
 
 
-As the name suggests, this diagnostic block allows to track particles, 
+As the name suggests, this diagnostic block allows to track macro-particles 
 specified by their species name and some filter. Using a filter 
 (e.g., selecting only the particles with energy higher than `50` MeV) is 
 particularly useful when you have many particles in a ``Species``, 
@@ -576,7 +578,7 @@ as well as their weight (from which their charge can be computed).
     the longitudinal electric field ``Ex`` and the number density ``Rho/e`` 
     from ``Probe0`` (1D diagnostic) at ``timesteps=6000`` and ``timesteps=10000``
     (i.e. each window will contain the two quantities at a given timestep). 
-    You may need to rescale the quantities (see Postprocessing). 
+    You may need to rescale the quantities (see ``Plot multiple lines in the same window`` in the Appendix). 
     Playing with multiplying factors in the plot you should be able 
     to clearly see where the electron bunch is placed in the plasma wave.
     
@@ -696,7 +698,8 @@ as well as their weight (from which their charge can be computed).
 
       # in GV/m
       Ex=np.asarray(S.Probe.Probe0("Ex",timesteps=timestep,units=["um","GV/m"]).getData())[0]
-        
+      
+      # in um
       moving_x=np.linspace(0,S.namelist.Lx,num=S.namelist.nx)*S.namelist.c_over_omega0*1e6
       x_window_shift = S.Probe.Probe0("Ex").getXmoved(timestep)*S.namelist.c_over_omega0*1e6 
 
