@@ -282,7 +282,7 @@ After a short linear ramp, the plasma density profile
 is uniform for one millimetre in the `x` direction and within a distance ``Radius_plasma=30`` :math:`μm` 
 from the laser's propagation axis. 
 
-Therefore, now the simulation includes a moving window, a laser pulse (modeled by its envelope) 
+Therefore, now the simulation includes a moving window, a laser pulse (modeled by its complex envelope) 
 and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
 
 .. _Schema_Simulation_2:
@@ -312,11 +312,11 @@ and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
    in the longitudinal and transverse directions, and with size ``Lx``, ``2*Lr``, and ``2*Lr`` 
    in the ``x``, ``y`` and ``z`` directions?
    
-   (This answer may give a clue on why simulations in cylindrical geometry are generally faster...)
+   (This answer may give a clue on why simulations in cylindrical geometry are generally faster ...)
 
    
 As we did with in :ref:`Exercise 6 <exercise6>` for the laser pulse in vacuum, 
-the first step is to verify that the plasma behaves as predicted by 
+the first step to check our results is to verify that the plasma behaves as predicted by 
 the analytical theory. If we reduce the laser pulse ``a0`` to ``0.01``, 
 the laser pulse satisfy the conditions for the applicability of the 
 1D linear theory of plasma wave excitation. 
@@ -359,7 +359,7 @@ the laser pulse satisfy the conditions for the applicability of the
    .. math::
      :label: LinearTheory
 
-     E_x(x) = \frac{m_e}{e}\frac{\omega^2_p}{4}\int_x^{+\infty}|A|^2 cos[\omega_p(x−x')]dx'.
+     E_x(x,r = 0) = \frac{m_e}{e}\frac{\omega^2_p}{4}\int_x^{+\infty}|A(x,r = 0)|^2 cos[\omega_p(x−x')]dx'.
 
    **Action**: Use the script `Ex_linear_theory_vs_Smilei.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Ex_linear_theory_vs_Smilei.py>`_
    to compare the analytical result given by :ref:`Eq. (2) <LinearTheory>` and 
@@ -486,7 +486,7 @@ If the surfer moves near the speed of the wave, an accelerating phase of the wav
 by the surfer for a significant portion of the surfer-wave interaction. 
 
 Following the same analogy, to be accelerated, the electrons must be injected in the accelerated phase 
-of the plasma wave with a speed near the wave's velocity (approximately the speed of light). 
+of the plasma wave with a speed near the wave's speed (which is close to the speed of light). 
 Many clever injection schemes have been investigated since the 2000s, such as those described in 
 [Esarey2009]_, [Malka2012]_, [FaureCAS]_ , where the electrons of the plasma itself are in some way 
 injected into the laser-driven wave. 
