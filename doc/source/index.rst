@@ -12,7 +12,6 @@ A tutorial on Particle in Cell simulation of Laser Wakefield Acceleration
    :maxdepth: 2
    :caption: Main contributors: F. Massimo, S. Marini. 
    
-   acknowledgements
    introduction
    exercises
    useful_tools

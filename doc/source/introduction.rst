@@ -13,9 +13,11 @@ but a full PIC code that you can use for your future studies.
 Summary of this practical
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the case study of this practical work, an intense laser pulse is injected into the plasma, 
-exciting a relativistic plasma wave used to accelerate an externally injected relativistic electron bunch. 
+In the case study of this practical work, an intense laser pulse is injected into a plasma, 
+exciting a relativistic plasma wave that can be used to accelerate relativistic electrons.
 This plasma acceleration scheme is known as laser wakefield acceleration, or LWFA ([Esarey2009]_, [Malka2012]_). 
+In the case considered in this practical, an externally injected relativistic electron bunch is injected in the plasma waves. 
+
 
 The practical will consist in four parts:
 
@@ -79,6 +81,18 @@ code freely distributed under a CeCILL-B license
 It can be run in 1D,2D,3D and cylindrical geometry with azimuthal modes decomposition,
 with a diverse suite of physical models and numerical techniques,
 from a laptop to supercomputers.
+
+
+Acknowledgements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The simulations in this practical use many features in `Smilei <https://smileipic.github.io/Smilei/index.html>`_ that would not exist without the teamwork of the code developers, maintainers and collaborators, to whom we extend our gratitude.
+
+We are grateful to all the students who attend this TP each year since 2019, contributing to the improvement of its material through their invaluable feedback.
+
+The authors also wish to thank the engineers of the cluster Ruche in the Moulon Mesocentre and the engineers of the LLR HPC clusters for computer resources and help.
+
+Computing time has been granted by the École polytechnique through the 3Lab Computing infrastructure.
 
 
 
