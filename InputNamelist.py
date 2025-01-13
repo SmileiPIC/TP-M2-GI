@@ -87,7 +87,7 @@ Main(
 #laser_fwhm_field    = 25.5*math.sqrt(2)*fs                                      # laser FWHM duration in field, i.e. FWHM duration in intensity*sqrt(2)
 #laser_waist         = 12*um                                                     # laser waist, conversion from um
 #x_center_laser      = Lx-1.7*c_normalized*laser_fwhm_field                      # laser position at the start of the simulation
-#x_focus_laser       = (x_center_laser+0.1*laser_fwhm_field)                     # laser focal plane position
+#x_focus_laser       = (x_center_laser+0.1*c_normalized*laser_fwhm_field)        # laser focal plane position
 #a0                  = 2.3                                                       # laser peak field, normalized by E0 defined above
 
 ### Define a Gaussian bunch with Gaussian temporal envelope
