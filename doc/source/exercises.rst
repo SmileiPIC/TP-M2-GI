@@ -113,7 +113,7 @@ We will start adding a laser pulse propagating in vacuum, along the positive ``x
 
 **Action**: in the ``InputNamelist.py`` file, uncomment the lines 
 with the laser pulse parameters and the ``LaserEnvelopeGaussian`` block. 
-Afterwards, launch the simulation with ``sbatch submission_script.sh``.
+Afterwards, launch the simulation.
 
 This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_, 
 with a carrier wavelength :math:`\lambda_0 = 0.8 \mu m`. 
