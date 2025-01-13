@@ -151,7 +151,7 @@ The absolute value of the complex envelope of the laser transverse electric fiel
    Normally the duration of laser pulses is experimentally characterized by its FWHM in intensity, but the ``Laser...`` block in the namelist
    defines a quantity associated with the laser field.
    
-   **Hint**: for a Gaussian temporal profile, the FWHM duration in intensity is :math:`\sqrt{2}` times the FWHM duration in field.
+   **Hint**: for a Gaussian temporal profile, the FWHM duration in intensity is :math:`1./\sqrt{2}` times the FWHM duration in field.
    
    In the simulation window, what is the ``x_center_laser`` coordinate of the center of the laser pulse at the start of the simulation?
    
