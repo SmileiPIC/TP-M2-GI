@@ -85,6 +85,8 @@ the laser pulse is almost immobile in the simulation window.
    What is the resolution ``dx`` and ``dr`` in the longitudinal and radial directions? 
    
    See Figures :ref:`1 <Mesh_and_Reference>` and, :ref:`2 <Schema_Simulation_0>` for reference, and find these lengths in the `InputNamelist.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py>`_.
+   
+   **Note**: executing the namelist lines defining the variables ``Lx`` and ``Lr`` will give their values in normalized units, not in physical units.
 
 
 At the end of the `InputNamelist.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py>`_ file,
@@ -156,6 +158,8 @@ The absolute value of the complex envelope of the laser transverse electric fiel
    In the simulation window, what is the ``x_center_laser`` coordinate of the center of the laser pulse at the start of the simulation?
    
    Where is the focal plane of the laser pulse (variable ``x_focus_laser``)?
+   
+   **Note**: executing the namelist lines defining these variables will give their values in normalized units, not in physical units.
 
 .. _exercise4:    
 .. admonition:: Exercise 4
