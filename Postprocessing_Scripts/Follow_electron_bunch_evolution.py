@@ -128,7 +128,7 @@ for timestep in iters:
 		
 # 		Nparticles   = np.size(w)                                              # Number of particles read   	
 # 		total_weight = w.sum()
-# 		Q            = total_weight* q * nc * (S.namelist.c_over_omega0*1e-6)**3 * 10**(12) # Total charge in pC
+# 		Q            = total_weight* q * nc * (S.namelist.c_over_omega0)**3 * 10**(12) # Total charge in pC
 # 		print(" ")
 # 		print("Total charge = ",Q," pC")
 # 		print(" ")

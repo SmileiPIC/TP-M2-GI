@@ -125,7 +125,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     #print("Read "+str(Nparticles)+" particles from the file")
     print(" ")
     total_weight = w.sum()
-    Q            = total_weight* q * nc * (c_over_omega0*1e-6)**3 * 10**(12) # Total charge in pC
+    Q            = total_weight* q * nc * (c_over_omega0)**3 * 10**(12) # Total charge in pC
     print(" ")
     print("Total charge = "+str(Q)+" pC")
 
