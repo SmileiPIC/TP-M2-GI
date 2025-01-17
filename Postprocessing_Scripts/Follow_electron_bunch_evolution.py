@@ -64,27 +64,6 @@ def normalized_emittance(transv_coordinate,transv_momentum,weights):
     norm_emittance        = (sigma_transv**2)*(sigma_p_transv**2)-sigma_transv_p_transv**2
     return math.sqrt(norm_emittance) 
 
-def print_bunch_params(x,y,z,px,py,pz,E,weights,conversion_factor):
-    # conversion factor converts from normalized units to um
-    print(" ")
-    print("average position = ",np.average(x,weights=weights)/um," um")
-    print("----------------")
-    print("")
-    print("sigma_x   = ",weighted_std(x,weights)/um," um")
-    print("sigma_y   = ",weighted_std(y,weights)/um," um")
-    print("sigma_z   = ",weighted_std(z,weights)/um," um")
-    print("E         = ",np.average(E,weights=weights)*electron_mass_MeV," MeV")
-    print("DE/E(rms) = ",weighted_std(E,weights)/np.average(E,weights=weights)*100, "%")
-    print("eps_ny    = ",normalized_emittance(y,py,weights)/um," mm-mrad")
-    print("eps_nz    = ",normalized_emittance(z,pz,weights)/um," mm-mrad")
-    print("")
-    print("sigma_i (i=x,y,z): rms size along the coordinate i")
-    print("E                : mean energy")
-    print("DE/E (rms)       : relative rms energy spread")
-    print("eps_ni (i=y,z)   : normalized emittance (phase space plane i-p_i)")
-    print("")
-    print("----------------")
-
 ########## Open the DiagTrackParticles
 
 chunk_size = 60000
