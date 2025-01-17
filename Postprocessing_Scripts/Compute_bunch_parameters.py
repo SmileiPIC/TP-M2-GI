@@ -127,7 +127,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     total_weight = w.sum()
     Q            = total_weight* q * nc * (c_over_omega0)**3 * 10**(12) # Total charge in pC
     print(" ")
-    print("Total charge = "+str(f"{Q:.2f}+" pC")
+    print("Total charge = " + str(f"{Q:.2f}") + " pC")
 
     ### Print the bunch parameters
     print_bunch_params(x,y,z,px,py,pz,E,w,um)
