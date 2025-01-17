@@ -67,16 +67,16 @@ def print_bunch_params(x,y,z,px,py,pz,E,weights,um):
     # x,y,z,px,py,pz,E are the coordinates, momenta and energy arrays (1 array element : 1 macro-particle)
     # weights is the array of their statistical weights
     # um is a variable used for convertions to the SI system
-    print("average position = "+str(np.average(x,weights=weights)/um)+" um")
+    print("average position = " + str(f"{np.average(x, weights=weights) / um:.2f}") + " um")
     print("----------------")
     print("")
-    print("sigma_x   = "+str(f"{weighted_std(x, weights) / um:.2f}")+" um")
-    print("sigma_y   = "+str(f"{weighted_std(y, weights) / um:.2f}")+" um")
-    print("sigma_z   = "+str(f"{weighted_std(z, weights) / um:.2f}")+" um")
-    print("E         = " + str(f"{np.average(E, weights=weights) * electron_mass_MeV:.2f}") + " MeV")
-    print("DE/E(rms) = " + str(f"{weighted_std(E, weights) / np.average(E, weights=weights) * 100:.2f}") + "%")
-    print("eps_ny    = " + str(f"{normalized_emittance(y, py, weights) / um:.2f}") + " mm-mrad")
-    print("eps_nz    = " + str(f"{normalized_emittance(z, pz, weights) / um:.2f}") + " mm-mrad")
+    print("sigma_x          = "+str(f"{weighted_std(x, weights) / um:.2f}")+" um")
+    print("sigma_y          = "+str(f"{weighted_std(y, weights) / um:.2f}")+" um")
+    print("sigma_z          = "+str(f"{weighted_std(z, weights) / um:.2f}")+" um")
+    print("E                = " + str(f"{np.average(E, weights=weights) * electron_mass_MeV:.2f}") + " MeV")
+    print("DE/E(rms)        = " + str(f"{weighted_std(E, weights) / np.average(E, weights=weights) * 100:.2f}") + "%")
+    print("eps_ny           = " + str(f"{normalized_emittance(y, py, weights) / um:.2f}") + " mm-mrad")
+    print("eps_nz           = " + str(f"{normalized_emittance(z, pz, weights) / um:.2f}") + " mm-mrad")
     print("")
     print("sigma_i (i=x,y,z): rms size along the coordinate i")
     print("E                : mean energy")
@@ -127,7 +127,7 @@ for particle_chunk in track_part.iterParticles(timestep, chunksize=chunk_size):
     total_weight = w.sum()
     Q            = total_weight* q * nc * (c_over_omega0)**3 * 10**(12) # Total charge in pC
     print(" ")
-    print("Total charge = " + str(f"{Q:.2f}") + " pC")
+    print("Total charge     = " + str(f"{Q:.2f}") + " pC")
 
     ### Print the bunch parameters
     print_bunch_params(x,y,z,px,py,pz,E,w,um)
