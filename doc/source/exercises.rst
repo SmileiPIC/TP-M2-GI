@@ -433,11 +433,11 @@ which hides the other charge density values.
 
      import happi
      S1=happi.Open("path/to/sim1")
-     Ex1=S1.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=1000,label="a0 = 0.5") 
+     Ex1=S1.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=2000,label="a0 = 0.5") 
      S2=happi.Open("path/to/sim2")
-     Ex2=S2.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=1000,label="a0 = 1.4")
+     Ex2=S2.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=2000,label="a0 = 1.4")
      S3=happi.Open("path/to/sim3")
-     Ex3=S3.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=1000,label="a0 = 2.0")
+     Ex3=S3.Probe.Probe0("Ex",units=["um","fs","GV/m"],timesteps=2000,label="a0 = 2.0")
      happi.multiPlot(Ex1,Ex2,Ex3,figure=3,xlabel="x [um]")
 
    Remember to substitute the real path of your simulations in the ``Open`` command.
