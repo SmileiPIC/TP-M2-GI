@@ -720,8 +720,8 @@ as well as their weight (from which their charge can be computed).
       
       # longitudinal momentum in MeV/c
       import scipy.constants
-      electron_mass_MeV        = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
-      px_bunch=track_part.getData()["px"]*electron_mass_MeV
+      electron_mass_MeV = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
+      px_bunch          = track_part.getData()["px"]*electron_mass_MeV
 
    **Hint 3:** The ``Ex`` and ``px`` will have very different scales, so you will need 
    to use two `y` axes with different scales to see something meaningful. 
