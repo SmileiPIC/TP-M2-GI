@@ -452,7 +452,7 @@ which hides the other charge density values.
    Include a plot of the period of the plasma wave as function of the ``a0`` of the laser pulse.
    You should see the plasma wavelength relativistically elongated with a more intense laser pulse.
    
-   **Hint:** You may estimate as the distance between two consecutives zeros in the ``Ex`` field on the propagation axis.
+   **Hint:** You may estimate as two times the distance between two consecutives zeros in the ``Ex`` field on the propagation axis.
 
 **Behind the curtain:** Why are ions not present?
 A plasma for laser wakefield acceleration is normally made of ions 
