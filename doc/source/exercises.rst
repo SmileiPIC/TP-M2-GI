@@ -715,11 +715,13 @@ as well as their weight (from which their charge can be computed).
 
       track_part = S.TrackParticles(species ="electronbunch",axes = ["x","px"],timesteps=timestep)
       
-      # in um
+      # x in um
       x_bunch=track_part.getData()["x"]*S.namelist.c_over_omega0*1e6
       
-      # in MeV/c
-      px_bunch=track_part.getData()["px"]
+      # longitudinal momentum in MeV/c
+      import scipy.constants
+      electron_mass_MeV        = scipy.constants.physical_constants["electron mass energy equivalent in MeV"][0]
+      px_bunch=track_part.getData()["px"]*electron_mass_MeV
 
    **Hint 3:** The ``Ex`` and ``px`` will have very different scales, so you will need 
    to use two `y` axes with different scales to see something meaningful. 
