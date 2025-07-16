@@ -224,7 +224,7 @@ try to specify a colormap maximum with ``vmax``. For example::
    .. math::
      :label: AzimuthalDecomposition1
 
-     w(x) = 2\frac{\int\int y^2 |\tilde{A}(x,y)|^2~dx~dy}{\int\int |\tilde{A}(x,y)|^2~dx~dy},
+     w(x) = 2\sqrt{\frac{\int\int y^2 |\tilde{A}(x,y)|^2~dx~dy}{\int\int |\tilde{A}(x,y)|^2~dx~dy}},
 
    where :math:`\tilde{A}` is the complex envelope of the laser transverse vector potential.
    
