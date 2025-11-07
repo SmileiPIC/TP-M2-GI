@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="English" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction &#8212; TP-M2-GI_doc 1. documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/smilei_theme.css?v=163298f0" />
+    <script src="_static/documentation_options.js?v=11a3a430"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exercises" href="exercises.html" />
+    <link rel="prev" title="A tutorial on Particle in Cell simulation of Laser Wakefield Acceleration" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="#summary-of-this-practical">Summary of this practical</a>
+                </li>
+                <li class="outer">
+                    <a href="#prerequisites">Prerequisites</a>
+                </li>
+                <li class="outer">
+                    <a href="#some-clarifications">Some clarifications</a>
+                </li>
+                <li class="outer">
+                    <a href="#a-quick-word-on-smilei">A quick word on Smilei</a>
+                </li>
+                <li class="outer">
+                    <a href="#acknowledgements">Acknowledgements</a>
+                </li>
+                <li class="outer">
+                    <a href="#references">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="exercises.html#tips-for-the-exercises">Tips for the exercises</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#exploring-the-input-namelist">Exploring the input namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-wakefield-excitation">Laser wakefield excitation</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="useful_tools.html">Appendix: Cheatsheet</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-02-open-a-simulation">D.02: Open a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-08-export-the-data">D.08: Export the data</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Introduction</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#summary-of-this-practical">Summary of this practical</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#some-clarifications">Some clarifications</a></li>
+<li><a class="reference internal" href="#a-quick-word-on-smilei">A quick word on Smilei</a></li>
+<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img class="logo" src="_static/smileiLogo.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Introduction"
+            
+        >
+            <div id="menuButton_Introduction" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Introduction')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="#">
+                    <span>Introduction</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Introduction',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="#summary-of-this-practical">Summary of this practical</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#prerequisites">Prerequisites</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#some-clarifications">Some clarifications</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#a-quick-word-on-smilei">A quick word on Smilei</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#acknowledgements">Acknowledgements</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#references">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menu"
+            id="menu_Exercises"
+            
+        >
+            <div id="menuButton_Exercises" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Exercises')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="exercises.html">
+                    <span>Exercises</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Exercises',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="exercises.html#tips-for-the-exercises">Tips for the exercises</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#exploring-the-input-namelist">Exploring the input namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-wakefield-excitation">Laser wakefield excitation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_References"
+            
+        >
+            <div id="menuButton_References" class="menuButton"
+                 onmouseenter="prepareMenu('menu_References')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="exercises.html#references">
+                    <span>References</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_References',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="useful_tools.html">Appendix: Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-02-open-a-simulation">D.02: Open a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-08-export-the-data">D.08: Export the data</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="10" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="10" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>In this practical work, you will familiarize with a Particle in Cell (PIC) code (<a class="reference internal" href="#birdsalllangdon" id="id1"><span>[BirdsallLangdon]</span></a>, <a class="reference internal" href="#lapenta" id="id2"><span>[Lapenta]</span></a>),
+learn how to set up and run a basic PIC simulation to study laser wakefield acceleration of electrons, and how to analyze the results.
+The PIC code used for this tutorial, <a class="reference external" href="https://smileipic.github.io/Smilei/index.html">Smilei</a> (<a class="reference internal" href="#derouillat2018" id="id3"><span>[Derouillat2018]</span></a>), is not a simplified version
+but a full PIC code that you can use for your future studies.</p>
+<section id="summary-of-this-practical">
+<h2>Summary of this practical<a class="headerlink" href="#summary-of-this-practical" title="Link to this heading">¶</a></h2>
+<p>In the case study of this practical work, an intense laser pulse is injected into a plasma,
+exciting a relativistic plasma wave that can be used to accelerate relativistic electrons.
+This plasma acceleration scheme is known as laser wakefield acceleration, or LWFA (<a class="reference internal" href="#esarey2009" id="id4"><span>[Esarey2009]</span></a>, <a class="reference internal" href="#malka2012" id="id5"><span>[Malka2012]</span></a>).
+In the case considered in this practical, an externally injected relativistic electron bunch is injected in the plasma waves.</p>
+<p>The practical will consist in four parts:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="exercises.html#exploringthenamelist"><span class="std std-ref">Exploring the Input Namelist</span></a> (<strong>Exercises 1-2</strong>): we will explore the Python <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code> file to understand the basic set-up of the problem (simulation window size, resolution, ...). In this part the simulation window is empty.</p></li>
+<li><p><a class="reference internal" href="exercises.html#laserpulseinvacuum"><span class="std std-ref">Laser pulse in vacuum</span></a> (<strong>Exercises 4-6</strong>): we will add a laser laser pulse propagating in vacuum and check that its diffraction follows the one predicted for a Gaussian beam.</p></li>
+<li><p><a class="reference internal" href="exercises.html#plasmawave"><span class="std std-ref">Laser wakefield excitation</span></a> (<strong>Exercises 7-11</strong>): we will add a pre-ionized plasma and visualize how the laser pulse excites plasma waves in its wake, also checking the results against the analytical theory in the linear regime.</p></li>
+<li><p><a class="reference internal" href="exercises.html#laserplasmainjection"><span class="std std-ref">Laser wakefield acceleration of an electron bunch</span></a> (<strong>Exercises 12-20</strong>): we will add a relativistic electron bunch, injecting it into the plasma waves and studying its acceleration.</p></li>
+</ul>
+<p>We will arrive progressively to the full laser wakefield acceleration simulation set-up,
+familiarizing with the postprocessing using the Python postprocessing library
+<a class="reference external" href="https://smileipic.github.io/Smilei/Use/post-processing.html">happi</a> and adding step by step all
+the necessary blocks to the input namelist file called <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py">InputNamelist.py</a> .</p>
+<p>To add the physical elements or required additional outputs, you just need to
+decomment (i.e. remove the symbol <code class="docutils literal notranslate"><span class="pre">#</span></code> in front of the) lines with the relative variables and blocks,
+as will be described in the exercises.
+For example, to activate a block that introduces a laser in the simulation,
+you only need to remove the symbol <code class="docutils literal notranslate"><span class="pre">#</span></code> in front the <code class="docutils literal notranslate"><span class="pre">LaserEnvelopeGaussianAM</span></code> block
+and the lines defining the variables used by that block.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>Although the <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py">InputNamelist.py</a> is written in Python,
+no extensive knowledge of that language is required to understand its contents.
+The first exercises will use pre-made Python scripts and commands for the analysis of simulations, while the last exercises
+will ask to modify these scripts to extend their scope. These exercises include basic numpy array manipulation
+and plotting of 1D and 2D arrays.</p>
+<p>This practical work assumes that the reader knows how to navigate in a directory tree, create folders,
+and copy files from the command line (for a quick recap, see Sections 4-9, 13-14, and 17
+in <a class="reference internal" href="#shawcommandlinecrashcourse" id="id7"><span>[ShawCommandLineCrashCourse]</span></a>).</p>
+</section>
+<section id="some-clarifications">
+<h2>Some clarifications<a class="headerlink" href="#some-clarifications" title="Link to this heading">¶</a></h2>
+<p><strong>Warning</strong> Although external injection of an electron bunch in a plasma wave
+is not the most common nor easy laser plasma acceleration scheme to realize experimentally,
+it was chosen due its conceptual simplicity, which allows to easily study some basic concepts underlying
+laser wakefield acceleration. The interested reader can find
+<a class="reference external" href="https://smileipic.github.io/tutorials/advanced_wakefield_envelope.html">here</a> a tutorial which
+includes laser wakefield acceleration with ionization injection, a more common laser wakefield acceleration scheme.</p>
+<p><strong>Warning:</strong> Many parameters of the simulation were chosen as a compromise between having a quick and simple simulation,
+and being able to describe the basic physical phenomena underlying laser wakefield acceleration of electrons.
+More realistic simulations of this phenomenon would require a larger number of mesh cells, a different space-time resolution,
+more realistic laser field distributions and plasma density distributions etc.,
+that would require longer and more complex simulations, less suited for a basic tutorial.</p>
+</section>
+<section id="a-quick-word-on-smilei">
+<h2>A quick word on Smilei<a class="headerlink" href="#a-quick-word-on-smilei" title="Link to this heading">¶</a></h2>
+<p>As previously stated, the numerical tool you will use for this
+practical is the PIC code Smilei <a class="reference internal" href="#derouillat2018" id="id8"><span>[Derouillat2018]</span></a>. A prior knowledge of Smilei
+is not mandatory for the purposes of the practical exercises. Yet,
+feel free to check <a class="reference external" href="https://smileipic.github.io/Smilei/">Smilei’s website on GitHub</a> .
+The interested reader can also find additional
+<a class="reference external" href="https://smileipic.github.io/tutorials/">tutorials</a> focusing on physical
+processes not covered by this practical.</p>
+<p>Smilei is an open-source and collaborative
+code freely distributed under a CeCILL-B license
+(equivalent to the GPL license for free-softwares).
+It can be run in 1D,2D,3D and cylindrical geometry with azimuthal modes decomposition,
+with a diverse suite of physical models and numerical techniques,
+from a laptop to supercomputers.</p>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">¶</a></h2>
+<p>The simulations in this practical use many features in <a class="reference external" href="https://smileipic.github.io/Smilei/index.html">Smilei</a> that would not exist without the teamwork of the code developers, maintainers and collaborators, to whom we extend our gratitude.</p>
+<p>We are grateful to all the students who attend this TP each year since 2019, contributing to the improvement of its material through their invaluable feedback.</p>
+<p>The authors also wish to thank the engineers of the cluster Ruche in the Moulon Mesocentre and the engineers of the LLR HPC clusters for computer resources and help.</p>
+<p>Computing time has been granted by the École polytechnique through the 3Lab Computing infrastructure.</p>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<div role="list" class="citation-list">
+<div class="citation" id="birdsalllangdon" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">BirdsallLangdon</a><span class="fn-bracket">]</span></span>
+<p><cite>C. K. Birdsall and A. B. Langdon, Plasma Physics via Computer Simulation, Taylor and Francis Group, 2004</cite></p>
+</div>
+<div class="citation" id="lapenta" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Lapenta</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://juser.fz-juelich.de/record/283633/files/Lapenta_KT-2.pdf">G. Lapenta, Kinetic plasma simulation: Particle in cell method</a></p>
+</div>
+<div class="citation" id="derouillat2018" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Derouillat2018<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id8">2</a>)</span>
+<p><a class="reference external" href="https://doi.org/10.1016/j.cpc.2017.09.024">J. Derouillat et al., Smilei : A collaborative, open-source, multi-purpose particle-in-cell code for plasma simulation, Computer Physics Communications, 222:351 – 373, 2018</a></p>
+</div>
+<div class="citation" id="esarey2009" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Esarey2009</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="http://dx.doi.org/10.1103/RevModPhys.81.1229">E. Esarey et al., Physics of laser-driven plasma-based electron accelerators, Rev. Mod. Phys., 81:1229–1285, 2009</a></p>
+</div>
+<div class="citation" id="malka2012" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">Malka2012</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://doi.org/10.1063/1.3695389">V. Malka, Laser plasma accelerators, Physics of Plasmas, 19(5):055501, 2012</a></p>
+</div>
+<div class="citation" id="shawcommandlinecrashcourse" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">ShawCommandLineCrashCourse</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://www.computervillage.org/articles/CommandLine.pdf">Z. A. Shaw, Command line crash course</a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="site.html">Site index</a>
+      </div>
+      <div>
+        Last updated on Nov 07, 2025
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      </div>
+      
+      <div>
+      <a href="_sources/introduction.rst.txt"
+          rel="nofollow">Page source</a></li>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

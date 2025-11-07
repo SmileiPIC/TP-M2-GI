@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+<html lang="English" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Appendix: Cheatsheet &#8212; TP-M2-GI_doc 1. documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/smilei_theme.css?v=163298f0" />
+    <script src="_static/documentation_options.js?v=11a3a430"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Exercises" href="exercises.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="introduction.html#summary-of-this-practical">Summary of this practical</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#prerequisites">Prerequisites</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#some-clarifications">Some clarifications</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#a-quick-word-on-smilei">A quick word on Smilei</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#acknowledgements">Acknowledgements</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#references">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="exercises.html#tips-for-the-exercises">Tips for the exercises</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#exploring-the-input-namelist">Exploring the input namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-wakefield-excitation">Laser wakefield excitation</a>
+                </li>
+                <li class="outer">
+                    <a href="exercises.html#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">Appendix: Cheatsheet</a><ul>
+<li><a class="reference internal" href="#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a></li>
+<li><a class="reference internal" href="#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a></li>
+<li><a class="reference internal" href="#c-how-to-run-your-simulation">C: How to run your simulation</a></li>
+<li><a class="reference internal" href="#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a></li>
+<li><a class="reference internal" href="#d-02-open-a-simulation">D.02: Open a simulation</a></li>
+<li><a class="reference internal" href="#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a></li>
+<li><a class="reference internal" href="#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a></li>
+<li><a class="reference internal" href="#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a></li>
+<li><a class="reference internal" href="#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a></li>
+<li><a class="reference internal" href="#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a></li>
+<li><a class="reference internal" href="#d-08-export-the-data">D.08: Export the data</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                </li>
+                <li class="outer">
+                    <a href="#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-02-open-a-simulation">D.02: Open a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                </li>
+                <li class="outer">
+                    <a href="#d-08-export-the-data">D.08: Export the data</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Appendix: Cheatsheet</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Appendix: Cheatsheet</a><ul>
+<li><a class="reference internal" href="#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a></li>
+<li><a class="reference internal" href="#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a></li>
+<li><a class="reference internal" href="#c-how-to-run-your-simulation">C: How to run your simulation</a></li>
+<li><a class="reference internal" href="#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a></li>
+<li><a class="reference internal" href="#d-02-open-a-simulation">D.02: Open a simulation</a></li>
+<li><a class="reference internal" href="#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a></li>
+<li><a class="reference internal" href="#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a></li>
+<li><a class="reference internal" href="#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a></li>
+<li><a class="reference internal" href="#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a></li>
+<li><a class="reference internal" href="#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a></li>
+<li><a class="reference internal" href="#d-08-export-the-data">D.08: Export the data</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img class="logo" src="_static/smileiLogo.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Introduction"
+            
+        >
+            <div id="menuButton_Introduction" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Introduction')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="introduction.html">
+                    <span>Introduction</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Introduction',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="introduction.html#summary-of-this-practical">Summary of this practical</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#prerequisites">Prerequisites</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#some-clarifications">Some clarifications</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#a-quick-word-on-smilei">A quick word on Smilei</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#acknowledgements">Acknowledgements</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#references">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menu"
+            id="menu_Exercises"
+            
+        >
+            <div id="menuButton_Exercises" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Exercises')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="exercises.html">
+                    <span>Exercises</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Exercises',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="exercises.html#tips-for-the-exercises">Tips for the exercises</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#exploring-the-input-namelist">Exploring the input namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-wakefield-excitation">Laser wakefield excitation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="exercises.html#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_References"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_References" class="menuButton"
+                 onmouseenter="prepareMenu('menu_References')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="exercises.html#references">
+                    <span>References</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_References',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li >
+                            <a href="#">Appendix: Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-02-open-a-simulation">D.02: Open a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#d-08-export-the-data">D.08: Export the data</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="10" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="10" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="appendix-cheatsheet">
+<span id="usefultools"></span><h1>Appendix: Cheatsheet<a class="headerlink" href="#appendix-cheatsheet" title="Link to this heading">¶</a></h1>
+<section id="a-command-line-terminal-cheatsheet">
+<h2>A: Command Line Terminal Cheatsheet<a class="headerlink" href="#a-command-line-terminal-cheatsheet" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>When you feel lost, use the command <code class="docutils literal notranslate"><span class="pre">pwd</span></code> (mnemonic <code class="docutils literal notranslate"><span class="pre">pwd</span></code>: present working directory) to display your present path. For example, a path may have the form <code class="docutils literal notranslate"><span class="pre">/gpfs/users/user_01</span></code>. This specific example means that you are in the folder <code class="docutils literal notranslate"><span class="pre">user_01</span></code>, which is inside the folder <code class="docutils literal notranslate"><span class="pre">users</span></code>, which is inside the folder <code class="docutils literal notranslate"><span class="pre">gpfs</span></code>.</p></li>
+<li><p>To go back to your home (the path where you connect with the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> command), use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> (useful if you feel lost in your directory tree).</p></li>
+<li><p>To check the content of your present path, use the command <code class="docutils literal notranslate"><span class="pre">ls</span></code> (mnemonic <code class="docutils literal notranslate"><span class="pre">ls</span></code>: list)</p></li>
+<li><p>Similarly, you can check the content of another directory, e.g. with a path called <code class="docutils literal notranslate"><span class="pre">folder/subfolder</span></code>, using the command <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">folder/subfolder/</span></code></p></li>
+<li><p>To move to a specific path, e.g. <code class="docutils literal notranslate"><span class="pre">path/to/your/folder</span></code> use <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">path/to/your/folder</span></code> (mnemonic <code class="docutils literal notranslate"><span class="pre">cd</span></code>: change directory)</p></li>
+<li><p>To move up by one level from your present path, use the shortcut <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code></p></li>
+<li><p>To change the name of a file or directory, use <code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">old_name</span> <span class="pre">new_name</span></code> (mnemonic <code class="docutils literal notranslate"><span class="pre">mv</span></code>: move)</p></li>
+<li><p>To move a file/folder into a folder <code class="docutils literal notranslate"><span class="pre">move</span> <span class="pre">source</span> <span class="pre">destination_folder/</span></code>. The <cite>source</cite> can be a file or a folder.</p></li>
+<li><p><strong>Risky command</strong> To remove a file, use <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">filename</span></code> (mnemonic <code class="docutils literal notranslate"><span class="pre">rm</span></code>: remove). To remove an entire folder and its content, use <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">foldername</span></code> or <code class="docutils literal notranslate"><span class="pre">rmdir</span> <span class="pre">foldername</span></code>.</p></li>
+<li><p><strong>Warning</strong> This operation is irreversible!</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="b-how-to-prepare-a-simulation">
+<span id="sec13"></span><h2>B: How to prepare a simulation<a class="headerlink" href="#b-how-to-prepare-a-simulation" title="Link to this heading">¶</a></h2>
+<p>Each time an exercise asks to run a new simulation, it is recommended to
+create a new directory, where you will insert the required files and run this new simulation.
+This will ensure that no previous data is lost or overwritten.</p>
+<p>Following are the instructions to complete this process.</p>
+<ul class="simple">
+<li><p>Create a new simulation folder, for example called <code class="docutils literal notranslate"><span class="pre">simulation_folder_name</span></code> in your home directory, where you will run your simulation:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>simulation_folder_name
+<span class="nb">cd</span><span class="w"> </span>simulation_folder_name
+</pre></div>
+</div>
+<p>Each time you do it, choose a convenient name of the folder to
+remember which simulation it contains. In order to avoid overwriting data, it is recommended to create
+a new simulation folder for each simulation.</p>
+<ul class="simple">
+<li><p>Go inside the simulation folder, e.g. with the command <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">simulation_folder_name</span></code>.</p></li>
+<li><p>Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. <code class="docutils literal notranslate"><span class="pre">JJ_submission_script.sh</span></code>.</p></li>
+</ul>
+<p>You can transfer the file you already have in your home through  the comand <code class="docutils literal notranslate"><span class="pre">cp</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>~/TP-M2-GI/JJ_submission_script.sh<span class="w"> </span>~/simulation_folder_name/
+</pre></div>
+</div>
+<p>The last command will copy the file <code class="docutils literal notranslate"><span class="pre">~/TP-M2-GI/JJ_submission_script.sh</span></code> inside the folder called <code class="docutils literal notranslate"><span class="pre">simulation_folder_name</span></code> in your present working directory.</p>
+<ul class="simple">
+<li><p>Inside the simulation folder, you will need also the input file of your simulation <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>.
+A copy of the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code> should be in <code class="docutils literal notranslate"><span class="pre">~/TP-M2-GI</span></code>.
+To make a copy of this file in another folder you can use the <code class="docutils literal notranslate"><span class="pre">cp</span></code> command (add the source and destination paths), e.g.:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>~/TP-M2-GI/InputNamelist.py<span class="w"> </span>~/simulation_folder_name/
+</pre></div>
+</div>
+<p>Similarly, copy the <code class="docutils literal notranslate"><span class="pre">smilei</span></code> executable from the <code class="docutils literal notranslate"><span class="pre">~/TP-M2-GI</span></code> folder to your simulation directory.</p>
+</section>
+<hr class="docutils" />
+<section id="c-how-to-run-your-simulation">
+<h2>C: How to run your simulation<a class="headerlink" href="#c-how-to-run-your-simulation" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Check if you have all the required files
+(submission script <code class="docutils literal notranslate"><span class="pre">JJ_submission_script.sh</span></code>, input namelist <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>, executable <code class="docutils literal notranslate"><span class="pre">smilei</span></code>)
+through the command <code class="docutils literal notranslate"><span class="pre">ls</span></code>.</p></li>
+<li><p>Remember to uncomment the necessary variables and blocks as explained in the exercise before launching a simulation.</p></li>
+<li><p>Remember to set the variables to different values when asked by the exercise.</p></li>
+<li><p>Launch your simulation job:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jjsub<span class="w"> </span>JJ_submission_script.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To check the status (running/queueing etc) of your job:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jjstat<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<p>This should also return the number <code class="docutils literal notranslate"><span class="pre">JobId</span></code> of your job, necessary for the next command.</p>
+<ul class="simple">
+<li><p>To stop/delete your job from the queue (this operation is irreversible!):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jjdel<span class="w"> </span>JobId
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To read the end (command <code class="docutils literal notranslate"><span class="pre">tail</span></code>) of the log file <code class="docutils literal notranslate"><span class="pre">smilei.log</span></code> and let it refresh
+(option <code class="docutils literal notranslate"><span class="pre">-f</span></code>, e.g. if you want to watch your simulation execute for example):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail<span class="w"> </span>-f<span class="w"> </span>smilei.log
+</pre></div>
+</div>
+<p>Sometimes the simulation may seem stuck, normally this is just a lag of the system in displaying the log file.
+The combination <code class="docutils literal notranslate"><span class="pre">ctrl+C</span></code> will allow you to stop watching the file <code class="docutils literal notranslate"><span class="pre">smilei.log</span></code>.</p>
+<hr class="docutils" />
+</section>
+<section id="d-how-to-postprocess-your-simulation-results">
+<span id="postprocessing"></span><h2>D: How to postprocess your simulation results<a class="headerlink" href="#d-how-to-postprocess-your-simulation-results" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Open <code class="docutils literal notranslate"><span class="pre">IPython</span></code> (before, you will need to load the Python modules and define variables like how you did to compile the code, and be sure you have compiled <code class="docutils literal notranslate"><span class="pre">happi</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipython
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Import the libraries you need:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import<span class="w"> </span>happi
+import<span class="w"> </span>numpy<span class="w"> </span>as<span class="w"> </span>np
+import<span class="w"> </span>matplotlib.pyplot<span class="w"> </span>as<span class="w"> </span>plt
+</pre></div>
+</div>
+<p>The output files have the extension <code class="docutils literal notranslate"><span class="pre">.h5</span></code> and can be opened  with the postprocessing library <code class="docutils literal notranslate"><span class="pre">happi</span></code>. You will need also the
+file <code class="docutils literal notranslate"><span class="pre">smilei.py</span></code>, generated at the start of your simulation.</p>
+<ul class="simple">
+<li><p>Open your simulation:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>happi.Open<span class="o">(</span><span class="s2">&quot;eaxmple/path/to/my/results&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>If you use simply</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>happi.Open<span class="o">()</span>
+</pre></div>
+</div>
+<p>without specifying a path, the library <code class="docutils literal notranslate"><span class="pre">happi</span></code> open the results inside the current working directory.</p>
+<p>For your convenience and quick reference, some of the most commonly used commands of <code class="docutils literal notranslate"><span class="pre">happi</span></code> are reported.
+Do not hesitate to copy and paste the following commands in <code class="docutils literal notranslate"><span class="pre">IPython</span></code> and adapt them to the problem you are solving.</p>
+<p>Remember that the results are in normalized units, but you can specify also SI units for the plot.</p>
+</section>
+<section id="d-02-open-a-simulation">
+<h2>D.02: Open a simulation<a class="headerlink" href="#d-02-open-a-simulation" title="Link to this heading">¶</a></h2>
+<p>To import the library <code class="docutils literal notranslate"><span class="pre">happi</span></code> in <code class="docutils literal notranslate"><span class="pre">IPython</span></code> and open a simulation in the folder, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;path/to/simulation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this specific example the folder’s path is called for example <code class="docutils literal notranslate"><span class="pre">&quot;path/to/simulation&quot;</span></code>
+(use the path of your simulation instead!).</p>
+<p>Using instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>will open the simulation in your current path. If you are not in a simulation folder,
+an error message will be displayed.</p>
+<p>The last command will create an object called <code class="docutils literal notranslate"><span class="pre">S</span></code>, our simulation,
+which contains all the necessary data, taken from the input namelist and from the
+output files.</p>
+<p>You can easily access parameters from the input namelist, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">dx</span>
+<span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">Main</span><span class="o">.</span><span class="n">geometry</span>
+</pre></div>
+</div>
+<p>In general, if you tap <code class="docutils literal notranslate"><span class="pre">S.</span></code> or add the name of the blocks and then use the tab key,
+you will see the available blocks and variables.</p>
+</section>
+<section id="d-03-plot-diagnostic-outputs">
+<h2>D.03: Plot diagnostic outputs<a class="headerlink" href="#d-03-plot-diagnostic-outputs" title="Link to this heading">¶</a></h2>
+<p>To open a specific diagnostic, like the <code class="docutils literal notranslate"><span class="pre">Probe1</span></code> defined in the namelist,
+and plot the longitudinal electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> contained in that diagnostic, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Other physical fields defined on the grid that you can plot are for example <code class="docutils literal notranslate"><span class="pre">Ey</span></code>
+(the electric field component in the <cite>y</cite> direction),
+<code class="docutils literal notranslate"><span class="pre">Rho</span></code> (the charge density). Remember that you can also specify operations
+on the fields, like <code class="docutils literal notranslate"><span class="pre">2.*Ey-Ex</span></code>, when you declare your variable.</p>
+<p>By default, the last command will only plot the requested field obtained
+in the last simulation output available for that diagnostic.
+You may instead be interested in a specific iteration of the simulation (in code units),
+like iteration 1200. To plot only that timestep, just specify it inside the diagnostic block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Remember that this timestep corresponds to physical time <code class="docutils literal notranslate"><span class="pre">1200*dt</span></code>, where <code class="docutils literal notranslate"><span class="pre">dt</span></code>
+is the simulation timestep, which can be found with <code class="docutils literal notranslate"><span class="pre">dt=S.namelist.Main.timestep</span></code>.</p>
+<p>To know which iterations are available in your diagnostic, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getAvailableTimesteps</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="d-04-specifying-the-physical-units">
+<h2>D.04: Specifying the physical units<a class="headerlink" href="#d-04-specifying-the-physical-units" title="Link to this heading">¶</a></h2>
+<p>The code, including its outputs, uses normalized units.
+You can specify the units you want to use, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="d-05-visualize-multiple-timesteps">
+<h2>D.05: Visualize multiple timesteps<a class="headerlink" href="#d-05-visualize-multiple-timesteps" title="Link to this heading">¶</a></h2>
+<p>Normally you have a sequence of outputs, so you may want to see an animation
+of the outputs or to be able to slide between the saved timesteps.
+It is possible to do it with these commands respectively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="p">()</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">slide</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the last case, just slide with the horizontal bar to see the evolution of the plotted quantity at
+different iterations.</p>
+</section>
+<section id="d-06-modify-elements-of-the-plot">
+<h2>D.06: Modify elements of the plot<a class="headerlink" href="#d-06-modify-elements-of-the-plot" title="Link to this heading">¶</a></h2>
+<p>Like in Python, you may be interested into specifying the figure number,
+or change the colormap, or specifying a maximum or minimum value plotted.
+You can include the same corresponding keywords inside the plot/animate/slide command.
+As an example where all these elements are specified:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;seismic&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="d-07-plot-multiple-lines-in-the-same-window">
+<span id="multilines"></span><h2>D.07: Plot multiple lines in the same window<a class="headerlink" href="#d-07-plot-multiple-lines-in-the-same-window" title="Link to this heading">¶</a></h2>
+<p>You may be interested in visualizing multiple curves in the same plot window.
+Then the command <code class="docutils literal notranslate"><span class="pre">happi.multiPlot</span></code> is what you need.</p>
+<p>For example, if you want to plot two quantities from the same simulation,
+scaling them through multiplying factors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;example/path/to/simulation&quot;</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;0.1*Ex&quot;</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;E&quot;</span><span class="p">)</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;-10.*Rho&quot;</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;charge density&quot;</span><span class="p">)</span>
+<span class="n">happi</span><span class="o">.</span><span class="n">multiPlot</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">figure</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The previous example draws two curves, but you can use <code class="docutils literal notranslate"><span class="pre">multiPlot</span></code> to plot more curves.</p>
+<p>Note that you can plot also different timesteps from the same simulation with the same procedure.
+Similarly, you can plot two quantities from two or more simulations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="n">S1</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;example/path/to/simulation1&quot;</span><span class="p">)</span>
+<span class="n">Ex1</span> <span class="o">=</span> <span class="n">S1</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">S2</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;example/path/to/simulation2&quot;</span><span class="p">)</span>
+<span class="n">Ex2</span> <span class="o">=</span> <span class="n">S2</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">happi</span><span class="o">.</span><span class="n">multiPlot</span><span class="p">(</span><span class="n">Ex1</span><span class="p">,</span><span class="n">Ex2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is an equivalent of <code class="docutils literal notranslate"><span class="pre">multiPlot()</span></code> for the <code class="docutils literal notranslate"><span class="pre">slide()</span></code> command,
+often used to study the evolution of two quantities in the same window.
+Its name is <code class="docutils literal notranslate"><span class="pre">multiSlide()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="n">S1</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;example/path/to/simulation1&quot;</span><span class="p">)</span>
+<span class="n">Ex1</span> <span class="o">=</span> <span class="n">S1</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">S2</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;example/path/to/simulation2&quot;</span><span class="p">)</span>
+<span class="n">Ex2</span> <span class="o">=</span> <span class="n">S2</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">happi</span><span class="o">.</span><span class="n">multiPlot</span><span class="p">(</span><span class="n">Ex1</span><span class="p">,</span><span class="n">Ex2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="d-08-export-the-data">
+<h2>D.08: Export the data<a class="headerlink" href="#d-08-export-the-data" title="Link to this heading">¶</a></h2>
+<p>Those shown above are all the <code class="docutils literal notranslate"><span class="pre">happi</span></code> commands you may need for this practical.
+If you prefer instead to analyze your results with <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays in Python,
+you can easily export your diagnostic to a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;path/to/simulation&quot;</span><span class="p">)</span>
+<span class="n">myArrayVariable</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span>
+<span class="n">myArrayVariable</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span>
+<span class="n">myArrayVariable</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">myArrayVariable</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In case you want to export the data to a text file <code class="docutils literal notranslate"><span class="pre">.txt</span></code> and read it with
+another language, you can write this array on a text file using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s2">&quot;file_name.txt&quot;</span><span class="p">,</span> <span class="n">myArrayVariable</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="site.html">Site index</a>
+      </div>
+      <div>
+        Last updated on Nov 07, 2025
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      </div>
+      
+      <div>
+      <a href="_sources/useful_tools.rst.txt"
+          rel="nofollow">Page source</a></li>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

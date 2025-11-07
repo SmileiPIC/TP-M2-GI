@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+
+<html lang="English" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Exercises &#8212; TP-M2-GI_doc 1. documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/smilei_theme.css?v=163298f0" />
+    <script src="_static/documentation_options.js?v=11a3a430"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Appendix: Cheatsheet" href="useful_tools.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="introduction.html#summary-of-this-practical">Summary of this practical</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#prerequisites">Prerequisites</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#some-clarifications">Some clarifications</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#a-quick-word-on-smilei">A quick word on Smilei</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#acknowledgements">Acknowledgements</a>
+                </li>
+                <li class="outer">
+                    <a href="introduction.html#references">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="#tips-for-the-exercises">Tips for the exercises</a>
+                </li>
+                <li class="outer">
+                    <a href="#exploring-the-input-namelist">Exploring the input namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                </li>
+                <li class="outer">
+                    <a href="#laser-wakefield-excitation">Laser wakefield excitation</a>
+                </li>
+                <li class="outer">
+                    <a href="#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="useful_tools.html">Appendix: Cheatsheet</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-02-open-a-simulation">D.02: Open a simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                </li>
+                <li class="outer">
+                    <a href="useful_tools.html#d-08-export-the-data">D.08: Export the data</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Exercises</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Exercises</a><ul>
+<li><a class="reference internal" href="#tips-for-the-exercises">Tips for the exercises</a></li>
+<li><a class="reference internal" href="#exploring-the-input-namelist">Exploring the input namelist</a></li>
+<li><a class="reference internal" href="#laser-pulse-in-vacuum">Laser pulse in vacuum</a></li>
+<li><a class="reference internal" href="#laser-wakefield-excitation">Laser wakefield excitation</a></li>
+<li><a class="reference internal" href="#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img class="logo" src="_static/smileiLogo.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Introduction"
+            
+        >
+            <div id="menuButton_Introduction" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Introduction')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="introduction.html">
+                    <span>Introduction</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Introduction',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="introduction.html#summary-of-this-practical">Summary of this practical</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#prerequisites">Prerequisites</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#some-clarifications">Some clarifications</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#a-quick-word-on-smilei">A quick word on Smilei</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#acknowledgements">Acknowledgements</a>
+                        </li>
+                        <li class="outer">
+                            <a href="introduction.html#references">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menu"
+            id="menu_Exercises"
+            
+        >
+            <div id="menuButton_Exercises" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Exercises')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="#">
+                    <span>Exercises</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Exercises',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="#tips-for-the-exercises">Tips for the exercises</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#exploring-the-input-namelist">Exploring the input namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#laser-pulse-in-vacuum">Laser pulse in vacuum</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#laser-wakefield-excitation">Laser wakefield excitation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="#laser-wakefield-acceleration-of-an-electron-bunch">Laser wakefield acceleration of an electron bunch</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_References"
+            
+        >
+            <div id="menuButton_References" class="menuButton"
+                 onmouseenter="prepareMenu('menu_References')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="#references">
+                    <span>References</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_References',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="useful_tools.html">Appendix: Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#a-command-line-terminal-cheatsheet">A: Command Line Terminal Cheatsheet</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#b-how-to-prepare-a-simulation">B: How to prepare a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#c-how-to-run-your-simulation">C: How to run your simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-how-to-postprocess-your-simulation-results">D: How to postprocess your simulation results</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-02-open-a-simulation">D.02: Open a simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-03-plot-diagnostic-outputs">D.03: Plot diagnostic outputs</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-04-specifying-the-physical-units">D.04: Specifying the physical units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-05-visualize-multiple-timesteps">D.05: Visualize multiple timesteps</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-06-modify-elements-of-the-plot">D.06: Modify elements of the plot</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-07-plot-multiple-lines-in-the-same-window">D.07: Plot multiple lines in the same window</a>
+                        </li>
+                        <li class="outer">
+                            <a href="useful_tools.html#d-08-export-the-data">D.08: Export the data</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="10" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="10" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">¶</a></h1>
+<section id="tips-for-the-exercises">
+<span id="warningexercises"></span><h2>Tips for the exercises<a class="headerlink" href="#tips-for-the-exercises" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Organization</strong>: you will soon arrive to exercises that ask to run one or more simulations.
+To avoid overwriting previous simulation data, and to avoid forgetting where previous simulations were run
+(especially if you want to recheck your answers), create a new folder for each simulation,
+giving it a meaningful name, and keeping your data space organized.
+If it helps, you may also take notes on the path of the folders to remember where each simulation was run.</p></li>
+<li><p><strong>Read the namelist</strong>: the comments in the namelist and the defined variables contain also useful information for exercises.</p></li>
+<li><p><strong>Read again the practical presentation</strong>: some of the explained concepts may help you during the exercises.</p></li>
+<li><p><strong>Parallelizing the simulations</strong>: While working on a supercomputer, normally to launch a new simulation you don't have to wait for the last one you have launched to be complete.
+If no computing resources are available yet, the newly launched simulations will wait in the queue.</p></li>
+<li><p><strong>Questions? Doubts?</strong> Ask the instructor!</p></li>
+</ul>
+</section>
+<section id="exploring-the-input-namelist">
+<span id="exploringthenamelist"></span><h2>Exploring the input namelist<a class="headerlink" href="#exploring-the-input-namelist" title="Link to this heading">¶</a></h2>
+<p>To run a simulation, you need to specify the phenomena it will describe and
+the numerical parameters to study your case, e.g. the resolution, the integration timestep, the grid size,
+in an input file, in this case called <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>.</p>
+<p>In the next few exercises we will understand the basic set-up of a simulation described this file.</p>
+<p>One of the first variables we define in this simulation is the <code class="docutils literal notranslate"><span class="pre">lambda0</span></code>, i.e. the laser carrier frequency
+<span class="math notranslate nohighlight">\(\lambda_0\)</span>.</p>
+<div class="admonition-exercise-1 admonition" id="exercise1">
+<p class="admonition-title">Exercise 1</p>
+<p>Assuming <span class="math notranslate nohighlight">\(\lambda_0=0.8 \mu m\)</span> (a Ti:Sa laser system), what is the value of the critical density <span class="math notranslate nohighlight">\(n_c\)</span>?</p>
+<p>What is the value of the reference electric field <span class="math notranslate nohighlight">\(E_0=(2\pi m_e c^2)/(e\lambda_0)\)</span>?</p>
+<p>This choice of <span class="math notranslate nohighlight">\(\lambda_0\)</span> will be used throughout all subsequent exercises.</p>
+<p><strong>Hint</strong>: Some lines at the start of the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code> file can help you in the calculations.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code> file starts with the definition of physical constants and units,
+mesh points, integration timestep, etc.
+Some of these parameters are inserted in the first block of the simulation, called <code class="docutils literal notranslate"><span class="pre">Main</span></code> block.
+Others may be useful for conversions between units or to define other variables in the file.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Main</span></code> block, you will also find the geometry of the simulation, which is <code class="docutils literal notranslate"><span class="pre">AMcylindrical</span></code>.
+The grid where Maxwell's equations are solved is defined on a cylindrical space and with cylindrical coordinates <cite>x</cite>, <cite>r</cite>, but the particles move in the 3D space
+<cite>x</cite>, <cite>y</cite>, <cite>z</cite> (See <a class="reference internal" href="#mesh-and-reference"><span class="std std-ref">Fig. 1</span></a>).
+The use of cylindrical coordinates with cylindrical symmetry enables quick
+simulations with accuracy comparable to 3D simulations.</p>
+<p>Note a block called <code class="docutils literal notranslate"><span class="pre">MovingWindow</span></code> in the <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py">InputNamelist.py</a>.
+In the physical case being considered, a laser pulse with duration of tens
+of femtoseconds propagating along the positive <cite>x</cite> direction is simulated.
+We are only interested in phenomena near the laser pulse
+(within tens of microns), like plasma wave excitation, so a <code class="docutils literal notranslate"><span class="pre">Moving</span> <span class="pre">Window</span></code> is defined,
+which emulates a camera moving at the speed
+we want, along the positive <cite>x</cite> direction.
+In this physical case, the moving window speed is set to <cite>c</cite> to follow the laser. As a result,
+the laser pulse is almost immobile in the simulation window.</p>
+<figure class="align-default" id="id12">
+<span id="mesh-and-reference"></span><a class="reference internal image-reference" href="_images/Mesh_and_Reference.png"><img alt="_images/Mesh_and_Reference.png" src="_images/Mesh_and_Reference.png" style="width: 15cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Reference axes of the simulation. The simulation window corresponds to the cylinder with radius <code class="docutils literal notranslate"><span class="pre">Lr</span></code> and length <code class="docutils literal notranslate"><span class="pre">Lx</span></code>.</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id13">
+<span id="schema-simulation-0"></span><a class="reference internal image-reference" href="_images/Schema_Simulation_0.png"><img alt="_images/Schema_Simulation_0.png" src="_images/Schema_Simulation_0.png" style="width: 15cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Simulation set-up at the start of the simulation in this Section (not to scale)</span><a class="headerlink" href="#id13" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition-exercise-2 admonition" id="exercise2">
+<p class="admonition-title">Exercise 2</p>
+<p>What are the longitudinal size <code class="docutils literal notranslate"><span class="pre">Lx</span></code> and radial size <code class="docutils literal notranslate"><span class="pre">Lr</span></code> of the simulation window?</p>
+<p>How many mesh points <code class="docutils literal notranslate"><span class="pre">nx</span></code> and <code class="docutils literal notranslate"><span class="pre">nr</span></code> are used in the longitudinal and radial directions?</p>
+<p>What is the resolution <code class="docutils literal notranslate"><span class="pre">dx</span></code> and <code class="docutils literal notranslate"><span class="pre">dr</span></code> in the longitudinal and radial directions?</p>
+<p>See Figures <a class="reference internal" href="#mesh-and-reference"><span class="std std-ref">1</span></a> and, <a class="reference internal" href="#schema-simulation-0"><span class="std std-ref">2</span></a> for reference, and find these lengths in the <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py">InputNamelist.py</a>.</p>
+<p><strong>Note</strong>: executing the namelist lines defining the variables <code class="docutils literal notranslate"><span class="pre">Lx</span></code> and <code class="docutils literal notranslate"><span class="pre">Lr</span></code> will give their values in normalized units, not in physical units.</p>
+</div>
+<p>At the end of the <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py">InputNamelist.py</a> file,
+there are blocks starting with the word <code class="docutils literal notranslate"><span class="pre">Diag</span></code>.
+These blocks are for the diagnostics/outputs of the code.
+The first Diag is a <code class="docutils literal notranslate"><span class="pre">DiagProbe</span></code> defined on a line
+(so a 1D diagnostic), on the propagation axis of the laser (the <cite>x</cite> axis).
+This diagnostic returns the value of some physical fields
+along that axis. We call this probe <code class="docutils literal notranslate"><span class="pre">Probe0</span></code> (the <code class="docutils literal notranslate"><span class="pre">0</span></code> because
+it is the first <code class="docutils literal notranslate"><span class="pre">Probe</span></code> in the namelist). The second diagnostic block is
+a <code class="docutils literal notranslate"><span class="pre">DiagProbe</span></code> defined on the plane <cite>xy</cite> (so a 2D diagnostic).
+This is the second probe of the namelist, so it is called <code class="docutils literal notranslate"><span class="pre">Probe1</span></code>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="laser-pulse-in-vacuum">
+<span id="laserpulseinvacuum"></span><h2>Laser pulse in vacuum<a class="headerlink" href="#laser-pulse-in-vacuum" title="Link to this heading">¶</a></h2>
+<p>Everything is ready to run your first simulation.
+We will start adding a laser pulse propagating in vacuum, along the positive <code class="docutils literal notranslate"><span class="pre">x</span></code> direction.</p>
+<p><strong>Action</strong>: in the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code> file, uncomment the lines
+with the laser pulse parameters and the <code class="docutils literal notranslate"><span class="pre">LaserEnvelopeGaussian</span></code> block.
+Afterwards, launch the simulation.</p>
+<p>This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam <a class="reference internal" href="#siegman" id="id3"><span>[Siegman]</span></a>,
+with a carrier wavelength <span class="math notranslate nohighlight">\(\lambda_0 = 0.8 \mu m\)</span>.
+The considered pulse also has Gaussian temporal profile, whose FWHM length is much larger
+than the laser carrier wavelength <span class="math notranslate nohighlight">\(\lambda_0\)</span>, defined in the variable <code class="docutils literal notranslate"><span class="pre">lambda0</span></code> (see <a class="reference internal" href="#laser-figure"><span class="std std-ref">Fig. 3</span></a>).
+The laser transverse electric field is linearly polarized in the <code class="docutils literal notranslate"><span class="pre">y</span></code> direction.</p>
+<figure class="align-default" id="id14">
+<span id="laser-figure"></span><a class="reference internal image-reference" href="_images/Laser_definition.png"><img alt="_images/Laser_definition.png" src="_images/Laser_definition.png" style="width: 13cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Definition of the laser parameters (not to scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. All quantities are in normalized units (e.g. <span class="math notranslate nohighlight">\(\lambda_0/2\pi\)</span> for the lengths, <span class="math notranslate nohighlight">\(m_e\omega_0c/e\)</span> for the fields).</span><a class="headerlink" href="#id14" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The simulation now includes a moving window and a laser pulse, as in <a class="reference internal" href="#schema-simulation-1"><span class="std std-ref">Fig. 4</span></a>.</p>
+<figure class="align-default" id="id15">
+<span id="schema-simulation-1"></span><a class="reference internal image-reference" href="_images/Schema_Simulation_1.png"><img alt="_images/Schema_Simulation_1.png" src="_images/Schema_Simulation_1.png" style="width: 15cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Simulation set-up at the start of the simulation(s) in this Section (not to scale).</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Note:</strong>  an envelope model is used to describe the laser pulse, as described in <a class="reference internal" href="#massimo" id="id4"><span>[Massimo]</span></a>.
+Therefore, the laser field and the electromagnetic fields it will excite in the plasma
+will not show the high frequency oscillations.
+The absolute value of the complex envelope of the laser transverse electric field is contained in the field <code class="docutils literal notranslate"><span class="pre">Env_E_abs</span></code>.</p>
+<div class="admonition-exercise-3 admonition" id="exercise3">
+<p class="admonition-title">Exercise 3</p>
+<p>Find the laser pulse parameters in the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>.</p>
+<p>What are the waist size, FWHM duration in field, and FWHM duration in intensity of the laser pulse?</p>
+<p>Normally the duration of laser pulses is experimentally characterized by its FWHM in intensity, but the <code class="docutils literal notranslate"><span class="pre">Laser...</span></code> block in the namelist
+defines a quantity associated with the laser field.</p>
+<p><strong>Hint</strong>: for a Gaussian temporal profile, the FWHM duration in intensity is <span class="math notranslate nohighlight">\(1./\sqrt{2}\)</span> times the FWHM duration in field.</p>
+<p>In the simulation window, what is the <code class="docutils literal notranslate"><span class="pre">x_center_laser</span></code> coordinate of the center of the laser pulse at the start of the simulation?</p>
+<p>Where is the focal plane of the laser pulse (variable <code class="docutils literal notranslate"><span class="pre">x_focus_laser</span></code>)?</p>
+<p><strong>Note</strong>: executing the namelist lines defining these variables will give their values in normalized units, not in physical units.</p>
+</div>
+<div class="admonition-exercise-4 admonition" id="exercise4">
+<p class="admonition-title">Exercise 4</p>
+<p>The normalized laser peak field is given by <span class="math notranslate nohighlight">\(a_0 = eE/m_e\omega_0c\)</span>,
+where <span class="math notranslate nohighlight">\(E\)</span> is the laser electric field peak and <span class="math notranslate nohighlight">\(\omega_0 = 2\pi c/\lambda_0\)</span>
+is the laser central frequency (<span class="math notranslate nohighlight">\(\lambda_0 = 0.8 \mu m\)</span>.)</p>
+<p>Using the laser <span class="math notranslate nohighlight">\(a_0\)</span> set in the namelist for the calculations,
+what is the laser peak averaged intensity <span class="math notranslate nohighlight">\(I = c\varepsilon_0 |E|^2/2\)</span> of the laser pulse?</p>
+<p><strong>Hint</strong>: the input namelist contains the physical quantities that you may
+need for the conversions.</p>
+</div>
+<p><strong>Action</strong>: When the simulation is completed (the word <code class="docutils literal notranslate"><span class="pre">END</span></code> should appear in the log file), open <code class="docutils literal notranslate"><span class="pre">IPython</span></code> with the command <code class="docutils literal notranslate"><span class="pre">ipython</span></code>.
+Then, you can check the initial position of the laser through the commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span> <span class="o">=</span> <span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;TV/m&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">)</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;TV/m&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Probe0</span></code> is a 1D diagnostic defined on the laser propagation axis, while <code class="docutils literal notranslate"><span class="pre">Probe1</span></code> is a
+2D diagnostic defined on the plane <span class="math notranslate nohighlight">\(xy\)</span>. Note that in the commands we have specified
+<code class="docutils literal notranslate"><span class="pre">timesteps=0</span></code> to see the laser pulse at the start of the simulation.</p>
+<p>Check that the initial laser position that you are seeing is the same specified
+in the input namelist. Remember that the laser pulse is modeled through its envelope,
+so you can not see its high frequency oscillations with wavelength <span class="math notranslate nohighlight">\(\lambda_0\)</span>.</p>
+<p>We can study the laser diffraction in vacuum. To see the evolution of the laser, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;TV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>You can move the horizontal time bar to see the snapshots at different iterations.
+Note that the Moving Window makes the laser seem immobile in the simulation,
+but it is moving at speed <cite>c</cite> in vacuum, and the Moving Window is following it with the same speed.</p>
+<p>If you do not specify a <code class="docutils literal notranslate"><span class="pre">vmax</span></code> value (the colorbar maximum) in the previous command,
+<code class="docutils literal notranslate"><span class="pre">happi</span></code> will change it at each iteration. To better see the laser diffraction,
+try to specify a colormap maximum with <code class="docutils literal notranslate"><span class="pre">vmax</span></code>. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;TV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-exercise-5 admonition" id="exercise5">
+<p class="admonition-title">Exercise 5</p>
+<p>In the this exercise we will check that the Gaussian laser pulse diffracts following
+the theory for a Gaussian beam <a class="reference internal" href="#siegman" id="id5"><span>[Siegman]</span></a>: <span class="math notranslate nohighlight">\(w(x) = w_0\sqrt{1 + (x-x_{focus})^2/x^2_R }\)</span>,
+where <span class="math notranslate nohighlight">\(w_0\)</span> is the laser waist size at the focal plane position <span class="math notranslate nohighlight">\(x_{focus}\)</span>, <span class="math notranslate nohighlight">\(w(x)\)</span> the laser
+waist size at propagation distance <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(x_R\)</span> is the Rayleigh length
+<span class="math notranslate nohighlight">\(x_R = \pi w_0^2/\lambda_0\)</span>.</p>
+<p>In our case, what is the theoretical Rayleigh length <span class="math notranslate nohighlight">\(x_R\)</span>?</p>
+<p><strong>Action</strong>: Use the script <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Laser_waist_theory_vs_Smilei.py">Laser_waist_theory_vs_Smilei.py</a>
+to compare the analytical diffraction law for <span class="math notranslate nohighlight">\(w(x)\)</span> and the laser waist extracted from your Particle-in-Cell (PIC) simulations results.
+Copy the script in the simulation folder or call the script from that folder.
+The script loads the field quantities on the plane <code class="docutils literal notranslate"><span class="pre">xy</span></code>, then loops over the iterations available in output
+and computes the laser pulse waist <span class="math notranslate nohighlight">\(w(x)\)</span> along that plane as</p>
+<div class="math notranslate nohighlight" id="equation-azimuthaldecomposition1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-azimuthaldecomposition1" title="Link to this equation">¶</a></span>\[w(x) = 2\sqrt{\frac{\int\int y^2 |\tilde{A}(x,y)|^2~dx~dy}{\int\int |\tilde{A}(x,y)|^2~dx~dy}},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{A}\)</span> is the complex envelope of the laser transverse vector potential.</p>
+<p>After this calculation, the simulated waist is compared to the corresponding analytical value.</p>
+<p>Run the script (from <code class="docutils literal notranslate"><span class="pre">IPython</span></code> use <code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">Laser_waist_theory_vs_Smilei.py</span></code>)
+to plot the comparison and include the image in your answers.</p>
+</div>
+<div class="admonition-exercise-6 admonition" id="exercise6">
+<p class="admonition-title">Exercise 6</p>
+<p>We are using boundary conditions called Perfectly Matched Layers to prevent unphysical field reflections
+at the borders of the simulation window, but no numerical boundary condition can perfectly absorb a laser which
+does not fit in the window from the start. All PIC codes have the habit of running without telling you if something unphysical
+happens, so we often need to check if unphysical phenomena are occurring in the simulation.</p>
+<p><strong>Action</strong>: in another folder, run the same simulation, but with a smaller simulation window.
+Change the variable <code class="docutils literal notranslate"><span class="pre">nr</span></code> to 64 at the start of the namelist, to simulate what would have happened if we had
+chosen a window size too small compared to the laser transverse size.
+What is the resulting transverse size <code class="docutils literal notranslate"><span class="pre">Lr</span></code> of the new window?
+Use again the script of the previous exercise to compare the results with the theory and include the image in your answers.</p>
+<p>How do you explain the results?</p>
+<p><strong>Hint</strong>: Use again the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;TV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>and include a clarifying image in your answer.</p>
+<p>In the following exercises, use again the original value of <code class="docutils literal notranslate"><span class="pre">nr</span></code>.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="laser-wakefield-excitation">
+<span id="plasmawave"></span><h2>Laser wakefield excitation<a class="headerlink" href="#laser-wakefield-excitation" title="Link to this heading">¶</a></h2>
+<p>Now we will add a preionized hydrogen plasma to excite plasma waves in the wake of the laser pulse.
+The laser pulse is considered intense enough to assume that the hydrogen gas was already ionized, much
+before the arrival of the laser pulse peak (see the laser intensity computed
+in <a class="reference internal" href="#exercise3"><span class="std std-ref">Exercise 3</span></a>).</p>
+<p><strong>Action</strong>: Uncomment the first <code class="docutils literal notranslate"><span class="pre">Species</span></code> block, the related variable definitions and
+take some time to read them carefully.</p>
+<p>This block defines a particle <code class="docutils literal notranslate"><span class="pre">Species</span></code>
+in the simulation, whose name is <code class="docutils literal notranslate"><span class="pre">plasmaelectrons</span></code>. Note the normalized mass
+and normalized charge of these particles defined in this block (<code class="docutils literal notranslate"><span class="pre">1.0</span></code> and <code class="docutils literal notranslate"><span class="pre">-1.0</span></code> respectively).
+Since the normalizing mass and charge are the electron mass and the unit charge,
+we know that these particles are electrons.</p>
+<p>After a short linear ramp, the plasma density profile
+is uniform for one millimetre in the <cite>x</cite> direction and within a distance <code class="docutils literal notranslate"><span class="pre">Radius_plasma=30</span></code> <span class="math notranslate nohighlight">\(μm\)</span>
+from the laser's propagation axis.</p>
+<p>Therefore, now the simulation includes a moving window, a laser pulse (modeled by its complex envelope)
+and electron plasma, as represented in <a class="reference internal" href="#schema-simulation-2"><span class="std std-ref">Fig. 5</span></a>.</p>
+<figure class="align-default" id="id16">
+<span id="schema-simulation-2"></span><a class="reference internal image-reference" href="_images/Schema_Simulation_2.png"><img alt="_images/Schema_Simulation_2.png" src="_images/Schema_Simulation_2.png" style="width: 15cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Simulation Setup at the start of the simulation(s) in this Section (not to scale).</span><a class="headerlink" href="#id16" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition-exercise-7 admonition" id="exercise7">
+<p class="admonition-title">Exercise 7</p>
+<p>As you can see, the plasma density has a value
+<span class="math notranslate nohighlight">\(n_0 = 10^{18} electrons/cm^{3}\)</span>.</p>
+<p>What is the ratio between the plasma density and the critical density (computed for <a class="reference internal" href="#exercise1"><span class="std std-ref">Exercise 1</span></a>)?</p>
+<p>Is it an underdense or overdense plasma?</p>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">particles_per_cell</span></code> of the <code class="docutils literal notranslate"><span class="pre">Species</span></code> block with <code class="docutils literal notranslate"><span class="pre">name=&quot;plasmaelectrons&quot;</span></code>
+contains the number of macro-particles per cell of that <code class="docutils literal notranslate"><span class="pre">Species</span></code>. Using this number, and the total number of mesh cells
+in the simulation window (see <a class="reference internal" href="#exercise2"><span class="std std-ref">Exercise 2</span></a>), can you estimate how many macro-particles
+would be simulated in the simulation window if it was filled by uniformly distributed macro-particles?</p>
+<p>This simulation is uses a cylindrical grid, simulating only the half-plane <span class="math notranslate nohighlight">\(r&gt;0\)</span>.
+Using the same <code class="docutils literal notranslate"><span class="pre">particles_per_cell</span></code> and again a simulation window uniformly filled of macro-particles,
+how many macro-particles would be contained in a 3D simulation window with the same resolution of this namelist
+in the longitudinal and transverse directions, and with size <code class="docutils literal notranslate"><span class="pre">Lx</span></code>, <code class="docutils literal notranslate"><span class="pre">2*Lr</span></code>, and <code class="docutils literal notranslate"><span class="pre">2*Lr</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">z</span></code> directions?</p>
+<p>(This answer may give a clue on why simulations in cylindrical geometry are generally faster ...)</p>
+</div>
+<p>As we did with in <a class="reference internal" href="#exercise6"><span class="std std-ref">Exercise 6</span></a> for the laser pulse in vacuum,
+the first step to check our results is to verify that the plasma behaves as predicted by
+the analytical theory. If we reduce the laser pulse <code class="docutils literal notranslate"><span class="pre">a0</span></code> to <code class="docutils literal notranslate"><span class="pre">0.01</span></code>,
+the laser pulse satisfy the conditions for the applicability of the
+1D linear theory of plasma wave excitation.</p>
+<div class="admonition-exercise-8 admonition" id="exercise8">
+<p class="admonition-title">Exercise 8</p>
+<p>The analytical 1D linear theory (which can be applied in our case for <span class="math notranslate nohighlight">\(a_0 \ll 1\)</span>) predicts the formation of a sinusoidal wave
+at plasma frequency <span class="math notranslate nohighlight">\(\omega_p^2 = e^2n_0/m_e\varepsilon_0\)</span> behind the laser,
+where <span class="math notranslate nohighlight">\(n_0\)</span> is the plasma density.</p>
+<p><strong>Action</strong>: Launch the simulation with <span class="math notranslate nohighlight">\(a_0 = 0.01\)</span> (you will need to change this variable in the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>).
+Study the evolution of the electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> with the diagnostics <code class="docutils literal notranslate"><span class="pre">Probe0</span></code> and <code class="docutils literal notranslate"><span class="pre">Probe1</span></code>.
+You can use the same plot commands of the previous section, but applied to <code class="docutils literal notranslate"><span class="pre">Ex</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Env_E_abs</span></code>,
+for example with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span> <span class="p">);</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>If the second command does not show a meaningful image, try to add <code class="docutils literal notranslate"><span class="pre">vmin</span></code> and <code class="docutils literal notranslate"><span class="pre">vmax</span></code> values in the <code class="docutils literal notranslate"><span class="pre">slide(...)</span></code> command.
+You can have an idea of what values you may use by looking at the figure from the first plot command, that creates a 1D plot.</p>
+<p>What is the theoretical plasma wavelength <span class="math notranslate nohighlight">\(\lambda_p = 2\pi c/\omega_p\)</span>?</p>
+<p>What is the plasma wavelength that can be estimated from the simulation results?</p>
+<p><strong>Note</strong> an estimate inferred from the 1D plot is sufficient for the purposes of this practical.</p>
+</div>
+<div class="admonition-exercise-9 admonition" id="exercise9">
+<p class="admonition-title">Exercise 9</p>
+<p>The longitudinal electric field on the axis of this linear
+plasma wave, according to the 1D linear theory <a class="reference internal" href="introduction.html#esarey2009" id="id6"><span>[Esarey2009]</span></a> applied to the considered case,
+is given by (in physical units):</p>
+<div class="math notranslate nohighlight" id="equation-lineartheory">
+<span id="lineartheory"></span><span class="eqno">(2)<a class="headerlink" href="#equation-lineartheory" title="Link to this equation">¶</a></span>\[E_x(x,r = 0) = \frac{m_e}{e}\frac{\omega^2_p}{4}\int_x^{+\infty}|A(x,r = 0)|^2 cos[\omega_p(x−x')]dx'.\]</div>
+<p><strong>Action</strong>: Use the script <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Ex_linear_theory_vs_Smilei.py">Ex_linear_theory_vs_Smilei.py</a>
+to compare the analytical result given by <a class="reference internal" href="#lineartheory"><span class="std std-ref">Eq. (2)</span></a> and
+the simulated results (<code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">Ex_linear_theory_vs_Smilei.py</span></code> on <code class="docutils literal notranslate"><span class="pre">IPython</span></code>).
+Again, you will need to copy the script in the simulation folder or to call it from there.</p>
+<p>Does the simulation agree with theory? Include the image in your answers.</p>
+</div>
+<p>Considering the laser and plasma quantities in the namelist, when <span class="math notranslate nohighlight">\(a_0 \ll 1\)</span>,
+the excited plasma wave is in the (laser-plasma) linear regime of interaction.
+As we saw in <a class="reference internal" href="#exercise8"><span class="std std-ref">Exercise 8</span></a> and <a class="reference internal" href="#exercise9"><span class="std std-ref">Exercise 9</span></a>, in the linear regime the plasma wave in the wake of the
+laser has sinusoidal shape.
+Increasing <span class="math notranslate nohighlight">\(a_0\)</span>, the laser becomes more intense. When
+<span class="math notranslate nohighlight">\(a_0 \gtrsim 1\)</span> the plasma electrons begin to reach relativistic velocities. At this limit, the electron inertia increases, elongating the plasma period and wavelength,
+resulting in electron accumulation at the end of each wave period.
+Moreover, increasing <span class="math notranslate nohighlight">\(a_0\)</span>, the longitudinal electric field waveform changes from
+a sinusoid to a sawtooth wave <a class="reference internal" href="introduction.html#esarey2009" id="id7"><span>[Esarey2009]</span></a>.
+In this regime of interest for plasma acceleration, PIC simulations become necessary since there are no longer general
+analytical solutions to the coupled Vlasov-Maxwell system of equations, and fluid theory cannot be applied.</p>
+<div class="admonition-exercise-10 admonition" id="exercise10">
+<p class="admonition-title">Exercise 10</p>
+<p><strong>Action</strong>: Launch a new simulation with <code class="docutils literal notranslate"><span class="pre">a0=2.3</span></code>, i.e. its original value.
+This simulation will be in the nonlinear regime (<span class="math notranslate nohighlight">\(a_0&gt;1\)</span>), so the plasma wave will not be sinusoidal.
+You can visualize both the normalized absolute value of the envelope of the laser field and the electron number density by defining a transparency
+for the parts where the latter field is lower than a threshold <code class="docutils literal notranslate"><span class="pre">vmin</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="n">Env_E</span>  <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;Env_E_abs&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;hot&quot;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">transparent</span><span class="o">=</span><span class="s2">&quot;under&quot;</span><span class="p">,</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">Rho</span>    <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;-Rho/e&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;1/cm^3&quot;</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues_r&quot;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mf">3e18</span><span class="p">)</span>
+<span class="n">happi</span><span class="o">.</span><span class="n">multiSlide</span><span class="p">(</span><span class="n">Rho</span><span class="p">,</span><span class="n">Env_E</span><span class="p">,</span><span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">timesteps=4800</span></code> in the definition of <code class="docutils literal notranslate"><span class="pre">Env_E</span></code> and <code class="docutils literal notranslate"><span class="pre">Rho</span></code>, and then using <code class="docutils literal notranslate"><span class="pre">multiPlot</span></code> instead of <code class="docutils literal notranslate"><span class="pre">multiSlide</span></code>,
+you should have a plot of the data at nearly half of the propagation length.</p>
+<p>Include this image in your answers.</p>
+</div>
+<p><strong>Action</strong>: Create three folders, <code class="docutils literal notranslate"><span class="pre">sim1</span></code>, <code class="docutils literal notranslate"><span class="pre">sim2</span></code>, <code class="docutils literal notranslate"><span class="pre">sim3</span></code>, where you will launch the simulation with
+<span class="math notranslate nohighlight">\(a_0 = 0.5, 1.4, 2.0\)</span> respectively. Take a look at the longitudinal electric
+field on axis (<code class="docutils literal notranslate"><span class="pre">Probe0</span></code>) and to the 2D plasma density (<code class="docutils literal notranslate"><span class="pre">Probe1</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span><span class="p">;</span> <span class="n">S</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span> <span class="p">)</span>
+<span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe1</span><span class="p">(</span><span class="s2">&quot;-Rho/e&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;1/cm^3&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">slide</span><span class="p">(</span> <span class="n">figure</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y [um]&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note</strong> In some cases you may need to add suitable <code class="docutils literal notranslate"><span class="pre">vmin</span></code> and <code class="docutils literal notranslate"><span class="pre">vmax</span></code> values for the plot command. In the linear regime of interaction, probably you will not see any oscillation
+in the plasma density, but still, you can see oscilations on the electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code>.
+In the nonlinear regime of interaction (higher <span class="math notranslate nohighlight">\(a_0\)</span>), you need to reduce the <code class="docutils literal notranslate"><span class="pre">vmax</span></code>
+in the plot/animate command to see the formation of the wake. This happens because, at the end
+of the plasma wave period, there is an accumulation of electrons,
+which hides the other charge density values.</p>
+<div class="admonition-exercise-11 admonition" id="exercise11">
+<p class="admonition-title">Exercise 11</p>
+<p>Check that the simulations in the three folders <code class="docutils literal notranslate"><span class="pre">sim1</span></code>, <code class="docutils literal notranslate"><span class="pre">sim2</span></code>, <code class="docutils literal notranslate"><span class="pre">sim3</span></code>,
+with respectively <span class="math notranslate nohighlight">\(a_0 = 0.5, 1.4, 2.0\)</span>, are completed.</p>
+<p>We will compare the longitudinal electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code>
+of these three simulations to see how the wave profile changes when increasing <span class="math notranslate nohighlight">\(a_0\)</span>.
+With <code class="docutils literal notranslate"><span class="pre">happi</span></code> you can easily do it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="n">S1</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;path/to/sim1&quot;</span><span class="p">)</span>
+<span class="n">Ex1</span><span class="o">=</span><span class="n">S1</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;a0 = 0.5&quot;</span><span class="p">)</span>
+<span class="n">S2</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;path/to/sim2&quot;</span><span class="p">)</span>
+<span class="n">Ex2</span><span class="o">=</span><span class="n">S2</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;a0 = 1.4&quot;</span><span class="p">)</span>
+<span class="n">S3</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="s2">&quot;path/to/sim3&quot;</span><span class="p">)</span>
+<span class="n">Ex3</span><span class="o">=</span><span class="n">S3</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;a0 = 2.0&quot;</span><span class="p">)</span>
+<span class="n">happi</span><span class="o">.</span><span class="n">multiPlot</span><span class="p">(</span><span class="n">Ex1</span><span class="p">,</span><span class="n">Ex2</span><span class="p">,</span><span class="n">Ex3</span><span class="p">,</span><span class="n">figure</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x [um]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Remember to substitute the real path of your simulations in the <code class="docutils literal notranslate"><span class="pre">Open</span></code> command.
+The command <code class="docutils literal notranslate"><span class="pre">multiPlot</span></code> is used to superpose multiple lines in the same plot window.
+This command is also used in some of the exercises of the following section.</p>
+<p>Include the resulting image of the command above in your answers.</p>
+<p>In another plot window, adapt the last commands to plot the plasma number density <code class="docutils literal notranslate"><span class="pre">-Rho/e</span></code> (with <code class="docutils literal notranslate"><span class="pre">units=[&quot;um&quot;,&quot;fs&quot;,&quot;1/cm^3&quot;]</span></code>) from the three simulations.
+Include also this image in your answers.</p>
+<p>Include a plot of the period of the plasma wave as function of the <code class="docutils literal notranslate"><span class="pre">a0</span></code> of the laser pulse.
+You should see the plasma wavelength relativistically elongated with a more intense laser pulse.</p>
+<p><strong>Hint:</strong> You may estimate this period as two times the distance between two consecutives zeros in the <code class="docutils literal notranslate"><span class="pre">Ex</span></code> field on the propagation axis.</p>
+</div>
+<p><strong>Behind the curtain:</strong> Why are ions not present?
+A plasma for laser wakefield acceleration is normally made of ions
+and electrons at least, so why are ions not present in this namelist?
+The answer can be found in the properties of Maxwell’s Equations and implies
+some derivations. For the moment it is sufficient to say that, since we set to zero the plasma
+electromagnetic field at the beginning of these simulations, and that we solve
+carefully Maxwell’s Equations and the particles equations of motion; then,
+defining the plasma made of electrons will make the code behave as if there is also
+a neutralizing layer of immobile ions. Since ions do not move in the
+timescales of interest for the phenomena we are simulating
+(their mass is <cite>~1840</cite> times larger than the electron mass),
+this is a reasonable approximation that, in addition, removes the need to
+simulate the ions, what brings a significant computational gain.
+The complete answer for the interested reader can be found in the dedicated section of
+<a class="reference external" href="https://smileipic.github.io/tutorials/advanced_wakefield_electron_bunch.html">this tutorial</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="laser-wakefield-acceleration-of-an-electron-bunch">
+<span id="laserplasmainjection"></span><h2>Laser wakefield acceleration of an electron bunch<a class="headerlink" href="#laser-wakefield-acceleration-of-an-electron-bunch" title="Link to this heading">¶</a></h2>
+<p>We are ready to simulate a basic laser wakefield accelerator for electrons.
+As a surfer rides the waves in the water, under certain conditions
+an electron bunch can be accelerated by plasma waves.
+An immobile surfer will not be accelerated by a wave.
+To effectively interact with the wave, the surfer must first acquire some speed.
+If the surfer speed is close to the speed of the wave, they will be subject to
+an accelerating phase of the wave for a significant portion of the surfer-wave interaction.</p>
+<p>Following the same analogy, to be accelerated, the electrons must be injected in the accelerated phase
+of the plasma wave with a speed near the wave's speed (which is close to the speed of light).
+Many clever injection schemes have been investigated since the 2000s, such as those described in
+<a class="reference internal" href="introduction.html#esarey2009" id="id8"><span>[Esarey2009]</span></a>, <a class="reference internal" href="introduction.html#malka2012" id="id9"><span>[Malka2012]</span></a>, <a class="reference internal" href="#faurecas" id="id10"><span>[FaureCAS]</span></a> , where the electrons of the plasma itself are in some way
+injected into the laser-driven wave. In other injection schemes, often the electron beam
+parameters are not independent of the laser and plasma parameters.</p>
+<p>As already mentioned, in this practical work we will study an external injection scheme,
+in which a relativistic electron bunch is injected from outside the plasma.
+Even though it is challenging to achieve experimentally, this
+conceptually simple injection scheme will allow us to understand the basic concepts
+of electron injection in a plasma wave
+by only changing the electron bunch parameters without changing the laser and plasma parameters.</p>
+<p><strong>Action</strong>: In a new simulation folder, set again the <span class="math notranslate nohighlight">\(a_0\)</span> of the laser to the value <span class="math notranslate nohighlight">\(2.3\)</span>
+Uncomment the two <code class="docutils literal notranslate"><span class="pre">Species</span></code> blocks, the related variable definitions and
+take some time to read them carefully. To track the evolution of the electron bunch during its propagation,
+you will have to uncomment also the <code class="docutils literal notranslate"><span class="pre">DiagTrackParticles</span></code> block. Afterwards, you can launch the simulation.</p>
+<p>As you can see, the second <code class="docutils literal notranslate"><span class="pre">Species</span></code> block defines a <code class="docutils literal notranslate"><span class="pre">Species</span></code>
+called <code class="docutils literal notranslate"><span class="pre">electronbunch</span></code>, which we will inject in the plasma wave for acceleration.
+As for the <code class="docutils literal notranslate"><span class="pre">Species</span></code> called <code class="docutils literal notranslate"><span class="pre">plasmaelectrons</span></code> of the previous Sections,
+these particles have normalized charge and mass equal to <code class="docutils literal notranslate"><span class="pre">-1.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> respectively,
+thus they are electrons. In the present case, the plasma density is not defined through a
+density profile function, but the coordinates and momenta of each of the bunch’s macro-particles
+are given to the code through arrays.</p>
+<p>In our case, these coordinates
+and momenta are generated to initialize a relativistic electron bunch with Gaussian charge density distribution.
+The electron bunch dimensions are defined through its <code class="docutils literal notranslate"><span class="pre">rms</span></code> size on the various axes,</p>
+<p><strong>Note</strong> For your future simulation work, this initialization method can be used also
+to use a macro-particle distribution obtained from another code
+(a magnetic transport code for conventional accelerators for example).
+Instead of generating randomly the particles coordinates and momenta,
+you only need to read them with Python.</p>
+<p>The simulation now includes a moving window, a laser pulse (modeled with its envelope),
+plasma electrons and an electron bunch, as in <a class="reference internal" href="#schema-simulation-3"><span class="std std-ref">Fig. 6</span></a>.</p>
+<figure class="align-default" id="id17">
+<span id="schema-simulation-3"></span><a class="reference internal image-reference" href="_images/Schema_Simulation_3.png"><img alt="_images/Schema_Simulation_3.png" src="_images/Schema_Simulation_3.png" style="width: 15cm;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Simulation Setup at the start of the simulation(s) in this Section (not to scale).</span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition-exercise-12 admonition" id="exercise12">
+<p class="admonition-title">Exercise 12</p>
+<p>Reading the <code class="docutils literal notranslate"><span class="pre">InputNamelist.py</span></code>, provide a description of the electron bunch at <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<p>What is the total charge, the energy, the <cite>rms</cite> sizes along <cite>x</cite>, <cite>y</cite>, <cite>z</cite>, the <cite>rms</cite> energy spread,
+and the normalized emittance along the transverse planes?</p>
+<p>How many macro-particles are modeling the electron bunch?</p>
+<p>Where is the electron bunch placed in relation to the simulation window at the instant of time <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">0</span></code>?</p>
+</div>
+<p>As the name suggests, this diagnostic block allows to track macro-particles
+specified by their species name and some filter. Using a filter
+(e.g., selecting only the particles with energy higher than <cite>50</cite> MeV) is
+particularly useful when you have many particles in a <code class="docutils literal notranslate"><span class="pre">Species</span></code>,
+like in the plasma of the namelist. In that case, not using a filter
+would make this diagnostic computationally heavy and would store
+the coordinates of too many particles. In the case of the bunch,
+there is no need to specify a filter, since the number of macro-particles
+is sufficiently small to be manageable. As you can see from the namelist,
+in this diagnostic, we store the coordinates and momenta of the particles,
+as well as their weight (from which their charge can be computed).</p>
+<div class="admonition-exercise-13 admonition" id="exercise13">
+<p class="admonition-title">Exercise 13</p>
+<p>Check that the simulation with the electron bunch has ended.
+This time the simulation will run a little longer.</p>
+<p>Plot the 2D charge density (use <code class="docutils literal notranslate"><span class="pre">Probe1</span></code>) at <code class="docutils literal notranslate"><span class="pre">timesteps=6000</span></code> and <code class="docutils literal notranslate"><span class="pre">timesteps=10000</span></code>
+and play with the parameter <code class="docutils literal notranslate"><span class="pre">vmax</span></code> to be able to see the electron bunch
+in the plasma wave.</p>
+<p>Include these images in your answers.</p>
+</div>
+<div class="admonition-exercise-14 admonition" id="exercise14">
+<p class="admonition-title">Exercise 14</p>
+<p>With the same simulation of <a class="reference internal" href="#exercise13"><span class="std std-ref">Exercise 13</span></a>, use the command
+<code class="docutils literal notranslate"><span class="pre">happi.multiPlot</span></code> to plot in the same window
+the longitudinal electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> and the number density <code class="docutils literal notranslate"><span class="pre">Rho/e</span></code>
+from <code class="docutils literal notranslate"><span class="pre">Probe0</span></code> (1D diagnostic) at <code class="docutils literal notranslate"><span class="pre">timesteps=6000</span></code> and <code class="docutils literal notranslate"><span class="pre">timesteps=10000</span></code>
+(i.e. each window will contain the two quantities at a given timestep).
+You may need to rescale the quantities (see <code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">multiple</span> <span class="pre">lines</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">window</span></code> in the Appendix).
+Playing with multiplying factors in the plot you should be able
+to clearly see where the electron bunch is placed in the plasma wave.</p>
+<p>Include these images in your answers.</p>
+</div>
+<div class="admonition-exercise-15 admonition" id="exercise15">
+<p class="admonition-title">Exercise 15</p>
+<p>With the same simulation of <a class="reference internal" href="#exercise12"><span class="std std-ref">Exercise 12</span></a>, run the script
+<a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Compute_bunch_parameters.py">Compute_bunch_parameters.py</a>
+in the simulation folder to read the electron bunch parameters.</p>
+<p>For this purpose, from <code class="docutils literal notranslate"><span class="pre">IPython</span></code> you can use the command <code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">Compute_bunch_parameters.py</span> <span class="pre">timestep</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">timestep</span></code> is the timestep you are interested in.
+For example, the command <code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">Compute_bunch_parameters.py</span> <span class="pre">10000</span></code>  will return the electron bunch parameters the end of the simulation (i.e, at <code class="docutils literal notranslate"><span class="pre">timestep</span> <span class="pre">=</span> <span class="pre">10000</span></code>).</p>
+<p>What is the energy gain <span class="math notranslate nohighlight">\(\Delta E\)</span> you measure from the start (<code class="docutils literal notranslate"><span class="pre">timestep</span> <span class="pre">=</span> <span class="pre">0</span></code>)
+to the end of the simulation (<code class="docutils literal notranslate"><span class="pre">timestep</span> <span class="pre">=</span> <span class="pre">10000</span></code>)?</p>
+<p>What is the simulated propagation distance <span class="math notranslate nohighlight">\(L\)</span>?</p>
+<p>From this information, estimate the average accelerating field <span class="math notranslate nohighlight">\(E_{acc}\)</span>, including the derivation in your answer.</p>
+<p>What is the absolute and relative <cite>rms</cite> energy spread at the beginning and
+at the end of the simulation?</p>
+<p>Report all the electron bunch parameters at the start and at the end of the simulation.</p>
+</div>
+<div class="admonition-exercise-16 admonition" id="exercise16">
+<p class="admonition-title">Exercise 16</p>
+<p>With the same simulation of <a class="reference internal" href="#exercise13"><span class="std std-ref">Exercise 13</span></a>, use the script <a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Follow_electron_bunch_evolution.py">Follow_electron_bunch_evolution.py</a> to see how the bunch has evolved during
+the simulation (<code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">Follow_electron_bunch_evolution.py</span></code>
+in <code class="docutils literal notranslate"><span class="pre">IPython</span></code>). The script reads the <code class="docutils literal notranslate"><span class="pre">DiagTrackParticles</span></code> output and
+then computes some bunch quantities (rms size, emittance, energy)
+at each available output iteration.</p>
+<p>Include the resulting image in your answers.</p>
+<p>From the evolution of the bunch energy, can you estimate the average accelerating field?</p>
+<p>Compare this value to the one computed in <a class="reference internal" href="#exercise14"><span class="std std-ref">Exercise 14</span></a>.</p>
+</div>
+<div class="admonition-exercise-17 admonition" id="exercise17">
+<p class="admonition-title">Exercise 17</p>
+<p>Create four new folders, <code class="docutils literal notranslate"><span class="pre">sim1</span></code>, <code class="docutils literal notranslate"><span class="pre">sim2</span></code>, <code class="docutils literal notranslate"><span class="pre">sim3</span></code>, <code class="docutils literal notranslate"><span class="pre">sim4</span></code>
+where you will run four new simulation. In each simulation, the charge of the electron bunch will be changed to <span class="math notranslate nohighlight">\(20, 40, 60, 80\)</span> pC, respectively.</p>
+<p><strong>Warning:</strong> Do not forget the minus sign in the bunch charge, or the bunch will be made of positrons!</p>
+<p>Adapt the commands you have used in <a class="reference internal" href="#exercise10"><span class="std std-ref">Exercise 10</span></a> (<code class="docutils literal notranslate"><span class="pre">happi.multiPlot</span></code> commands) to plot the longitudinal electric
+field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> for the four cases. What do you observe? Include this plot in the answers.</p>
+<p>Use the script
+<a class="reference external" href="https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Compute_bunch_parameters.py">Compute_bunch_parameters.py</a>
+used for <a class="reference internal" href="#exercise14"><span class="std std-ref">Exercise 14</span></a> to find the energy gain of the
+electron bunch at timestep <code class="docutils literal notranslate"><span class="pre">10000</span></code> for each one of the four cases.</p>
+<p>Can you explain how the deformation of the <code class="docutils literal notranslate"><span class="pre">Ex</span></code> waveform results in different final energies?</p>
+<p><strong>Hint:</strong> You can compare the <code class="docutils literal notranslate"><span class="pre">Ex</span></code> of the four simulations with <code class="docutils literal notranslate"><span class="pre">multiPlot</span></code>.</p>
+<p>Include a plot of the energy gain of the bunch obtained for charges <span class="math notranslate nohighlight">\(20, 40, 60, 80\)</span> pC.
+You can use Python or any other language or program for this simple plot. For example, using Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">bunch</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">energy</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="o">...</span><span class="p">,</span><span class="o">...</span><span class="p">,</span><span class="o">...</span><span class="p">]</span> <span class="c1">#replace by the energy values you obtained</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bunch</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39; Bunch charge [pC] &#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39; ... &#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-exercise-18 admonition" id="exercise18">
+<p class="admonition-title">Exercise 18</p>
+<p>Create other four folders, <code class="docutils literal notranslate"><span class="pre">sim5</span></code>, <code class="docutils literal notranslate"><span class="pre">sim6</span></code>, <code class="docutils literal notranslate"><span class="pre">sim7</span></code>, <code class="docutils literal notranslate"><span class="pre">sim8</span></code>,
+where you will launch the simulation varying the bunch distance from the laser, changing the <code class="docutils literal notranslate"><span class="pre">delay_behind_laser</span></code> parameter (Set again the charge to <span class="math notranslate nohighlight">\(60\)</span> pC for all these simulations).
+This parameter controls the distance between the electron bunch and the laser center, therefore its phase in the plasma wave behind the laser pulse.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">delay_behind_laser</span></code>, try the values <span class="math notranslate nohighlight">\(20, 22, 24, 26~ \mu m\)</span>.</p>
+<p>What is the observed final energy for each of the four <code class="docutils literal notranslate"><span class="pre">delay_behind_laser</span></code> parameters?</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">happi.multiPlot</span></code> (see <a class="reference internal" href="#exercise10"><span class="std std-ref">Exercise 10</span></a>), plot the longitudinal electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> for the four simulations (show all curves in the same window and include the final image in your answers).</p>
+<p>Again using <code class="docutils literal notranslate"><span class="pre">happi.multiPlot</span></code>, plot the electron number density <code class="docutils literal notranslate"><span class="pre">Rho/e</span></code> for the four simulations (show all curves in the same window and include the final image in your answers).</p>
+<p>Include a plot with the <code class="docutils literal notranslate"><span class="pre">delay_behind_laser</span></code> on the horizontal axis and the energy gain on the vertical axis. You can use Python or any other language
+for this simple plot (as you did for <a class="reference internal" href="#exercise16"><span class="std std-ref">Exercise 16</span></a>)</p>
+</div>
+<div class="admonition-exercise-19 admonition" id="exercise19">
+<p class="admonition-title">Exercise 19</p>
+<p>For the same simulation of <a class="reference internal" href="#exercise13"><span class="std std-ref">Exercise 13</span></a>, using the <code class="docutils literal notranslate"><span class="pre">TrackParticles</span></code> diagnostic
+and <code class="docutils literal notranslate"><span class="pre">Probe</span></code> diagnostic, write a script that takes as input variable an iteration number, i.e. <code class="docutils literal notranslate"><span class="pre">timestep</span></code>.
+The script should plot in the same panel the longitudinal electric field <code class="docutils literal notranslate"><span class="pre">Ex</span></code> along the propagation axis <code class="docutils literal notranslate"><span class="pre">x</span></code> and a scatter plot of the electron bunch longitudinal phase space <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">px</span></code>
+to show the particle longitudinal coordinate in the accelerating phase of <code class="docutils literal notranslate"><span class="pre">Ex</span></code> in that iteration.
+The plot should report the correct units and labels in the axes.</p>
+<p>In your answers, include the script and the output image using <code class="docutils literal notranslate"><span class="pre">timesteps=6000</span></code> and <code class="docutils literal notranslate"><span class="pre">timesteps=10000</span></code>.
+function using only dot markers.</p>
+<p><strong>Hint 1:</strong> To extract the propagation axis (in <span class="math notranslate nohighlight">\(\mu m\)</span>) and the <code class="docutils literal notranslate"><span class="pre">Ex</span></code> field (in GV/m) at the required <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">S</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+
+<span class="c1"># in GV/m</span>
+<span class="n">Ex</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">,</span><span class="n">timesteps</span><span class="o">=</span><span class="n">timestep</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;um&quot;</span><span class="p">,</span><span class="s2">&quot;GV/m&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">getData</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># in um</span>
+<span class="n">moving_x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">Lx</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">nx</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">c_over_omega0</span><span class="o">*</span><span class="mf">1e6</span>
+<span class="n">x_window_shift</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">Probe</span><span class="o">.</span><span class="n">Probe0</span><span class="p">(</span><span class="s2">&quot;Ex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getXmoved</span><span class="p">(</span><span class="n">timestep</span><span class="p">)</span><span class="o">*</span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">c_over_omega0</span><span class="o">*</span><span class="mf">1e6</span>
+
+<span class="c1"># in um</span>
+<span class="n">propagation_axis</span> <span class="o">=</span> <span class="n">moving_x</span> <span class="o">+</span> <span class="n">x_window_shift</span>
+</pre></div>
+</div>
+<p><strong>Hint 2:</strong> To export the <code class="docutils literal notranslate"><span class="pre">x</span></code> (in <span class="math notranslate nohighlight">\(\mu m\)</span>) and <code class="docutils literal notranslate"><span class="pre">px</span></code> (in MeV/c) of the bunch macro-particles, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">track_part</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">TrackParticles</span><span class="p">(</span><span class="n">species</span> <span class="o">=</span><span class="s2">&quot;electronbunch&quot;</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;px&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="n">timestep</span><span class="p">)</span>
+
+<span class="c1"># x in um</span>
+<span class="n">x_bunch</span><span class="o">=</span><span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">c_over_omega0</span><span class="o">*</span><span class="mf">1e6</span>
+
+<span class="c1"># longitudinal momentum in MeV/c</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span>
+<span class="n">electron_mass_MeV</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">physical_constants</span><span class="p">[</span><span class="s2">&quot;electron mass energy equivalent in MeV&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">px_bunch</span>          <span class="o">=</span> <span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;px&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">electron_mass_MeV</span>
+</pre></div>
+</div>
+<p><strong>Hint 3:</strong> The <code class="docutils literal notranslate"><span class="pre">Ex</span></code> and <code class="docutils literal notranslate"><span class="pre">px</span></code> will have very different scales, so you will need
+to use two <cite>y</cite> axes with different scales to see something meaningful.
+With <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> you can do it through <code class="docutils literal notranslate"><span class="pre">twinx</span></code>.</p>
+<p><strong>Hint 4:</strong> Use a scatter plot for the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">px</span></code> data of the bunch. For the <code class="docutils literal notranslate"><span class="pre">propagation_axis</span></code> and <code class="docutils literal notranslate"><span class="pre">Ex</span></code> plot, use a simple <code class="docutils literal notranslate"><span class="pre">plot</span></code> command.</p>
+</div>
+<div class="admonition-exercise-20 admonition" id="exercise20">
+<p class="admonition-title">Exercise 20</p>
+<p>The accelerated electron bunch macro-particles do not have the same energies, so it is interesting to see the energy distribution
+or energy spectrum of the bunch particles before and after the acceleration.</p>
+<p>Write a <code class="docutils literal notranslate"><span class="pre">Python</span></code> script to read the output of the <code class="docutils literal notranslate"><span class="pre">DiagTrackParticles</span></code>, and then use it to draw the energy spectrum (i.e. a histogram of the bunch macro-particle energies)
+of the electron bunch (using MeV for the energies on the horizontal axis).
+Provide the script and plot in the same window the energy spectrum at timesteps <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">10000</span></code> (the start and the end of the simulation).</p>
+<p>The horizontal axis should be in <code class="docutils literal notranslate"><span class="pre">MeV</span></code>, while the vertical axis should be in <code class="docutils literal notranslate"><span class="pre">pC/MeV</span></code>.
+Verify that the sum of the histogram bins multiplied by the energy bin width (i.e. the discrete version of the integral
+in energy of the energy spectrum) is equal to the bunch charge and include also the
+corrects units, labels and legend in the plot. Use an appropriate number of bins to see a meaningful image that shows the shape of the spectrum.
+For reference, remember that the energy spectrum at the start of the simulation is a Gaussian, centered at the bunch initial energy.</p>
+<p>Briefly comment on the differences in the energy spectrum at the start and at the end of the simulation.</p>
+<p><strong>Hint 1:</strong> You can extract the energy and charge of each macro-particle of the bunch at the desired <code class="docutils literal notranslate"><span class="pre">timestep</span></code>, using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">happi</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">S</span><span class="o">=</span><span class="n">happi</span><span class="o">.</span><span class="n">Open</span><span class="p">()</span>
+
+<span class="c1"># Constants</span>
+<span class="n">c</span>                       <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">c</span>         <span class="c1"># lightspeed in vacuum,  m/s</span>
+<span class="n">epsilon0</span>                <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">epsilon_0</span> <span class="c1"># vacuum permittivity, Farad/m</span>
+<span class="n">me</span>                      <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">m_e</span>       <span class="c1"># electron mass, kg</span>
+<span class="n">q</span>                       <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">e</span>         <span class="c1"># electron charge, C</span>
+<span class="n">electron_mass_MeV</span>       <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">physical_constants</span><span class="p">[</span><span class="s2">&quot;electron mass energy equivalent in MeV&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">lambda0</span>                 <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">namelist</span><span class="o">.</span><span class="n">lambda0</span>        <span class="c1"># laser central wavelength, m</span>
+<span class="n">conversion_factor_length</span><span class="o">=</span> <span class="n">lambda0</span><span class="o">/</span><span class="mf">2.</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mf">1.e6</span>   <span class="c1"># from c/omega0 to um, corresponds to laser wavelength 0.8 um</span>
+<span class="n">nc</span>                      <span class="o">=</span> <span class="n">epsilon0</span><span class="o">*</span><span class="n">me</span><span class="o">/</span><span class="n">q</span><span class="o">/</span><span class="n">q</span><span class="o">*</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">lambda0</span><span class="o">*</span><span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># critical density in m^(-3)</span>
+
+<span class="c1"># extract data from TrackParticles</span>
+<span class="n">track_part</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">TrackParticles</span><span class="p">(</span><span class="n">species</span> <span class="o">=</span><span class="s2">&quot;electronbunch&quot;</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;w&quot;</span><span class="p">,</span><span class="s2">&quot;px&quot;</span><span class="p">,</span><span class="s2">&quot;py&quot;</span><span class="p">,</span><span class="s2">&quot;pz&quot;</span><span class="p">],</span><span class="n">timesteps</span><span class="o">=</span><span class="n">timestep</span><span class="p">)</span>
+
+<span class="c1"># extract charge in pC</span>
+<span class="n">conversion_factor_charge</span><span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">nc</span> <span class="o">*</span> <span class="p">(</span><span class="n">conversion_factor_length</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">charge_bunch_pC</span><span class="o">=</span><span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;w&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">conversion_factor_charge</span>
+
+<span class="c1"># extract momenta in MeV/c</span>
+<span class="n">px_bunch</span><span class="o">=</span><span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;px&quot;</span><span class="p">]</span>
+<span class="n">py_bunch</span><span class="o">=</span><span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;py&quot;</span><span class="p">]</span>
+<span class="n">pz_bunch</span><span class="o">=</span><span class="n">track_part</span><span class="o">.</span><span class="n">getData</span><span class="p">()[</span><span class="s2">&quot;pz&quot;</span><span class="p">]</span>
+
+<span class="n">p_bunch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">px_bunch</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">py_bunch</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">pz_bunch</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># electron energy in MeV</span>
+<span class="n">E_bunch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">p_bunch</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">electron_mass_MeV</span>
+</pre></div>
+</div>
+<p><strong>Hint 2:</strong> you can use the matplotlib function <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> to compute a
+histogram of the macro-particles energies and the bins/edges of the horizontal axis.
+The energy spectrum is a histogram of the macro-particle energies using their charge as statistical weight.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h1>
+<div role="list" class="citation-list">
+<div class="citation" id="massimo" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">Massimo</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevE.102.033204">F. Massimo et al., Numerical modeling of laser tunneling ionization in particle-in-cell codes with a laser envelope model, Phys. Rev. E 102, 033204 (2020)</a></p>
+</div>
+<div class="citation" id="siegman" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Siegman<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p><cite>Anthony E. Siegman, Lasers, University Science Books, 1986.</cite></p>
+</div>
+<div class="citation" id="faurecas" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">FaureCAS</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://cds.cern.ch/record/2203634/files/1418884_143-157.pdf">J. Faure, Plasma injection schemes for laser–plasma accelerators, CERN Yellow Reports, 1(0):143, 2016.</a></p>
+</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="site.html">Site index</a>
+      </div>
+      <div>
+        Last updated on Nov 07, 2025
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      </div>
+      
+      <div>
+      <a href="_sources/exercises.rst.txt"
+          rel="nofollow">Page source</a></li>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>
