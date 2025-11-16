@@ -73,7 +73,8 @@ the laser pulse is almost immobile in the simulation window.
 .. figure:: _static/Schema_Simulation_0.png
   :width: 15cm
 
-  Simulation set-up at the start of the simulation in this Section (not to scale)
+  Set-up of the simulation moving window at time ``t=0`` (not to scale).
+  The physical elements inside the window are not shown. 
 
 .. _exercise2:    
 .. admonition:: Exercise 2
@@ -113,12 +114,16 @@ Laser pulse in vacuum
 Everything is ready to run your first simulation. 
 We will start adding a laser pulse propagating in vacuum, along the positive ``x`` direction.
 
-**Action**: in the ``InputNamelist.py`` file, uncomment the lines 
-with the laser pulse parameters and the ``LaserEnvelopeGaussian`` block. 
-Afterwards, launch the simulation.
+**Action**: at the start of the ``InputNamelist.py`` file, launch the simulation after ensuring that the desired physical case is selected::
 
-This block defines a laser pulse in the simulation with a transverse field based on the definition of a Gaussian Beam [Siegman]_, 
+   selected_case = "laser_in_vacuum"
+
+
+For the physical cases we will simulate with a laser pulse, 
+a code block defines a laser pulse in the simulation with a transverse field 
+based on the definition of a Gaussian Beam [Siegman]_, 
 with a carrier wavelength :math:`\lambda_0 = 0.8 \mu m`. 
+
 The considered pulse also has Gaussian temporal profile, whose FWHM length is much larger 
 than the laser carrier wavelength :math:`\lambda_0`, defined in the variable ``lambda0`` (see :ref:`Fig. 3 <laser_figure>`).
 The laser transverse electric field is linearly polarized in the ``y`` direction.
@@ -129,18 +134,18 @@ The laser transverse electric field is linearly polarized in the ``y`` direction
 
   Definition of the laser parameters (not to scale). In blue, the normalized transverse electric field of the laser, in red the absolute value of its complex envelope. All quantities are in normalized units (e.g. :math:`\lambda_0/2\pi` for the lengths, :math:`m_e\omega_0c/e` for the fields).
 
-The simulation now includes a moving window and a laser pulse, as in :ref:`Fig. 4 <Schema_Simulation_1>`.
+The simulation for this physical case includes a moving window and a laser pulse, as in :ref:`Fig. 4 <Schema_Simulation_1>`.
 
 .. _Schema_Simulation_1:
 .. figure:: _static/Schema_Simulation_1.png
   :width: 15cm
 
-  Simulation set-up at the start of the simulation(s) in this Section (not to scale). 
+  Set-up of the simulation moving window at time ``t=0`` (not to scale). 
 
 
 **Note:**  an envelope model is used to describe the laser pulse, as described in [Massimo]_.
 Therefore, the laser field and the electromagnetic fields it will excite in the plasma
-will not show the high frequency oscillations.
+will not show the high frequency oscillations as in the blue line of :ref:`Fig. 3 <laser_figure>`.
 The absolute value of the complex envelope of the laser transverse electric field is contained in the field ``Env_E_abs``.
 
 .. _exercise3:    
@@ -234,7 +239,7 @@ try to specify a colormap maximum with ``vmax``. For example::
    to plot the comparison and include the image in your answers.
 
 .. _exercise6:    
-.. admonition:: Exercise 6 
+.. admonition:: Exercise 6 (advanced) 
 
    We are using boundary conditions called Perfectly Matched Layers to prevent unphysical field reflections 
    at the borders of the simulation window, but no numerical boundary condition can perfectly absorb a laser which 
@@ -273,10 +278,11 @@ before the arrival of the laser pulse peak (see the laser intensity computed
 in :ref:`Exercise 3 <Exercise3>`).
 
 
-**Action**: Uncomment the first ``Species`` block, the related variable definitions and 
-take some time to read them carefully. 
+**Action**: at the start of the ``InputNamelist.py`` file, change the variable ``selected_case`` to::
 
-This block defines a particle ``Species``
+   selected_case = "laser_plasma_wakefield_excitation"
+
+This activates an additional block that defines a particle ``Species``
 in the simulation, whose name is ``plasmaelectrons``. Note the normalized mass 
 and normalized charge of these particles defined in this block (``1.0`` and ``-1.0`` respectively). 
 Since the normalizing mass and charge are the electron mass and the unit charge,
@@ -302,6 +308,7 @@ and electron plasma, as represented in :ref:`Fig. 5 <Schema_Simulation_2>`.
    :math:`n_0 = 10^{18} electrons/cm^{3}`.
    
    What is the ratio between the plasma density and the critical density (computed for :ref:`Exercise 1 <exercise1>`)? 
+   Pay attention to the units!
    
    Is it an underdense or overdense plasma?
    
@@ -403,29 +410,45 @@ analytical solutions to the coupled Vlasov-Maxwell system of equations, and flui
    you should have a plot of the data at nearly half of the propagation length.
    
    Include this image in your answers.
+   
+   
+**Behind the curtain:** Why are ions not present?
+A plasma for laser wakefield acceleration is normally made of ions 
+and electrons at least, so why are ions not present in this namelist? 
+The answer can be found in the properties of Maxwell’s Equations and implies 
+some derivations. For the moment it is sufficient to say that, since we set to zero the plasma 
+electromagnetic field at the beginning of these simulations, and that we solve 
+carefully Maxwell’s Equations and the particles equations of motion; then, 
+defining the plasma made of electrons will make the code behave as if there is also 
+a neutralizing layer of immobile ions. Since ions do not move in the 
+timescales of interest for the phenomena we are simulating 
+(their mass is `~1840` times larger than the electron mass), 
+this is a reasonable approximation that, in addition, removes the need to 
+simulate the ions, what brings a significant computational gain. 
+The complete answer for the interested reader can be found in the dedicated section of 
+`this tutorial <https://smileipic.github.io/tutorials/advanced_wakefield_electron_bunch.html>`_.
 
-**Action**: Create three folders, ``sim1``, ``sim2``, ``sim3``, where you will launch the simulation with 
-:math:`a_0 = 0.5, 1.4, 2.0` respectively. Take a look at the longitudinal electric 
-field on axis (``Probe0``) and to the 2D plasma density (``Probe1``)::
 
-    import happi; S=happi.Open()
-    S.Probe.Probe0("Ex",units=["um","fs","GV/m"]).slide( figure=1,xlabel="x [um]" )
-    S.Probe.Probe1("-Rho/e",units=["um","fs","1/cm^3"]).slide( figure=2,xlabel="x [um]",ylabel="y [um]" )
-      
-**Note** In some cases you may need to add suitable ``vmin`` and ``vmax`` values for the plot command. In the linear regime of interaction, probably you will not see any oscillation
-in the plasma density, but still, you can see oscilations on the electric field ``Ex``. 
-In the nonlinear regime of interaction (higher :math:`a_0`), you need to reduce the ``vmax`` 
-in the plot/animate command to see the formation of the wake. This happens because, at the end 
-of the plasma wave period, there is an accumulation of electrons, 
-which hides the other charge density values. 
    
    
 
 .. _exercise11:    
-.. admonition:: Exercise 11 
+.. admonition:: Exercise 11 (advanced) 
 
-   Check that the simulations in the three folders ``sim1``, ``sim2``, ``sim3``, 
-   with respectively :math:`a_0 = 0.5, 1.4, 2.0`, are completed.
+   **Action**: Create three folders, ``sim1``, ``sim2``, ``sim3``, where you will launch the simulation with 
+   :math:`a_0 = 0.5, 1.4, 2.0` respectively. After they are completed, take a look at the longitudinal electric 
+   field on axis (``Probe0``) and to the 2D plasma density (``Probe1``)::
+
+      import happi; S=happi.Open()
+      S.Probe.Probe0("Ex",units=["um","fs","GV/m"]).slide( figure=1,xlabel="x [um]" )
+      S.Probe.Probe1("-Rho/e",units=["um","fs","1/cm^3"]).slide( figure=2,xlabel="x [um]",ylabel="y [um]" )
+      
+   **Note** In some cases you may need to add suitable ``vmin`` and ``vmax`` values for the plot command. In the linear regime of interaction, probably you will not see any oscillation
+   in the plasma density, but still, you can see oscilations on the electric field ``Ex``. 
+   In the nonlinear regime of interaction (higher :math:`a_0`), you need to reduce the ``vmax`` 
+   in the plot/animate command to see the formation of the wake. This happens because, at the end 
+   of the plasma wave period, there is an accumulation of electrons, 
+   which hides the other charge density values. 
 
    We will compare the longitudinal electric field ``Ex``
    of these three simulations to see how the wave profile changes when increasing :math:`a_0`. 
@@ -454,26 +477,8 @@ which hides the other charge density values.
    
    **Hint:** You may estimate this period as two times the distance between two consecutives zeros in the ``Ex`` field on the propagation axis.
 
-**Behind the curtain:** Why are ions not present?
-A plasma for laser wakefield acceleration is normally made of ions 
-and electrons at least, so why are ions not present in this namelist? 
-The answer can be found in the properties of Maxwell’s Equations and implies 
-some derivations. For the moment it is sufficient to say that, since we set to zero the plasma 
-electromagnetic field at the beginning of these simulations, and that we solve 
-carefully Maxwell’s Equations and the particles equations of motion; then, 
-defining the plasma made of electrons will make the code behave as if there is also 
-a neutralizing layer of immobile ions. Since ions do not move in the 
-timescales of interest for the phenomena we are simulating 
-(their mass is `~1840` times larger than the electron mass), 
-this is a reasonable approximation that, in addition, removes the need to 
-simulate the ions, what brings a significant computational gain. 
-The complete answer for the interested reader can be found in the dedicated section of 
-`this tutorial <https://smileipic.github.io/tutorials/advanced_wakefield_electron_bunch.html>`_.
-
-
 |
 |
-
 
 
 .. _laserplasmainjection:
@@ -481,19 +486,14 @@ Laser wakefield acceleration of an electron bunch
 --------------------------------------------------------
 
 We are ready to simulate a basic laser wakefield accelerator for electrons. 
-As a surfer rides the waves in the water, under certain conditions
-an electron bunch can be accelerated by plasma waves.
-An immobile surfer will not be accelerated by a wave. 
-To effectively interact with the wave, the surfer must first acquire some speed. 
-If the surfer speed is close to the speed of the wave, they will be subject to 
-an accelerating phase of the wave for a significant portion of the surfer-wave interaction. 
+As a surfer can ride a wave if the surfer's speed is comparable 
+to the one of the wave, a relativistic electron bunch at the right phase can be 
+accelerated by a plasma waves where it is injected.
 
-Following the same analogy, to be accelerated, the electrons must be injected in the accelerated phase 
-of the plasma wave with a speed near the wave's speed (which is close to the speed of light). 
 Many clever injection schemes have been investigated since the 2000s, such as those described in 
 [Esarey2009]_, [Malka2012]_, [FaureCAS]_ , where the electrons of the plasma itself are in some way 
 injected into the laser-driven wave. In other injection schemes, often the electron beam 
-parameters are not independent of the laser and plasma parameters.
+parameters are not completely independent of the laser and plasma parameters.
 
 As already mentioned, in this practical work we will study an external injection scheme, 
 in which a relativistic electron bunch is injected from outside the plasma. 
@@ -502,29 +502,18 @@ conceptually simple injection scheme will allow us to understand the basic conce
 of electron injection in a plasma wave
 by only changing the electron bunch parameters without changing the laser and plasma parameters.
 
-**Action**: In a new simulation folder, set again the :math:`a_0` of the laser to the value :math:`2.3`
-Uncomment the two ``Species`` blocks, the related variable definitions and 
-take some time to read them carefully. To track the evolution of the electron bunch during its propagation, 
-you will have to uncomment also the ``DiagTrackParticles`` block. Afterwards, you can launch the simulation.
+**Action**: In a new simulation folder, ensure that :math:`a_0=2.3`.
+Launch the simulation after choosing::
 
-As you can see, the second ``Species`` block defines a ``Species`` 
+   selected_case = "laser_wakefield_acceleration"
+
+As you can see, this activates a second ``Species`` block that defines a ``Species`` 
 called ``electronbunch``, which we will inject in the plasma wave for acceleration. 
-As for the ``Species`` called ``plasmaelectrons`` of the previous Sections, 
-these particles have normalized charge and mass equal to ``-1.0`` and ``1.0`` respectively, 
-thus they are electrons. In the present case, the plasma density is not defined through a
-density profile function, but the coordinates and momenta of each of the bunch’s macro-particles 
-are given to the code through arrays. 
-
-In our case, these coordinates 
-and momenta are generated to initialize a relativistic electron bunch with Gaussian charge density distribution.
-The electron bunch dimensions are defined through its ``rms`` size on the various axes, 
-
-
-**Note** For your future simulation work, this initialization method can be used also 
-to use a macro-particle distribution obtained from another code 
-(a magnetic transport code for conventional accelerators for example). 
-Instead of generating randomly the particles coordinates and momenta, 
-you only need to read them with Python.
+In this case, the desired Gaussian density distribution of this ``Species`` is not defined through a
+density profile function, but by the coordinates, momenta and charge of each of the bunch’s macro-particles, 
+that are given to the code through ``numpy`` arrays. 
+(Note that we could have used this initialization method through ``numpy`` arrays 
+to import an electron bunch distribution from a file.) 
 
 The simulation now includes a moving window, a laser pulse (modeled with its envelope),
 plasma electrons and an electron bunch, as in :ref:`Fig. 6 <Schema_Simulation_3>`.
@@ -575,7 +564,7 @@ as well as their weight (from which their charge can be computed).
    Include these images in your answers.
 
 .. _exercise14:    
-.. admonition:: Exercise 14 
+.. admonition:: Exercise 14 (advanced)
 
     With the same simulation of :ref:`Exercise 13 <exercise13>`, use the command 
     ``happi.multiPlot`` to plot in the same window 
@@ -591,7 +580,7 @@ as well as their weight (from which their charge can be computed).
 .. _exercise15:    
 .. admonition:: Exercise 15
 
-   With the same simulation of :ref:`Exercise 12 <exercise12>`, run the script 
+   With the same simulation of :ref:`Exercise 13 <exercise12>`, run the script 
    `Compute_bunch_parameters.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Compute_bunch_parameters.py>`_ 
    in the simulation folder to read the electron bunch parameters. 
    
@@ -613,7 +602,7 @@ as well as their weight (from which their charge can be computed).
 
 
 .. _exercise16:    
-.. admonition:: Exercise 16
+.. admonition:: Exercise 16 (advanced)
 
    With the same simulation of :ref:`Exercise 13 <exercise13>`, use the script `Follow_electron_bunch_evolution.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Follow_electron_bunch_evolution.py>`_ to see how the bunch has evolved during 
    the simulation (``%run Follow_electron_bunch_evolution.py``
@@ -629,7 +618,7 @@ as well as their weight (from which their charge can be computed).
 
 
 .. _exercise17:    
-.. admonition:: Exercise 17 
+.. admonition:: Exercise 17 (advanced)
    
    Create four new folders, ``sim1``, ``sim2``, ``sim3``, ``sim4`` 
    where you will run four new simulation. In each simulation, the charge of the electron bunch will be changed to :math:`20, 40, 60, 80` pC, respectively.
@@ -664,7 +653,7 @@ as well as their weight (from which their charge can be computed).
 
 
 .. _exercise18:    
-.. admonition:: Exercise 18
+.. admonition:: Exercise 18 (advanced)
  
    Create other four folders, ``sim5``, ``sim6``, ``sim7``, ``sim8``, 
    where you will launch the simulation varying the bunch distance from the laser, changing the ``delay_behind_laser`` parameter (Set again the charge to :math:`60` pC for all these simulations). 
@@ -682,7 +671,7 @@ as well as their weight (from which their charge can be computed).
    for this simple plot (as you did for :ref:`Exercise 16 <exercise16>`)
 
 .. _exercise19:    
-.. admonition:: Exercise 19
+.. admonition:: Exercise 19 (advanced)
 
    For the same simulation of :ref:`Exercise 13 <exercise13>`, using the ``TrackParticles`` diagnostic 
    and ``Probe`` diagnostic, write a script that takes as input variable an iteration number, i.e. ``timestep``. 
@@ -731,7 +720,7 @@ as well as their weight (from which their charge can be computed).
 
 
 .. _exercise20:    
-.. admonition:: Exercise 20 
+.. admonition:: Exercise 20 (advanced) 
 
    The accelerated electron bunch macro-particles do not have the same energies, so it is interesting to see the energy distribution 
    or energy spectrum of the bunch particles before and after the acceleration. 

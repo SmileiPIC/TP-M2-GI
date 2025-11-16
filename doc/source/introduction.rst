@@ -21,8 +21,8 @@ In the case considered in this practical, an externally injected relativistic el
 
 The practical will consist in four parts:
 
-- :ref:`Exploring the Input Namelist  <exploringthenamelist>` (**Exercises 1-2**): we will explore the Python ``InputNamelist.py`` file to understand the basic set-up of the problem (simulation window size, resolution, ...). In this part the simulation window is empty.
-- :ref:`Laser pulse in vacuum  <laserpulseinvacuum>` (**Exercises 4-6**): we will add a laser laser pulse propagating in vacuum and check that its diffraction follows the one predicted for a Gaussian beam.
+- :ref:`Exploring the Input Namelist  <exploringthenamelist>` (**Exercises 1-2**): we will explore the Python ``InputNamelist.py`` file to understand the basic set-up of the problem (simulation window size, resolution, ...).
+- :ref:`Laser pulse in vacuum  <laserpulseinvacuum>` (**Exercises 4-6**): we will simulate a laser laser pulse propagating in vacuum and check that its diffraction follows the one predicted for a Gaussian beam.
 - :ref:`Laser wakefield excitation <plasmawave>` (**Exercises 7-11**): we will add a pre-ionized plasma and visualize how the laser pulse excites plasma waves in its wake, also checking the results against the analytical theory in the linear regime.
 - :ref:`Laser wakefield acceleration of an electron bunch <laserplasmainjection>` (**Exercises 12-20**): we will add a relativistic electron bunch, injecting it into the plasma waves and studying its acceleration. 
 
@@ -31,12 +31,13 @@ familiarizing with the postprocessing using the Python postprocessing library
 `happi <https://smileipic.github.io/Smilei/Use/post-processing.html>`_ and adding step by step all 
 the necessary blocks to the input namelist file called `InputNamelist.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/InputNamelist.py>`_ . 
 
-To add the physical elements or required additional outputs, you just need to
-decomment (i.e. remove the symbol ``#`` in front of the) lines with the relative variables and blocks,
-as will be described in the exercises. 
-For example, to activate a block that introduces a laser in the simulation, 
-you only need to remove the symbol ``#`` in front the ``LaserEnvelopeGaussianAM`` block
-and the lines defining the variables used by that block.
+In the input file constructed for this practical, 
+you will be able to choose the physical case to simulate by setting the variable 
+``selected_case`` to one of these ``available_cases``::
+
+   available_cases = ["laser_in_vacuum",
+                      "laser_plasma_wakefield_excitation",
+                      "laser_wakefield_acceleration"]
 
 Prerequisites
 ^^^^^^^^^^^^^^^^^
@@ -54,7 +55,7 @@ in [ShawCommandLineCrashCourse]_).
 Some clarifications
 ^^^^^^^^^^^^^^^^^^^^^^^^
 **Warning** Although external injection of an electron bunch in a plasma wave
-is not the most common nor easy laser plasma acceleration scheme to realize experimentally, 
+is not the most common, nor experimentally easiest laser plasma acceleration scheme to realize, 
 it was chosen due its conceptual simplicity, which allows to easily study some basic concepts underlying 
 laser wakefield acceleration. The interested reader can find 
 `here <https://smileipic.github.io/tutorials/advanced_wakefield_envelope.html>`_ a tutorial which 
