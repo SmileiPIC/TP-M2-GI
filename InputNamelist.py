@@ -6,7 +6,7 @@ import numpy as np
 import scipy.constants
 import os,sys
 
-available_cases     = ["laser_in_vacuum","laser_plasma_wakefield_excitation","laser_wakefield_acceleration"]
+available_cases     = ["laser_in_vacuum","laser_wakefield_excitation","laser_wakefield_acceleration"]
 
 selected_case       = "laser_in_vacuum"
 

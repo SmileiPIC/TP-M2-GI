@@ -36,7 +36,7 @@ you will be able to choose the physical case to simulate by setting the variable
 ``selected_case`` to one of these ``available_cases``::
 
    available_cases = ["laser_in_vacuum",
-                      "laser_plasma_wakefield_excitation",
+                      "laser_wakefield_excitation",
                       "laser_wakefield_acceleration"]
 
 Prerequisites

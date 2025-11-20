@@ -280,7 +280,7 @@ in :ref:`Exercise 3 <Exercise3>`).
 
 **Action**: at the start of the ``InputNamelist.py`` file, change the variable ``selected_case`` to::
 
-   selected_case = "laser_plasma_wakefield_excitation"
+   selected_case = "laser_wakefield_excitation"
 
 This activates an additional block that defines a particle ``Species``
 in the simulation, whose name is ``plasmaelectrons``. Note the normalized mass 
@@ -348,7 +348,7 @@ the laser pulse satisfy the conditions for the applicability of the
    
       import happi; S=happi.Open()
       S.Probe.Probe0("Ex",units=["um","fs","GV/m"]).slide( figure=3, xlabel="x [um]" );
-      S.Probe.Probe1("Ex",units=["um","fs","GV/m"]).slide( figure=4, xlabel="x [um]",ylabel="y [um]" )
+      S.Probe.Probe1("Ex",units=["um","fs","GV/m"]).slide( figure=4, xlabel="x [um]",ylabel="y [um]",cmap="bwr" )
       
    If the second command does not show a meaningful image, try to add ``vmin`` and ``vmax`` values in the ``slide(...)`` command.
    You can have an idea of what values you may use by looking at the figure from the first plot command, that creates a 1D plot.
