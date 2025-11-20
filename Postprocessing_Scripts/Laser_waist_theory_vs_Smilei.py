@@ -55,7 +55,7 @@ waist_simulated       = np.asarray(waist_simulated)
 
 ####### Plot
 fig = plt.figure()
-plt.title("Comparison between simulated \n and theoretical Gaussian bunch diffraction")
+plt.title("Comparison between simulated \n and theoretical Gaussian beam diffraction")
 fig.set_facecolor('w')
 plt.plot(iters*c_normalized*dt/um,waist_analytical/um,label="theory",color='b',linewidth=2)
 plt.plot(iters*c_normalized*dt/um,waist_simulated/um,label="simulation",linewidth=2,color='r',linestyle="--")
