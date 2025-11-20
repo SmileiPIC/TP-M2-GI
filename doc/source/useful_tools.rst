@@ -51,14 +51,14 @@ a new simulation folder for each simulation.
 
 - Go inside the simulation folder, e.g. with the command ``cd simulation_folder_name``.
 
-- Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. ``JJ_submission_script.sh``. 
+- Inside the simulation folder, you will need a file to submit a simulation job to the job scheduler, e.g. ``submission_script.sh``. 
 You can transfer the file you already have in your home through  the comand ``cp``:
 
 .. code-block:: bash
 
-  cp ~/TP-M2-GI/JJ_submission_script.sh ~/simulation_folder_name/ 
+  cp ~/TP-M2-GI/submission_script.sh ~/simulation_folder_name/ 
   
-The last command will copy the file ``~/TP-M2-GI/JJ_submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
+The last command will copy the file ``~/TP-M2-GI/submission_script.sh`` inside the folder called ``simulation_folder_name`` in your present working directory.
 
 - Inside the simulation folder, you will need also the input file of your simulation ``InputNamelist.py``. 
   A copy of the ``InputNamelist.py`` should be in ``~/TP-M2-GI``.
@@ -76,7 +76,7 @@ C: How to run your simulation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - Check if you have all the required files 
-  (submission script ``JJ_submission_script.sh``, input namelist ``InputNamelist.py``, executable ``smilei``) 
+  (submission script ``submission_script.sh``, input namelist ``InputNamelist.py``, executable ``smilei``) 
   through the command ``ls``.
 
 - Remember to uncomment the necessary variables and blocks as explained in the exercise before launching a simulation.
@@ -87,13 +87,13 @@ C: How to run your simulation
 
 .. code-block:: bash
    
-    jjsub JJ_submission_script.sh
+    trndsub submission_script.sh
 
 - To check the status (running/queueing etc) of your job:
 
 .. code-block:: bash
    
-    jjstat -u $USER
+    trndstat -u $USER
 
 This should also return the number ``JobId`` of your job, necessary for the next command.
 
@@ -101,7 +101,7 @@ This should also return the number ``JobId`` of your job, necessary for the next
 
 .. code-block:: bash
    
-    jjdel JobId
+    trnddel JobId
 
 - To read the end (command ``tail``) of the log file ``smilei.log`` and let it refresh 
   (option ``-f``, e.g. if you want to watch your simulation execute for example):
