@@ -626,7 +626,7 @@ as well as their weight (from which their charge can be computed).
    **Warning:** Do not forget the minus sign in the bunch charge, or the bunch will be made of positrons!
    
    Adapt the commands you have used in :ref:`Exercise 10 <exercise10>` (``happi.multiPlot`` commands) to plot the longitudinal electric 
-   field ``Ex`` for the four cases. What do you observe? Include this plot in the answers.
+   field ``Ex`` on axis (from ``Probe0``) for the four cases. What do you observe? Include this plot in the answers.
    
    Use the script 
    `Compute_bunch_parameters.py <https://github.com/SmileiPIC/TP-M2-GI/blob/main/Postprocessing_Scripts/Compute_bunch_parameters.py>`_
