@@ -190,7 +190,7 @@ D.03: Plot diagnostic outputs
 To open a specific diagnostic, like the ``Probe1`` defined in the namelist, 
 and plot the longitudinal electric field ``Ex`` contained in that diagnostic, use::
 
-   S.Probe.Probe1("Ex").plot()
+   S.Probe.Probe0("Ex").plot()
 
 Other physical fields defined on the grid that you can plot are for example ``Ey``
 (the electric field component in the `y` direction), 
@@ -202,14 +202,14 @@ in the last simulation output available for that diagnostic.
 You may instead be interested in a specific iteration of the simulation (in code units), 
 like iteration 1200. To plot only that timestep, just specify it inside the diagnostic block::
 
-   S.Probe.Probe1("Ex", timesteps=1200).plot()
+   S.Probe.Probe0("Ex", timesteps=1200).plot()
 
 Remember that this timestep corresponds to physical time ``1200*dt``, where ``dt`` 
 is the simulation timestep, which can be found with ``dt=S.namelist.Main.timestep``.
 
 To know which iterations are available in your diagnostic, you can use::
 
-   S.Probe.Probe1("Ex").getAvailableTimesteps()
+   S.Probe.Probe0("Ex").getAvailableTimesteps()
    
    
 D.04: Specifying the physical units 
@@ -218,7 +218,7 @@ D.04: Specifying the physical units
 The code, including its outputs, uses normalized units.
 You can specify the units you want to use, e.g.::
 
-    S.Probe.Probe1("Ex",units=["um","GV/m"]).plot()
+    S.Probe.Probe0("Ex",units=["um","GV/m"]).plot()
         
 
 D.05: Visualize multiple timesteps
@@ -228,8 +228,8 @@ Normally you have a sequence of outputs, so you may want to see an animation
 of the outputs or to be able to slide between the saved timesteps. 
 It is possible to do it with these commands respectively::
 
-    S.Probe.Probe1("Ex").animate()
-    S.Probe.Probe1("Ex").slide()
+    S.Probe.Probe0("Ex").animate()
+    S.Probe.Probe0("Ex").slide()
 
 In the last case, just slide with the horizontal bar to see the evolution of the plotted quantity at
 different iterations.
@@ -254,8 +254,8 @@ scaling them through multiplying factors::
 
    import happi
    S = happi.Open("example/path/to/simulation")
-   E = S.Probe.Probe1("0.1*Ex", timesteps=1000, label = "E")
-   rho = S.Probe.Probe1("-10.*Rho", timesteps=1000, label="charge density")
+   E = S.Probe.Probe0("0.1*Ex", timesteps=1000, label = "E")
+   rho = S.Probe.Probe0("-10.*Rho", timesteps=1000, label="charge density")
    happi.multiPlot(E, rho, figure = 1)
 
 The previous example draws two curves, but you can use ``multiPlot`` to plot more curves.
